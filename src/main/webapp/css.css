@@ -1,0 +1,19 @@
+h1 {
+    color: #014687;
+}
+
+.background {
+ background-color: #f8f8f8;
+}
+
+body {
+    font-family: chalet-london-sixty, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.navbar {
+    background-color: #0c2069;
+    color: white;
+    font-weight: bolder;
+}

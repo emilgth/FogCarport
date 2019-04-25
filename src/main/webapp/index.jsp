@@ -5,54 +5,83 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome page</title>
-    </head>
-    <body>
-        <h1>Welcome to Sem 2</h1>
-        
-        <table>
-            <tr><td>Login</td>
-                <td>
-                    <form name="login" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="login">
-                        Email:<br>
-                        <input type="text" name="email" value="someone@nowhere.com">
-                        <br>
-                        Password:<br>
-                        <input type="password" name="password" value="sesam">
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </td>
-                <td>Or Register</td>
-                <td>
-                    <form name="register" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="register">
-                        Email:<br>
-                        <input type="text" name="email" value="someone@nowhere.com">
-                        <br>
-                        Password:<br>
-                        <input type="password" name="password1" value="sesam">
-                        <br>
-                        Retype Password:<br>
-                        <input type="password" name="password2" value="sesam">
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <% String error = (String) request.getAttribute( "error");
-           if ( error != null) { 
-               out.println("<H2>Error!!</h2>");
-               out.println(error);
-           }
-        %>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>QuickByg</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css.css">
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand">
+        <div class="nav navbar-nav">
+            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
+            <form class="form-inline" action="/action_page.php">
+                <label for="email" class="mr-sm-2">Email address:</label>
+                <input type="email" class="form-control mb-2 mr-sm-2" id="email">
+                <label for="pwd" class="mr-sm-2">Password:</label>
+                <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
+                <div class="form-check mb-2 mr-sm-2">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="container mt-5 mb-5">
+    <h1>QUICKBYG</h1>
+</div>
+
+<div class="container-fluid background">
+    <div class="container background pt-5 pb-5">
+        <b>QUICK-BYG TILBUD</b>
+        <p>
+            Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en
+            carport<br>
+            indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
+            <br>
+            Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>
+            Ved bestilling medfølger standardbyggevejledning.<br>
+            <br>
+            Rekvirér tilbud - start med at vælge type:<br>
+        </p>
+        <hr>
+        <div class="row justify-content-md-center">
+            <div class="col-xs">
+                <div class="container"><b>Carport med fladt tag:</b><br>
+                    <a href="fladtTag.jsp"><img src="img/quickurejs.gif" alt="uden rejsning"></a></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-md-center">
+            <div class="col-xs">
+                <div class="container"><b>Carport med rejsning:</b><br>
+                    <a href="medRejsning.jsp"><img src="img/quickmrejs.gif" alt="med rejsning"></a></div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
 </html>
