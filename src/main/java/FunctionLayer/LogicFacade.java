@@ -17,5 +17,4 @@ public class LogicFacade {
         UserMapper.createUser( user );
         return user;
     }
-
 }
