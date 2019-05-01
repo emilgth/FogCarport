@@ -9,6 +9,9 @@ public class User {
     private int phone;
     private boolean admin;
 
+    public User() {
+    }
+
     public User(String email, String password, String surname, String lastname, int phone) {
         this.userId = 0;
         this.email = email;

@@ -8,31 +8,36 @@ public class Order {
     private String status;
     private ArrayList<OrderLine> orderLineList;
     private double price;
-    private Roof roof;
+    private int roofId;
+    private int angle;
     private int length;
     private int width;
     private int height;
     private int shedLength;
     private int shedWidth;
 
-    public Order(User user, String status, Roof roof, int length, int width, int height) {
+    public Order() {
+    }
+
+    public Order(User user, String status, int roofId, int angle, int length, int width, int height) {
         this.orderId = 0;
         this.user = user;
         this.status = status;
         this.orderLineList = new ArrayList<>();
         this.price = 0;
-        this.roof = roof;
+        this.roofId = roofId;
+        this.angle = angle;
         this.length = length;
         this.width = width;
         this.height = height;
     }
 
-    private int priceCalc(ArrayList<OrderLine> orderLineList, ArrayList<Material> materialList){
+    private int priceCalc(ArrayList<OrderLine> orderLineList, ArrayList<Material> materialList) {
 
         int total = 0;
 
-        for (OrderLine o: orderLineList) {
-        total += materialList.get(o.getMaterialId()).getPrice()*o.getAmount();
+        for (OrderLine o : orderLineList) {
+            total += materialList.get(o.getMaterialId()).getPrice() * o.getAmount();
         }
         return total;
     }
@@ -77,12 +82,20 @@ public class Order {
         this.price = price;
     }
 
-    public Roof getRoof() {
-        return roof;
+    public int getRoofId() {
+        return roofId;
     }
 
-    public void setRoof(Roof roof) {
-        this.roof = roof;
+    public void setRoofId(int roofId) {
+        this.roofId = roofId;
+    }
+
+    public int getAngle() {
+        return angle;
+    }
+
+    public void setAngle(int angle) {
+        this.angle = angle;
     }
 
     public int getLength() {
