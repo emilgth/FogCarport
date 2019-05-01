@@ -11,6 +11,9 @@ public class Material {
     private int height;
     private int length;
 
+    public Material() {
+    }
+
     public Material(String name, String unit, double price) {
         this.name = name;
         this.unit = unit;
