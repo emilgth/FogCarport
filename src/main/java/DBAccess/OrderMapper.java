@@ -24,7 +24,7 @@ public class OrderMapper {
                 order.setOrderId(resultSet.getInt("order_id"));
                 order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
                 order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(null);
+                order.setOrderLineList(new ArrayList<>());
                 order.setPrice(resultSet.getDouble("price"));
                 order.setRoofId(resultSet.getInt("roof_id"));
                 order.setAngle(resultSet.getInt("roof_angle"));
