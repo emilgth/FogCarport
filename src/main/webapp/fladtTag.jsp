@@ -59,7 +59,8 @@
         </div>
 
         <!-- select table-->
-        <form action="success.jsp" method="post" class="">
+        <form action="FrontController" method="post" class="">
+            <input type="hidden" name="command" value="builder">
             <div id="table" class="form-horizontal">
                 <div class="form-group">
                                     <span>
