@@ -15,11 +15,12 @@ public class Builder extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        //ArrayList<Order> orderList = OrderMapper.getOrderList();
+        ArrayList<Order> orderList = OrderMapper.getOrderList();
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist();
 
 
         HttpSession session = request.getSession();
+        session.setAttribute("orderList",orderList);
         session.setAttribute("orderLineList",orderLineList);
 
         return "skitse";

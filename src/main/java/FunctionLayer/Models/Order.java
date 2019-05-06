@@ -37,7 +37,7 @@ public class Order {
         int total = 0;
 
         for (OrderLine o : orderLineList) {
-            total += materialList.get(o.getMaterialId()).getPrice() * o.getAmount();
+            total += o.getMaterial().getPrice() * o.getAmount();
         }
         return total;
     }

@@ -3,22 +3,22 @@ package FunctionLayer.Models;
 //OrderLine er stykker i styklisten
 
 public class OrderLine {
-    private int materialId;
+    private Material material;
     private int amount;
     private String description;
 
-    public OrderLine(int materialId, int amount) {
-        this.materialId = materialId;
+    public OrderLine(Material material, int amount) {
+        this.material = material;
         this.amount = amount;
         this.description = "";
     }
 
-    public int getMaterialId() {
-        return materialId;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setMaterialId(int materialId) {
-        this.materialId = materialId;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public int getAmount() {
