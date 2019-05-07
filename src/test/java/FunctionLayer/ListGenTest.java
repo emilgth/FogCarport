@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 
 public class ListGenTest {
 
+    //TODO: Tilføj til envvar, der er stadig potentielt sensitiv data i test DB
     private static Connection testConnection;
     private static String USER = "Fog_testuser";
     private static String USERPW = "1234";
@@ -48,9 +49,33 @@ public class ListGenTest {
     }
 
     @Test
-    public void testSetUpOK() {
+    public void testConnection() {
         // Just check that we have a connection.
         assertNotNull( testConnection );
+    }
+
+    @Test
+    public void testGetLowerFasciaId4500() {
+        int materialId = ListGen.getLowerFasciaId(4500);
+        assertEquals(22,materialId);
+    }
+
+    @Test
+    public void testGetLowerFasciaId4501() {
+        int materialId = ListGen.getLowerFasciaId(4501);
+        assertEquals(23,materialId);
+    }
+
+    @Test
+    public void testGetUpperFasciaId4500() {
+        int materialId = ListGen.getUpperFasciaId(4500);
+        assertEquals(35,materialId);
+    }
+
+    @Test
+    public void testGetUpperFasciaId4501() {
+        int materialId = ListGen.getUpperFasciaId(4501);
+        assertEquals(36,materialId);
     }
 
     //<editor-fold defaultstate="collapsed" desc="Tests for getPostAmount()">
@@ -61,9 +86,21 @@ public class ListGenTest {
     }
 
     @Test
+    public void testGetPostAmount4401() {
+        int postAmount = ListGen.getPostAmount(4401);
+        assertEquals(6,postAmount);
+    }
+
+    @Test
     public void testGetPostAmount7500() {
         int postAmount = ListGen.getPostAmount(7500);
         assertEquals(6,postAmount);
+    }
+
+    @Test
+    public void testGetPostAmount7501() {
+        int postAmount = ListGen.getPostAmount(7501);
+        assertEquals(8,postAmount);
     }
 
     @Test
@@ -107,9 +144,15 @@ public class ListGenTest {
 
 
     @Test
-    public void testGetRafterId() {
-        int materialId = ListGen.getRafterId(5600);
-        assertEquals(74,materialId);
+    public void testGetRafterId5600() {
+        int materialId = ListGen.getRafterId(4500);
+        assertEquals(70,materialId);
+    }
+
+    @Test
+    public void testGetRafterId5601() {
+        int materialId = ListGen.getRafterId(4501);
+        assertEquals(71,materialId);
     }
 
     @Test

@@ -61,6 +61,58 @@ public class ListGen {
         return orderLineList;
     }
 
+    public static int getLowerFasciaId(int size) {
+        /*
+        Se getRafterId()
+
+        Denne metode laver en liste med alle relevante materialer til understernbrædder
+        */
+        ArrayList<Material> fasciaList = new ArrayList<>();
+
+        //Alle 25x200 trykimp. brædder
+        fasciaList.add(materialMap.get(15));
+        fasciaList.add(materialMap.get(16));
+        fasciaList.add(materialMap.get(17));
+        fasciaList.add(materialMap.get(18));
+        fasciaList.add(materialMap.get(19));
+        fasciaList.add(materialMap.get(20));
+        fasciaList.add(materialMap.get(21));
+        fasciaList.add(materialMap.get(22));
+        fasciaList.add(materialMap.get(23));
+        fasciaList.add(materialMap.get(24));
+        fasciaList.add(materialMap.get(25));
+        fasciaList.add(materialMap.get(26));
+        fasciaList.add(materialMap.get(27));
+
+        return findBestFit(size, fasciaList);
+    }
+
+    public static int getUpperFasciaId(int size) {
+        /*
+        Se getRafterId()
+
+        Denne metode laver en liste med alle relevante materialer til oversternbrædder
+        */
+        ArrayList<Material> fasciaList = new ArrayList<>();
+
+        //Alle 25x125 trykimp. brædder
+        fasciaList.add(materialMap.get(28));
+        fasciaList.add(materialMap.get(29));
+        fasciaList.add(materialMap.get(30));
+        fasciaList.add(materialMap.get(31));
+        fasciaList.add(materialMap.get(32));
+        fasciaList.add(materialMap.get(33));
+        fasciaList.add(materialMap.get(34));
+        fasciaList.add(materialMap.get(35));
+        fasciaList.add(materialMap.get(36));
+        fasciaList.add(materialMap.get(37));
+        fasciaList.add(materialMap.get(38));
+        fasciaList.add(materialMap.get(39));
+        fasciaList.add(materialMap.get(40));
+
+        return findBestFit(size, fasciaList);
+    }
+
     public static int getPostAmount(int length) {
         /*
         Denne metode finder antallet af stolper der skal bruges, baseret på længden af carport
@@ -79,15 +131,20 @@ public class ListGen {
     }
 
     private static int getDistance(int i) {
+        //Se getPostAmount()
         return overhangFront + overhangSides + postSpacing * i;
     }
 
     public static int getRafterId(int width) {
-        ArrayList<Material> rafterList = new ArrayList<>();
-        /*
-        rafterList er bevidst bygget manuelt fordi materialer i DB ikke nødvendigvis kommer foreløbende
-        Manuel konstruktion af rafterList kan erstattes med en ny DB Mapper, der kun udvælger spær
+          /*
+        Denne metode laver en liste med alle relevante materialer til spær
+
+        rafterList er bevidst bygget manuelt fordi materialer i DB ikke nødvendigvis kommer foreløbende.
+        Manuel konstruktion af rafterList kan erstattes med en ny DB Mapper, der kun udvælger spær.
         */
+        ArrayList<Material> rafterList = new ArrayList<>();
+
+        //Alle 45x195 ubh. spærtræ
         rafterList.add(materialMap.get(67));
         rafterList.add(materialMap.get(68));
         rafterList.add(materialMap.get(69));
@@ -102,16 +159,7 @@ public class ListGen {
         rafterList.add(materialMap.get(78));
         rafterList.add(materialMap.get(79));
 
-        //Denne foreach finder materialId på det spær der mindst muligt større end width
-        int tempResult = Integer.MAX_VALUE;
-        int rafterMaterialId = 0;
-        for (Material material : rafterList) {
-            if (material.getLength() >= width && material.getLength() < tempResult) {
-                tempResult = material.getLength();
-                rafterMaterialId = material.getMaterialId();
-            }
-        }
-        return rafterMaterialId;
+        return findBestFit(width, rafterList);
     }
 
     public static int getRafterSpacing(int width) {
@@ -139,5 +187,29 @@ public class ListGen {
     public static int getRafterAmount(int length, int width) {
         //Denne metode beregner hvor mange spær der skal bruges ud fra længden og bredden
         return length / getRafterSpacing(width);
+    }
+
+    private static int findBestFit(int size, ArrayList<Material> fasciaList) {
+        /*
+        Denne metode finder id på det materiale der er mindst muligt for langt til at opfylde en given længde
+        ud fra en liste af materialer
+
+        *int size kan være både length eller width på carport, bruger navnet size for at undgå forvirring.
+        **Metoden bruger altid length på materialerne, husk materialer kan være orienteret forskelligt.
+
+        Metoden bliver brugt af:
+        getLowerFasciaId()
+        getUpperFasciaId()
+        getRafterId()
+        */
+        int tempResult = Integer.MAX_VALUE;
+        int materialId = 0;
+        for (Material material : fasciaList) {
+            if (material.getLength() >= size && material.getLength() < tempResult) {
+                tempResult = material.getLength();
+                materialId = material.getMaterialId();
+            }
+        }
+        return materialId;
     }
 }
