@@ -61,6 +61,14 @@ public class ListGen {
         return orderLineList;
     }
 
+    public static int getFasciaAmount(int size) {
+
+        if (size > 6000) {
+            return 2;
+        }
+        return 1;
+    }
+
     public static int getLowerFasciaId(int size) {
         /*
         Se getRafterId()
@@ -159,6 +167,7 @@ public class ListGen {
         rafterList.add(materialMap.get(78));
         rafterList.add(materialMap.get(79));
 
+        //Beskrivelse af metoden fortsætter i findBestFit()
         return findBestFit(width, rafterList);
     }
 
@@ -189,10 +198,10 @@ public class ListGen {
         return length / getRafterSpacing(width);
     }
 
-    private static int findBestFit(int size, ArrayList<Material> fasciaList) {
+    private static int findBestFit(int size, ArrayList<Material> list) {
         /*
-        Denne metode finder id på det materiale der er mindst muligt for langt til at opfylde en given længde
-        ud fra en liste af materialer
+        Denne metode finder id på det materiale, der er mindst muligt for langt, til at opfylde en given længde
+        ud fra en liste af materialer.
 
         *int size kan være både length eller width på carport, bruger navnet size for at undgå forvirring.
         **Metoden bruger altid length på materialerne, husk materialer kan være orienteret forskelligt.
@@ -202,10 +211,25 @@ public class ListGen {
         getUpperFasciaId()
         getRafterId()
         */
+
+        //Første del finder en factor i, som size delt med bliver mindre end (<=) det længste materiale
+        int max = Integer.MIN_VALUE;
+        for (Material material : list) {
+            if (material.getLength() > max) {
+                max = material.getLength();
+            }
+        }
+        int i = 1;
+        //Minor bug: 6001 / 2 = 3000 pga integers
+        while (size / i >= max) {
+            i++;
+        }
+
+        //Anden del finder id på det materiale med længde tættest på size uden at være mindre
         int tempResult = Integer.MAX_VALUE;
         int materialId = 0;
-        for (Material material : fasciaList) {
-            if (material.getLength() >= size && material.getLength() < tempResult) {
+        for (Material material : list) {
+            if (material.getLength() >= size / i && material.getLength() < tempResult) {
                 tempResult = material.getLength();
                 materialId = material.getMaterialId();
             }

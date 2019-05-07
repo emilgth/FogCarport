@@ -67,6 +67,12 @@ public class ListGenTest {
     }
 
     @Test
+    public void testGetLowerFasciaId6002() {
+        int materialId = ListGen.getLowerFasciaId(6002);
+        assertEquals(18,materialId);
+    }
+
+    @Test
     public void testGetUpperFasciaId4500() {
         int materialId = ListGen.getUpperFasciaId(4500);
         assertEquals(35,materialId);
