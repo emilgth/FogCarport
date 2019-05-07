@@ -111,4 +111,10 @@ public class ListGenTest {
         int materialId = ListGen.getRafterId(5600);
         assertEquals(74,materialId);
     }
+
+    @Test
+    public void testGetRafterAmount() {
+        int rafterAmount = ListGen.getRafterAmount(7800,6000);
+        assertEquals(19,rafterAmount);
+    }
 }
