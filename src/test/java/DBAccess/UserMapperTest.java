@@ -53,7 +53,14 @@ public class UserMapperTest {
     public void testGetUser() {
         // Can we find a user
         User user = UserMapper.getUser( 2);
-        assertTrue( user != null );
+        assertNotNull(user);
+    }
+
+    @Test
+    public void testGetUserSpecificUser() {
+        // Can we find the right user
+        User user = UserMapper.getUser(2);
+        assertEquals("anders@email.com",user.getEmail());
     }
 
     /*

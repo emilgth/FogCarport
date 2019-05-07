@@ -13,6 +13,12 @@ public class OrderLine {
         this.description = "";
     }
 
+    public OrderLine(Material material, int amount, String description) {
+        this.material = material;
+        this.amount = amount;
+        this.description = description;
+    }
+
     public Material getMaterial() {
         return material;
     }

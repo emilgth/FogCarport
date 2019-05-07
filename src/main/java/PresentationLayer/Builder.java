@@ -16,7 +16,7 @@ public class Builder extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         ArrayList<Order> orderList = OrderMapper.getOrderList();
-        ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist();
+        ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(orderList.get(0));
 
 
         HttpSession session = request.getSession();
