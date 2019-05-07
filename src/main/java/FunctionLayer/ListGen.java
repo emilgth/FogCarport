@@ -12,16 +12,101 @@ public class ListGen {
 
     private static ArrayList<Material> dontUseThisList = MaterialMapper.getMaterialList();
     private static HashMap<Integer, Material> materialMap = getMaterialMap(dontUseThisList);
+    private static ArrayList<Material> lowerFasciaList;
+    private static ArrayList<Material> upperFasciaList;
+    private static ArrayList<Material> rafterList;
 
     private static HashMap<Integer, Material> getMaterialMap(ArrayList<Material> materialList) {
-        /*Laver materiale arraylisten til et hashmap så jeg kan søge på materiale id.
-          Gør det mere overskueligt at slå et materiale op i DB*/
+        /*
+        Laver materiale arraylisten til et hashmap så jeg kan søge på materiale id.
+        Gør det mere overskueligt at slå et materiale op i DB
+        */
         HashMap<Integer, Material> map = new HashMap<>();
         for (Material material : materialList) {
             map.put(material.getMaterialId(), material);
         }
         return map;
     }
+
+    //<editor-fold defaultstate="collapsed" desc="List builders. Tryk på '+' for at udvide.">
+
+    /*
+    Følgenge lister er bevidst bygget manuelt fordi materialer i DB ikke nødvendigvis kommer foreløbende.
+    Manuel konstruktion af lister kan erstattes med nye DB Mappers, der kun udvælger de pågældende materialer.
+    */
+
+    private static ArrayList<Material> getLowerFasciaList() {
+        //Denne metode laver en liste med alle relevante materialer til understernbrædder
+
+        if (lowerFasciaList == null) {
+            lowerFasciaList = new ArrayList<>();
+
+            //Alle 25x200 trykimp. brædder
+            lowerFasciaList.add(materialMap.get(15));
+            lowerFasciaList.add(materialMap.get(16));
+            lowerFasciaList.add(materialMap.get(17));
+            lowerFasciaList.add(materialMap.get(18));
+            lowerFasciaList.add(materialMap.get(19));
+            lowerFasciaList.add(materialMap.get(20));
+            lowerFasciaList.add(materialMap.get(21));
+            lowerFasciaList.add(materialMap.get(22));
+            lowerFasciaList.add(materialMap.get(23));
+            lowerFasciaList.add(materialMap.get(24));
+            lowerFasciaList.add(materialMap.get(25));
+            lowerFasciaList.add(materialMap.get(26));
+            lowerFasciaList.add(materialMap.get(27));
+        }
+        return lowerFasciaList;
+    }
+
+    private static ArrayList<Material> getUpperFasciaList() {
+        //Denne metode laver en liste med alle relevante materialer til oversternbrædder
+
+        if (upperFasciaList == null) {
+            upperFasciaList = new ArrayList<>();
+
+            //Alle 25x125 trykimp. brædder
+            upperFasciaList.add(materialMap.get(28));
+            upperFasciaList.add(materialMap.get(29));
+            upperFasciaList.add(materialMap.get(30));
+            upperFasciaList.add(materialMap.get(31));
+            upperFasciaList.add(materialMap.get(32));
+            upperFasciaList.add(materialMap.get(33));
+            upperFasciaList.add(materialMap.get(34));
+            upperFasciaList.add(materialMap.get(35));
+            upperFasciaList.add(materialMap.get(36));
+            upperFasciaList.add(materialMap.get(37));
+            upperFasciaList.add(materialMap.get(38));
+            upperFasciaList.add(materialMap.get(39));
+            upperFasciaList.add(materialMap.get(40));
+        }
+        return upperFasciaList;
+    }
+
+    private static ArrayList<Material> getRafterList() {
+        //Denne metode laver en liste med alle relevante materialer til spær
+
+        if (rafterList == null) {
+            rafterList = new ArrayList<>();
+
+            //Alle 45x195 ubh. spærtræ
+            rafterList.add(materialMap.get(67));
+            rafterList.add(materialMap.get(68));
+            rafterList.add(materialMap.get(69));
+            rafterList.add(materialMap.get(70));
+            rafterList.add(materialMap.get(71));
+            rafterList.add(materialMap.get(72));
+            rafterList.add(materialMap.get(73));
+            rafterList.add(materialMap.get(74));
+            rafterList.add(materialMap.get(75));
+            rafterList.add(materialMap.get(76));
+            rafterList.add(materialMap.get(77));
+            rafterList.add(materialMap.get(78));
+            rafterList.add(materialMap.get(79));
+        }
+        return rafterList;
+    }
+    // </editor-fold>
 
     //Stolpe og udhæng variable, som udgangspunkt statiske
     private static int overhangFront = 1000; //max 1000
@@ -32,7 +117,7 @@ public class ListGen {
 
         ArrayList<OrderLine> orderLineList = new ArrayList<>();
 
-        //<editor-fold defaultstate="collapsed" desc="Test data til SCRUM præsentation 03/05">
+        //<editor-fold defaultstate="collapsed" desc="Test data til SCRUM præsentation 03/05. Tryk på '+' for at udvide.">
         /*
         orderLineList.add(new OrderLine(materialMap.get(70), 15));
         orderLineList.add(new OrderLine(materialMap.get(84), 4));
@@ -50,75 +135,57 @@ public class ListGen {
         int width = order.getWidth();
         int height = order.getHeight();
 
-        //Antal stolper (stolpe længde er som udgangspunkt altid 3m)
+        //Sternbrædder
+        String lowerFasciaFrontBackDesc = "understernbrædder til for & bag ende";
+        Material tempMat01 = materialMap.get(getLowerFasciaId(width));
+        //Amount ganges med 2 fordi det er både front og back, med skur er det kun front der har sternbrædder
+        orderLineList.add(new OrderLine(tempMat01, 2 * getFasciaAmount(width,tempMat01.getLength()), lowerFasciaFrontBackDesc));
+
+        String lowerFasciaSidesDesc = "understernbrædder til siderne";
+        Material tempMat02 = materialMap.get(getLowerFasciaId(length));
+        orderLineList.add(new OrderLine(tempMat02,2*getFasciaAmount(length,tempMat02.getLength()),lowerFasciaSidesDesc));
+
+        String upperFasciaFrontBackDesc = "oversternbrædder til for & bag ende";
+        Material tempMat03 = materialMap.get(getUpperFasciaId(width));
+        orderLineList.add(new OrderLine(tempMat03,2*getFasciaAmount(width,tempMat03.getLength()),upperFasciaFrontBackDesc));
+
+        String upperFasciaSidesDesc = "oversternbrædder til siderne";
+        Material tempMat04 = materialMap.get(getUpperFasciaId(length));
+        orderLineList.add(new OrderLine(tempMat04, 2*getFasciaAmount(length,tempMat04.getLength()),upperFasciaSidesDesc));
+
+        //Remme
+        
+
+        //Stolper
         String postDesc = "Stolper nedgraves 90 cm. i jord";
         orderLineList.add(new OrderLine(materialMap.get(84), getPostAmount(length), postDesc));
 
-        //Antal og længde på spær
+        //Spær
         String rafterDesc = "Spær, monteres på rem";
         orderLineList.add(new OrderLine(materialMap.get(getRafterId(width)), getRafterAmount(length, width), rafterDesc));
 
         return orderLineList;
     }
 
-    public static int getFasciaAmount(int size) {
+    public static int getFasciaAmount(int size, int materialLength) {
+        /*
+        Denne metode bruger findFitFactor() til at bestemme hvor man sternbrædder der skal bruges til ÉN side.
+        Der er altid 2 sternbrædder pr side pr sæt (i), med undtagelse af bagside hvis der er skur.
 
-        if (size > 6000) {
-            return 2;
-        }
-        return 1;
+        while løkken i findFitfactor() kompensere for at nogen materialer er for korte til at strække hele size
+        og derfor blev halveret i en af fasciaId metoderne.
+        */
+        return 2 * findFitFactor(size, materialLength);
     }
 
     public static int getLowerFasciaId(int size) {
-        /*
-        Se getRafterId()
-
-        Denne metode laver en liste med alle relevante materialer til understernbrædder
-        */
-        ArrayList<Material> fasciaList = new ArrayList<>();
-
-        //Alle 25x200 trykimp. brædder
-        fasciaList.add(materialMap.get(15));
-        fasciaList.add(materialMap.get(16));
-        fasciaList.add(materialMap.get(17));
-        fasciaList.add(materialMap.get(18));
-        fasciaList.add(materialMap.get(19));
-        fasciaList.add(materialMap.get(20));
-        fasciaList.add(materialMap.get(21));
-        fasciaList.add(materialMap.get(22));
-        fasciaList.add(materialMap.get(23));
-        fasciaList.add(materialMap.get(24));
-        fasciaList.add(materialMap.get(25));
-        fasciaList.add(materialMap.get(26));
-        fasciaList.add(materialMap.get(27));
-
-        return findBestFit(size, fasciaList);
+        //Se findBestFit()
+        return findBestFit(size, getLowerFasciaList());
     }
 
     public static int getUpperFasciaId(int size) {
-        /*
-        Se getRafterId()
-
-        Denne metode laver en liste med alle relevante materialer til oversternbrædder
-        */
-        ArrayList<Material> fasciaList = new ArrayList<>();
-
-        //Alle 25x125 trykimp. brædder
-        fasciaList.add(materialMap.get(28));
-        fasciaList.add(materialMap.get(29));
-        fasciaList.add(materialMap.get(30));
-        fasciaList.add(materialMap.get(31));
-        fasciaList.add(materialMap.get(32));
-        fasciaList.add(materialMap.get(33));
-        fasciaList.add(materialMap.get(34));
-        fasciaList.add(materialMap.get(35));
-        fasciaList.add(materialMap.get(36));
-        fasciaList.add(materialMap.get(37));
-        fasciaList.add(materialMap.get(38));
-        fasciaList.add(materialMap.get(39));
-        fasciaList.add(materialMap.get(40));
-
-        return findBestFit(size, fasciaList);
+        //Se findBestFit()
+        return findBestFit(size, getUpperFasciaList());
     }
 
     public static int getPostAmount(int length) {
@@ -144,31 +211,8 @@ public class ListGen {
     }
 
     public static int getRafterId(int width) {
-          /*
-        Denne metode laver en liste med alle relevante materialer til spær
-
-        rafterList er bevidst bygget manuelt fordi materialer i DB ikke nødvendigvis kommer foreløbende.
-        Manuel konstruktion af rafterList kan erstattes med en ny DB Mapper, der kun udvælger spær.
-        */
-        ArrayList<Material> rafterList = new ArrayList<>();
-
-        //Alle 45x195 ubh. spærtræ
-        rafterList.add(materialMap.get(67));
-        rafterList.add(materialMap.get(68));
-        rafterList.add(materialMap.get(69));
-        rafterList.add(materialMap.get(70));
-        rafterList.add(materialMap.get(71));
-        rafterList.add(materialMap.get(72));
-        rafterList.add(materialMap.get(73));
-        rafterList.add(materialMap.get(74));
-        rafterList.add(materialMap.get(75));
-        rafterList.add(materialMap.get(76));
-        rafterList.add(materialMap.get(77));
-        rafterList.add(materialMap.get(78));
-        rafterList.add(materialMap.get(79));
-
-        //Beskrivelse af metoden fortsætter i findBestFit()
-        return findBestFit(width, rafterList);
+        //Se findBestFit()
+        return findBestFit(width, getRafterList());
     }
 
     public static int getRafterSpacing(int width) {
@@ -205,27 +249,16 @@ public class ListGen {
 
         *int size kan være både length eller width på carport, bruger navnet size for at undgå forvirring.
         **Metoden bruger altid length på materialerne, husk materialer kan være orienteret forskelligt.
+        ***Læs om listerne under: List builders (default collapsed)
 
         Metoden bliver brugt af:
-        getLowerFasciaId()
-        getUpperFasciaId()
-        getRafterId()
+        getLowerFasciaId() til at finde understernbrædder
+        getUpperFasciaId() til at finde oversternbrædder
+        getRafterId() til at finde spær
+
+        Mellem metoderne bliver brugt for overskuelighed og for at gøre koden mere testbar
         */
-
-        //Første del finder en factor i, som size delt med bliver mindre end (<=) det længste materiale
-        int max = Integer.MIN_VALUE;
-        for (Material material : list) {
-            if (material.getLength() > max) {
-                max = material.getLength();
-            }
-        }
-        int i = 1;
-        //Minor bug: 6001 / 2 = 3000 pga integers
-        while (size / i >= max) {
-            i++;
-        }
-
-        //Anden del finder id på det materiale med længde tættest på size uden at være mindre
+        int i = findMaxFromList(size, list);
         int tempResult = Integer.MAX_VALUE;
         int materialId = 0;
         for (Material material : list) {
@@ -235,5 +268,40 @@ public class ListGen {
             }
         }
         return materialId;
+    }
+
+    private static int findMaxFromList(int size, ArrayList<Material> list) {
+        /*
+        Denne metode finder et max, som bruges af findFitFactor() til at finde en factor i som
+        size delt med bliver mindre end (<=) det længste materiale i list
+
+        Metoden bliver brugt af:
+        findBestFit()
+        */
+        int max = Integer.MIN_VALUE;
+        for (Material material : list) {
+            if (material.getLength() > max) {
+                max = material.getLength();
+            }
+        }
+        return findFitFactor(size, max);
+    }
+
+    private static int findFitFactor(int size, int max) {
+        /*
+        Denne metode kompensere for at nogen materialer er for korte til at strække hele size
+        og derfor blev halveret i en af Id metoderne.
+
+        Metoden returnerer den factor size er delt med for at finde et materiale der kan strække længden.
+        Factor bruges også af getFasciaAmount() til at gange amount op,
+        så amount gange materiale længde er større end eller lig med size.
+        */
+        int i = 1;
+
+        //Minor bug: 6001 / 2 = 3000 pga integers
+        while (size / i > max) {
+            i++;
+        }
+        return i;
     }
 }
