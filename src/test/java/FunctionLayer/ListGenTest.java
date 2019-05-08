@@ -55,22 +55,22 @@ public class ListGenTest {
     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Tests for getFasciaAmount()">
+    //<editor-fold defaultstate="collapsed" desc="Tests for getFitAmount()">
     @Test
     public void testGetFasciaAmount6000() {
-        int amount = ListGen.getFasciaAmount(6000, 6000);
+        int amount = ListGen.getFitAmount(6000, 6000);
         assertEquals(2, amount);
     }
 
     @Test
     public void testGetFasciaAmount6001() {
-        int amount = ListGen.getFasciaAmount(6001, 6000);
+        int amount = ListGen.getFitAmount(6001, 6000);
         assertEquals(4, amount);
     }
 
     @Test
     public void testGetFasciaAmount12001() {
-        int amount = ListGen.getFasciaAmount(12002, 6000);
+        int amount = ListGen.getFitAmount(12002, 6000);
         assertEquals(6, amount);
     }
     //</editor-fold>

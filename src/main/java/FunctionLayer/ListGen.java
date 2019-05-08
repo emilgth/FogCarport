@@ -15,6 +15,8 @@ public class ListGen {
     private static ArrayList<Material> lowerFasciaList;
     private static ArrayList<Material> upperFasciaList;
     private static ArrayList<Material> rafterList;
+    private static ArrayList<Material> waterboardList;
+    private static ArrayList<Material> roofMaterialList;
 
     private static HashMap<Integer, Material> getMaterialMap(ArrayList<Material> materialList) {
         /*
@@ -106,6 +108,48 @@ public class ListGen {
         }
         return rafterList;
     }
+
+    private static ArrayList<Material> getWaterboardList() {
+        //Denne metode laver en liste med alle relevante materialer til vandbrædder
+
+        if (waterboardList == null) {
+            waterboardList = new ArrayList<>();
+
+            //Alle 19x100 trykimp. brædder
+            waterboardList.add(materialMap.get(89));
+            waterboardList.add(materialMap.get(90));
+            waterboardList.add(materialMap.get(91));
+            waterboardList.add(materialMap.get(92));
+            waterboardList.add(materialMap.get(93));
+            waterboardList.add(materialMap.get(94));
+            waterboardList.add(materialMap.get(95));
+            waterboardList.add(materialMap.get(96));
+            waterboardList.add(materialMap.get(97));
+            waterboardList.add(materialMap.get(98));
+            waterboardList.add(materialMap.get(99));
+            waterboardList.add(materialMap.get(100));
+            waterboardList.add(materialMap.get(101));
+        }
+        return waterboardList;
+    }
+
+    private static ArrayList<Material> getRoofMaterialList() {
+        //Denne metode laver en liste med alle relevante materialer til fladttag
+        if (roofMaterialList == null) {
+            roofMaterialList = new ArrayList<>();
+
+            //Alle fladt tag materialer
+            roofMaterialList.add(materialMap.get(102));
+            roofMaterialList.add(materialMap.get(103));
+            roofMaterialList.add(materialMap.get(104));
+            roofMaterialList.add(materialMap.get(105));
+            roofMaterialList.add(materialMap.get(106));
+            roofMaterialList.add(materialMap.get(135));
+            roofMaterialList.add(materialMap.get(136));
+        }
+        return roofMaterialList;
+    }
+
     // </editor-fold>
 
     //Stolpe og udhæng variable, som udgangspunkt statiske
@@ -139,35 +183,62 @@ public class ListGen {
         String lowerFasciaFrontBackDesc = "understernbrædder til for & bag ende";
         Material tempMat01 = materialMap.get(getLowerFasciaId(width));
         //Amount ganges med 2 fordi det er både front og back, med skur er det kun front der har sternbrædder
-        orderLineList.add(new OrderLine(tempMat01, 2 * getFasciaAmount(width,tempMat01.getLength()), lowerFasciaFrontBackDesc));
+        orderLineList.add(new OrderLine(tempMat01, 2 * getFitAmount(width, tempMat01.getLength()), lowerFasciaFrontBackDesc));
 
         String lowerFasciaSidesDesc = "understernbrædder til siderne";
         Material tempMat02 = materialMap.get(getLowerFasciaId(length));
-        orderLineList.add(new OrderLine(tempMat02,2*getFasciaAmount(length,tempMat02.getLength()),lowerFasciaSidesDesc));
+        //Amount ganges også her med 2, fordi det er amount for begge sider
+        orderLineList.add(new OrderLine(tempMat02, 2 * getFitAmount(length, tempMat02.getLength()), lowerFasciaSidesDesc));
 
         String upperFasciaFrontBackDesc = "oversternbrædder til for & bag ende";
         Material tempMat03 = materialMap.get(getUpperFasciaId(width));
-        orderLineList.add(new OrderLine(tempMat03,2*getFasciaAmount(width,tempMat03.getLength()),upperFasciaFrontBackDesc));
+        orderLineList.add(new OrderLine(tempMat03, 2 * getFitAmount(width, tempMat03.getLength()), upperFasciaFrontBackDesc));
 
         String upperFasciaSidesDesc = "oversternbrædder til siderne";
         Material tempMat04 = materialMap.get(getUpperFasciaId(length));
-        orderLineList.add(new OrderLine(tempMat04, 2*getFasciaAmount(length,tempMat04.getLength()),upperFasciaSidesDesc));
+        orderLineList.add(new OrderLine(tempMat04, 2 * getFitAmount(length, tempMat04.getLength()), upperFasciaSidesDesc));
 
         //Remme
-        
-
-        //Stolper
-        String postDesc = "Stolper nedgraves 90 cm. i jord";
-        orderLineList.add(new OrderLine(materialMap.get(84), getPostAmount(length), postDesc));
+        //Remme er bygget af spærtræ så metoden bruger rafterList()
+        String beamDesc = "Remme i sider, sadles ned i stolper";
+        Material tempMat05 = materialMap.get(getRafterId(length));
+        //Amount ganges med 2 fordi der er remme i begge sider
+        orderLineList.add(new OrderLine(tempMat05, 2 * getFitAmount(length, tempMat05.getLength()), beamDesc));
 
         //Spær
         String rafterDesc = "Spær, monteres på rem";
         orderLineList.add(new OrderLine(materialMap.get(getRafterId(width)), getRafterAmount(length, width), rafterDesc));
 
+        //Stolper
+        String postDesc = "Stolper nedgraves 90 cm. i jord";
+        //Stolper er som udgangspunkt altid 3m lange da højden ikke er variabel
+        orderLineList.add(new OrderLine(materialMap.get(84), getPostAmount(length), postDesc));
+
+        //Vandbrædder
+        String waterboardSidesDesc = "vandbrædt på stern i sider";
+        Material tempMat06 = materialMap.get(getWaterboardId(length));
+        //Amount ganges med 2 fordi vandbrædder følger sternbrædder
+        orderLineList.add(new OrderLine(tempMat06, 2 * getFitAmount(length, tempMat06.getLength()), waterboardSidesDesc));
+
+        String waterboardFrontDesc = "vandbrædt på stern i forende";
+        Material tempMat07 = materialMap.get(getWaterboardId(width));
+        //Amount ganges ikke da det kun er til front
+        orderLineList.add(new OrderLine(tempMat07, getFitAmount(width, tempMat07.getLength()), waterboardFrontDesc));
+
+        //Tagbeklædning
+        int roofArea = length * width;
+        int tileAmount = 1;
+        Material roofMaterial = materialMap.get(findBestFit(length, getRoofMaterialList()));
+        while (roofArea > (roofMaterial.getLength() - 200) * (roofMaterial.getWidth() - 100) * tileAmount) {
+            tileAmount++;
+        }
+        String roofDesc = "tagplader monteres på spær";
+        orderLineList.add(new OrderLine(roofMaterial, tileAmount, roofDesc));
+
         return orderLineList;
     }
 
-    public static int getFasciaAmount(int size, int materialLength) {
+    public static int getFitAmount(int size, int materialLength) {
         /*
         Denne metode bruger findFitFactor() til at bestemme hvor man sternbrædder der skal bruges til ÉN side.
         Der er altid 2 sternbrædder pr side pr sæt (i), med undtagelse af bagside hvis der er skur.
@@ -175,7 +246,7 @@ public class ListGen {
         while løkken i findFitfactor() kompensere for at nogen materialer er for korte til at strække hele size
         og derfor blev halveret i en af fasciaId metoderne.
         */
-        return 2 * findFitFactor(size, materialLength);
+        return findFitFactor(size, materialLength);
     }
 
     public static int getLowerFasciaId(int size) {
@@ -270,6 +341,11 @@ public class ListGen {
         return materialId;
     }
 
+    private static int getWaterboardId(int size) {
+        //Se findBestFit()
+        return findBestFit(size, getWaterboardList());
+    }
+
     private static int findMaxFromList(int size, ArrayList<Material> list) {
         /*
         Denne metode finder et max, som bruges af findFitFactor() til at finde en factor i som
@@ -293,7 +369,7 @@ public class ListGen {
         og derfor blev halveret i en af Id metoderne.
 
         Metoden returnerer den factor size er delt med for at finde et materiale der kan strække længden.
-        Factor bruges også af getFasciaAmount() til at gange amount op,
+        Factor bruges også af getFitAmount() til at gange amount op,
         så amount gange materiale længde er større end eller lig med size.
         */
         int i = 1;
