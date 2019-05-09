@@ -1,6 +1,6 @@
 package FunctionLayer.Models;
 
-public class Svg {
+public abstract class Svg {
     private int x1;
     private int y1;
 
@@ -16,4 +16,6 @@ public class Svg {
     public int getY1() {
         return y1;
     }
+
+    abstract String getModel();
 }

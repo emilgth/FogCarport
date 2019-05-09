@@ -11,7 +11,7 @@ public class Line extends Svg {
     }
 
     @Override
-    public String toString() {
+    String getModel() {
         return "<line x1=\"" + getX1() + "\" y1=\"" + getY1() +
                 "\" x2=\"" + x2 + "\" y2=\"" + y2 + "\" style=\"stroke:black; stroke-dasharray:5 5;\"/>";
     }
