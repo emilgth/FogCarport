@@ -2,15 +2,12 @@ package DBAccess;
 
 import FunctionLayer.Models.Order;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
 
-    public static ArrayList<Order> getOrderList(){
+    public static ArrayList<Order> getOrderList() {
         ArrayList<Order> orderList = new ArrayList<>();
 
         try {
@@ -40,5 +37,30 @@ public class OrderMapper {
             e.printStackTrace();
         }
         return orderList;
+    }
+
+    public void insertOrder(Order order) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = Connector.connection();
+            preparedStatement = connection.prepareStatement("insert into Fog.order " +
+                    "(user_id, status, itemlist, price, roof_id, roof_angle, length, width, height, shed_length, shed_width) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, order.getUser().getUserId());
+            preparedStatement.setString(2, order.getStatus());
+            preparedStatement.setString(3, "");
+            preparedStatement.setDouble(4, order.getPrice());
+            preparedStatement.setInt(5, order.getRoofId());
+            preparedStatement.setInt(6, order.getAngle());
+            preparedStatement.setInt(7, order.getLength());
+            preparedStatement.setInt(8, order.getWidth());
+            preparedStatement.setInt(9, order.getHeight());
+            preparedStatement.setInt(10, order.getShedLength());
+            preparedStatement.setInt(11, order.getShedWidth());
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
