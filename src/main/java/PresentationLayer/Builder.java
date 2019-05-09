@@ -18,7 +18,6 @@ public class Builder extends Command {
         ArrayList<Order> orderList = OrderMapper.getOrderList();
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(orderList.get(0));
 
-
         HttpSession session = request.getSession();
         session.setAttribute("orderList", orderList);
         session.setAttribute("orderLineList", orderLineList);

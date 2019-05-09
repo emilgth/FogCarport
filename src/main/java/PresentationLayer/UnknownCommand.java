@@ -12,5 +12,4 @@ public class UnknownCommand extends Command {
         String msg = "Unknown command. Contact IT";
         throw new LoginSampleException(msg);
     }
-
 }
