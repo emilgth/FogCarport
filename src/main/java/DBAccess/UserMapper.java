@@ -1,7 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
+import FunctionLayer.Models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,45 +16,29 @@ import java.sql.Statement;
  */
 public class UserMapper {
 
-    public static void createUser(User user) throws LoginSampleException {
-        try {
-            Connection con = Connector.connection();
-            String SQL = "INSERT INTO Users (email, password, role) VALUES (?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getRole());
-            ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int id = ids.getInt(1);
-            user.setId(id);
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new LoginSampleException(ex.getMessage());
-        }
-    }
+    public static User getUser(int userId){
 
-    public static User login(String email, String password) throws LoginSampleException {
+        User user = new User();
+
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT id, role FROM Users "
-                    + "WHERE email=? AND password=?";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                String role = rs.getString("role");
-                int id = rs.getInt("id");
-                User user = new User(email, password, role);
-                user.setId(id);
-                return user;
-            } else {
-                throw new LoginSampleException("Could not validate user");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM user WHERE user_id = ?");
+            ps.setInt(1, userId);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()){
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setPhone(resultSet.getInt("phone"));
+                user.setAdmin(resultSet.getBoolean("admin"));
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
-        }
-    }
 
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

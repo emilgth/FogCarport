@@ -4,6 +4,7 @@ import DBAccess.UserMapper;
 
 public class LogicFacade {
 
+    /*
     public static User login( String email, String password ) throws LoginSampleException {
         return UserMapper.login( email, password );
     } 
@@ -13,4 +14,5 @@ public class LogicFacade {
         UserMapper.createUser( user );
         return user;
     }
+    */
 }

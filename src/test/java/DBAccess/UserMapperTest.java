@@ -1,33 +1,27 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import FunctionLayer.Models.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class UserMapperTest {
-//    Test date in the UsersTest table
-//    INSERT INTO `UsersTest` VALUES 
-//    (1,'jens@somewhere.com','jensen','customer'),
-//    (2,'ken@somewhere.com','kensen','customer'),
-//    (3,'robin@somewhere.com','batman','employee'),
-//    (4,'someone@nowhere.com','sesam','customer');
 
     private static Connection testConnection;
-    private static String USER = "testinguser";
-    private static String USERPW = "try1try2tryAgain";
-    private static String DBNAME = "useradminTest";
-    private static String HOST = "46.101.253.149";
+    private static String USER = "Fog_testuser";
+    private static String USERPW = "1234";
+    private static String DBNAME = "Fog_test";
+    private static String HOST = "157.230.105.104";
 
     @Before
     public void setUp() {
         try {
-            // awoid making a new connection for each test
+            // avoid making a new connection for each test
             if ( testConnection == null ) {
                 String url = String.format( "jdbc:mysql://%s:3306/%s", HOST, DBNAME );
                 Class.forName( "com.mysql.cj.jdbc.Driver" );
@@ -38,9 +32,9 @@ public class UserMapperTest {
             }
             // reset test database
             try ( Statement stmt = testConnection.createStatement() ) {
-                stmt.execute( "drop table if exists Users" );
-                stmt.execute( "create table Users like UsersTest" );
-                stmt.execute( "insert into Users select * from UsersTest" );
+                stmt.execute( "drop table if exists user" );
+                stmt.execute( "create table user like user_test" );
+                stmt.execute( "insert into user select * from user_test" );
             }
 
         } catch ( ClassNotFoundException | SQLException ex ) {
@@ -56,12 +50,20 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testLogin01() throws LoginSampleException {
-        // Can we log in
-        User user = UserMapper.login( "jens@somewhere.com", "jensen" );
-        assertTrue( user != null );
+    public void testGetUser() {
+        // Can we find a user
+        User user = UserMapper.getUser( 2);
+        assertNotNull(user);
     }
 
+    @Test
+    public void testGetUserSpecificUser() {
+        // Can we find the right user
+        User user = UserMapper.getUser(2);
+        assertEquals("anders@email.com",user.getEmail());
+    }
+
+    /*
     @Test( expected = LoginSampleException.class )
     public void testLogin02() throws LoginSampleException {
         // We should get an exception if we use the wrong password
@@ -84,4 +86,6 @@ public class UserMapperTest {
         User retrieved = UserMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );
     }
+
+     */
 }
