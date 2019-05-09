@@ -4,7 +4,7 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,40 +13,21 @@
     <title>QuickByg</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../css.css">
 
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand">
         <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-            <table>
-                <tr><td>Login</td>
-                    <td>
-                        <form name="login" action="FrontController" method="POST">
-                            <input type="hidden" name="command" value="login">
-                            Email:<br>
-                            <input type="text" name="email" value="admin">
-                            <br>
-                            Password:<br>
-                            <input type="password" name="password" value="admin123">
-                            <br>
-                            <input type="submit" value="Submit">
-                        </form>
-                    </td>
-                    <td>Or Register</td>
-                    <td>
-                        <form name="register" action="FrontController" method="POST">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            <a class="navbar-brand" href="loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
+                                                                  alt="logo"></a>
         </div>
     </nav>
 </div>
 <div class="container mt-5 mb-5">
+    <h1>Hello <%=session.getAttribute("surname")%> <%=session.getAttribute("lastname")%>
+    </h1>
     <h1>QUICKBYG</h1>
 </div>
 
@@ -67,20 +48,19 @@
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med fladt tag:</b><br>
-                    <a href="fladtTag.jsp"><img src="img/quickurejs.gif" alt="uden rejsning"></a></div>
+                    <a href="../fladtTag.jsp"><img src="../img/quickurejs.gif" alt="uden rejsning"></a></div>
             </div>
         </div>
         <hr>
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med rejsning:</b><br>
-                    <a href="medRejsning.jsp"><img src="img/quickmrejs.gif" alt="med rejsning"></a></div>
+                    <a href="../medRejsning.jsp"><img src="../img/quickmrejs.gif" alt="med rejsning"></a></div>
             </div>
         </div>
         <hr>
     </div>
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
