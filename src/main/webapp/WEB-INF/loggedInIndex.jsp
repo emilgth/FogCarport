@@ -22,11 +22,13 @@
         <div class="nav navbar-nav">
             <a class="navbar-brand" href="loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
                                                                   alt="logo"></a>
+            <a href="${pageContext.request.contextPath}customerPage.jsp">Min Side</a>
         </div>
     </nav>
 </div>
+
 <div class="container mt-5 mb-5">
-    <h1>Hello <%=session.getAttribute("surname")%> <%=session.getAttribute("lastname")%>
+    <h1><%=session.getAttribute("surname")%> <%=session.getAttribute("lastname")%>
     </h1>
     <h1>QUICKBYG</h1>
 </div>
