@@ -341,7 +341,7 @@ public class ListGen {
         return materialId;
     }
 
-    private static int getWaterboardId(int size) {
+    public static int getWaterboardId(int size) {
         //Se findBestFit()
         return findBestFit(size, getWaterboardList());
     }

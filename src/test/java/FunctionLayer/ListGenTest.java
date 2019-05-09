@@ -59,19 +59,19 @@ public class ListGenTest {
     @Test
     public void testGetFasciaAmount6000() {
         int amount = ListGen.getFitAmount(6000, 6000);
-        assertEquals(2, amount);
+        assertEquals(1, amount);
     }
 
     @Test
     public void testGetFasciaAmount6001() {
         int amount = ListGen.getFitAmount(6001, 6000);
-        assertEquals(4, amount);
+        assertEquals(2, amount);
     }
 
     @Test
     public void testGetFasciaAmount12001() {
         int amount = ListGen.getFitAmount(12002, 6000);
-        assertEquals(6, amount);
+        assertEquals(3, amount);
     }
     //</editor-fold>
 
@@ -198,6 +198,20 @@ public class ListGenTest {
     public void testGetRafterAmount() {
         int rafterAmount = ListGen.getRafterAmount(7800, 6000);
         assertEquals(19, rafterAmount);
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Tests for getWaterboardId()">
+    @Test
+    public void testGetWaterboardId4500() {
+        int materialId = ListGen.getWaterboardId(4500);
+        assertEquals(96,materialId);
+    }
+
+    @Test
+    public void testGetWaterboardId4501() {
+        int materialId = ListGen.getWaterboardId(4501);
+        assertEquals(97,materialId);
     }
     //</editor-fold>
 }
