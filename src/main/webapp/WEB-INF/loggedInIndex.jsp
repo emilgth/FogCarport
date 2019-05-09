@@ -28,8 +28,8 @@
 </div>
 
 <div class="container mt-5 mb-5">
-    <h1><%=session.getAttribute("surname")%> <%=session.getAttribute("lastname")%>
-    </h1>
+    <c:out value="${sessionScope.user.surname}"/>
+
     <h1>QUICKBYG</h1>
 </div>
 

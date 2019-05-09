@@ -17,8 +17,7 @@ public class Login extends Command {
         String password = request.getParameter("password");
         User user = LogicFacade.login(email, password);
         HttpSession session = request.getSession();
-        session.setAttribute("surname", user.getSurname());
-        session.setAttribute("lastname", user.getLastname());
+        session.setAttribute("user", user);
         if (!user.isAdmin()) {
             return "loggedInIndex";
         } else {

@@ -22,6 +22,16 @@ public class User {
         this.admin = false;
     }
 
+    public User(int userId, String email, String password, String surname, String lastname, int phone, boolean admin) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.surname = surname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.admin = admin;
+    }
+
     public int getUserId() {
         return userId;
     }
