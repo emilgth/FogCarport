@@ -32,6 +32,21 @@ public class Order {
         this.height = height;
     }
 
+    public Order(User user, String status, int roofId, int angle, int length, int width, int height, int shedLength, int shedWidth) {
+        this.orderId = 0;
+        this.user = user;
+        this.status = status;
+        this.orderLineList = new ArrayList<>();
+        this.price = 0;
+        this.roofId = roofId;
+        this.angle = angle;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.shedLength = shedLength;
+        this.shedWidth = shedWidth;
+    }
+
     private int priceCalc(ArrayList<OrderLine> orderLineList, ArrayList<Material> materialList) {
 
         int total = 0;

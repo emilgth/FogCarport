@@ -13,7 +13,7 @@ public class User {
     }
 
     public User(String email, String password, String surname, String lastname, int phone) {
-        this.userId = 0;
+        this.userId = 2; //todo userid skal ændres når der er login
         this.email = email;
         this.password = password;
         this.surname = surname;
