@@ -41,4 +41,34 @@ public class UserMapper {
         }
         return user;
     }
+
+    public static User login(String email, String password) {
+        User user = new User();
+
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM user WHERE email = ? and password = ?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()){
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setPhone(resultSet.getInt("phone"));
+                user.setAdmin(resultSet.getBoolean("admin"));
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public static void createUser(User user) {
+
+    }
 }
