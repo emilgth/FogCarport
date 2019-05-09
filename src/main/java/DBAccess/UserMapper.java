@@ -1,22 +1,15 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-/**
- * The purpose of UserMapper is to...
- *
- * @author kasper
- */
 public class UserMapper {
 
-    public static User getUser(int userId){
+    public static User getUser(int userId) {
 
         User user = new User();
 
@@ -26,7 +19,7 @@ public class UserMapper {
             ps.setInt(1, userId);
             ResultSet resultSet = ps.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 user.setUserId(resultSet.getInt("user_id"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));

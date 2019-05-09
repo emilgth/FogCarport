@@ -20,8 +20,8 @@ public class Builder extends Command {
 
 
         HttpSession session = request.getSession();
-        session.setAttribute("orderList",orderList);
-        session.setAttribute("orderLineList",orderLineList);
+        session.setAttribute("orderList", orderList);
+        session.setAttribute("orderLineList", orderLineList);
 
         return "skitse";
     }
