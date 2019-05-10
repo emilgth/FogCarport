@@ -22,6 +22,7 @@
         <div class="nav navbar-nav">
             <a class="navbar-brand" href="loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
                                                                   alt="logo"></a>
+            <a href="${pageContext.request.contextPath}customerPage.jsp">Min Side</a>
         </div>
     </nav>
 </div>

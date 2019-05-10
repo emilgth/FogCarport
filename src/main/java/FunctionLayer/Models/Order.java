@@ -15,6 +15,7 @@ public class Order {
     private int height;
     private int shedLength;
     private int shedWidth;
+    private String comment;
 
     public Order() {
     }
@@ -45,6 +46,22 @@ public class Order {
         this.height = height;
         this.shedLength = shedLength;
         this.shedWidth = shedWidth;
+    }
+
+    public Order(User user, String status, int roofId, int angle, int length, int width, int height, int shedLength, int shedWidth, String comment) {
+        this.orderId = 0;
+        this.user = user;
+        this.status = status;
+        this.orderLineList = new ArrayList<>();
+        this.price = 0;
+        this.roofId = roofId;
+        this.angle = angle;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.shedLength = shedLength;
+        this.shedWidth = shedWidth;
+        this.comment = comment;
     }
 
     private int priceCalc(ArrayList<OrderLine> orderLineList, ArrayList<Material> materialList) {
@@ -151,5 +168,13 @@ public class Order {
 
     public void setShedWidth(int shedWidth) {
         this.shedWidth = shedWidth;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

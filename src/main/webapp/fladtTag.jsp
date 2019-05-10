@@ -210,7 +210,7 @@
             </div>
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
-                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2"></textarea>
+                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2">Kommentar</textarea>
             </div>
 
             <div class="form-group">

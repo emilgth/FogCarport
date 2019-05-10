@@ -45,8 +45,8 @@ public class OrderMapper {
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("insert into Fog.order " +
-                    "(user_id, status, itemlist, price, roof_id, roof_angle, length, width, height, shed_length, shed_width) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "(user_id, status, itemlist, price, roof_id, roof_angle, length, width, height, shed_length, shed_width, comment) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, order.getUser().getUserId());
             preparedStatement.setString(2, order.getStatus());
             preparedStatement.setString(3, "");
@@ -58,6 +58,7 @@ public class OrderMapper {
             preparedStatement.setInt(9, order.getHeight());
             preparedStatement.setInt(10, order.getShedLength());
             preparedStatement.setInt(11, order.getShedWidth());
+            preparedStatement.setString(12, order.getComment());
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
