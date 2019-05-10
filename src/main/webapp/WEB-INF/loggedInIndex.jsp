@@ -26,8 +26,7 @@
     </nav>
 </div>
 <div class="container mt-5 mb-5">
-    <h1>Hello <%=session.getAttribute("surname")%> <%=session.getAttribute("lastname")%>
-    </h1>
+    <h1>Hello ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
     <h1>QUICKBYG</h1>
 </div>
 
