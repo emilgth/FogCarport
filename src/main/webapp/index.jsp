@@ -35,12 +35,8 @@
                             <input type="submit" value="Submit">
                         </form>
                     </td>
-                    <td>Or Register</td>
-                    <td>
-                        <form name="register" action="FrontController" method="POST">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </td>
+                    <td><a href="register.jsp" class="btn btn-info" role="button">Registrere dig</a></td>
+
                 </tr>
             </table>
         </div>

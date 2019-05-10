@@ -1,11 +1,9 @@
 package DBAccess;
 
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserMapper {
 
@@ -61,7 +59,23 @@ public class UserMapper {
         return user;
     }
 
-    public static void createUser(User user) {
-
+    public static void createUser( User user ) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO user (email, password, surname, lastname, phone) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
+            ps.setString( 1, user.getEmail() );
+            ps.setString( 2, user.getPassword() );
+            ps.setString(3, user.getSurname() );
+            ps.setString(4, user.getLastname() );
+            ps.setInt(5, user.getPhone() );
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            int id = ids.getInt( 1 );
+            user.setUserId( id );
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
     }
 }

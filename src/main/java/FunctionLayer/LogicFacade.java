@@ -15,10 +15,10 @@ public class LogicFacade {
         return UserMapper.login(email, password);
     }
 
-     //public static User createUser( String email, String password ) throws LoginSampleException {
-     //    User user = new User(email, password);
-     //    UserMapper.createUser( user );
-     //    return user;
-     //}
+     public static User createUser( String email, String password, String surname, String lastname, int phone ) throws LoginSampleException {
+         User user = new User(email, password, surname, lastname, phone);
+         UserMapper.createUser( user );
+         return user;
+     }
 
 }
