@@ -278,7 +278,7 @@ public class ListGen {
 
     private static int getDistance(int i) {
         //Se getPostAmount()
-        return overhangFront + overhangSides + postSpacing * i;
+        return overhangFront + overhangSides + (postSpacing * i);
     }
 
     public static int getRafterId(int width) {

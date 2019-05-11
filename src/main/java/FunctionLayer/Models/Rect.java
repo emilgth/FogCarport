@@ -11,8 +11,12 @@ public class Rect extends Svg {
     }
 
     @Override
-    String getModel() {
-        return "<rect x=\"" + getX1() + "\" y=\"" + getY1() +
-                "\" height=\"" + length + "\" width=\"" + width + "\" style=\"stroke:black; fill:white;\"/>";
+    public String getModel() {
+        int x = getX1() / 10;
+        int y = getY1() / 10;
+        int a = length / 10;
+        int b = width / 10;
+        return "<rect x=\"" + x + "\" y=\"" + y +
+                "\" height=\"" + b + "\" width=\"" + a + "\" style=\"stroke:black; fill:white;\"/>";
     }
 }

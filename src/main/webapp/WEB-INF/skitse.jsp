@@ -22,12 +22,12 @@
         <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. <br>
             Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
         <p>Dette er en demo version!</p>
-        <c:forEach items="${sessionScope.orderList}" var="order">
+
             <tr>
-                <td>Email: ${order.getUser().getEmail()}</td>
+                <td>Email: ${sessionScope.order.getUser().getEmail()}</td>
                 <br>
-                <td>Navn: ${order.getUser().getSurname()}</td>
-                <td> ${order.getUser().getLastname()}</td>
+                <td>Navn: ${sessionScope.order.getUser().getSurname()}</td>
+                <td> ${sessionScope.order.getUser().getLastname()}</td>
             </tr>
             <table class='table table-condensed table-striped table-hover'>
                 <tr>
@@ -50,8 +50,14 @@
                     </tr>
                 </c:forEach>
             </table>
-        </c:forEach>
+
+        <div class="container">
+            <c:forEach items="${sessionScope.svgList}" var="svgList">
+                ${svgList.getModel()}
+            </c:forEach>
+        </div>
         <hr>
+
 
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              height="80%"

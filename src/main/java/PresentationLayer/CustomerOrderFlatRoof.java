@@ -5,7 +5,9 @@ import FunctionLayer.ListGen;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
+import FunctionLayer.Models.Svg;
 import FunctionLayer.Models.User;
+import FunctionLayer.SvgGen;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,15 +32,16 @@ public class CustomerOrderFlatRoof extends Command {
         Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth);
 
         //todo hvad er formålet her?
-        ArrayList<Order> orderList = OrderMapper.getOrderList();
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
+        ArrayList<Svg> svgList = SvgGen.getSvgTopList(order);
 
         OrderMapper orderMapper = new OrderMapper();
         orderMapper.insertOrder(order);
 
         HttpSession session = request.getSession();
-        session.setAttribute("orderList", orderList);
+        session.setAttribute("order", order);
         session.setAttribute("orderLineList", orderLineList);
+        session.setAttribute("svgList",svgList);
 
         return "skitse";
     }

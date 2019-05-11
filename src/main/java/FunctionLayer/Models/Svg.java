@@ -17,5 +17,5 @@ public abstract class Svg {
         return y1;
     }
 
-    abstract String getModel();
+    public abstract String getModel();
 }

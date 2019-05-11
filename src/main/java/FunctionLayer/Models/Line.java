@@ -11,8 +11,12 @@ public class Line extends Svg {
     }
 
     @Override
-    String getModel() {
-        return "<line x1=\"" + getX1() + "\" y1=\"" + getY1() +
-                "\" x2=\"" + x2 + "\" y2=\"" + y2 + "\" style=\"stroke:black; stroke-dasharray:5 5;\"/>";
+    public String getModel() {
+        int x = getX1() / 10;
+        int y = getY1() / 10;
+        int xx = x2 / 10;
+        int yy = y2 / 10;
+        return "<line x1=\"" + x + "\" y1=\"" + y +
+                "\" x2=\"" + xx + "\" y2=\"" + yy + "\" style=\"stroke:black; stroke-dasharray:5 5;\"/>";
     }
 }
