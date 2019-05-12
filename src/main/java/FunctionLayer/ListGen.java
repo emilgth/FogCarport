@@ -318,8 +318,14 @@ public class ListGen {
     }
 
     public static int getRafterAmount(int length, int width) {
-        //Denne metode beregner hvor mange spær der skal bruges ud fra længden og bredden
-        return length / getRafterSpacing(width);
+        /*
+        Denne metode beregner hvor mange spær der skal bruges ud fra længden og bredden på carport.
+        Metoden ligger 1 til, fordi integers altid runder ned ved division.
+        Dette giver en minor bug ved præcise mål f.eks:
+        Hvis carport bredde er 3300mm og længde 6000mm. Vil man i teorien kunne nøjes med 6 spær, men metoden
+        returnerer 7.
+        */
+        return 1 + (length / getRafterSpacing(width));
     }
 
     private static int findBestFit(int size, ArrayList<Material> list) {

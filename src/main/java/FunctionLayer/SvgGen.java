@@ -63,12 +63,16 @@ public class SvgGen {
 
         /*
         beamShort bruges til at sikre at remme sammenføjninger altid sker over på stolper.
-        Dette sker ved at beamLong
+        Dette sker ved at beamLong tager fra beamShort indtil de begge ligger oven på en stolpe.
         */
         if (beamAmount > 1) {
             beamShort = beamLong;
             beamAmount--;
             while (beamLong < (overhangFront + (postSpacing * 2))) {
+                //Denne break condition sikre at beamShort ikke bliver mindre end minimum én stolpe spacing + udhæng.
+                if (beamShort < overhangSides + postSpacing) {
+                    break;
+                }
                 beamLong++;
                 beamShort--;
             }
@@ -79,12 +83,43 @@ public class SvgGen {
             svgList.add(new Rect((beamLong * i), (overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
             svgList.add(new Rect((beamLong * i), (width - overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
         }
-        
+
+        //SPÆR (rafters)
+        Material rafterMat = materialMap.get(ListGen.getRafterId(width));
+        int rafterWidth = rafterMat.getWidth();
+        int rafterLength = rafterMat.getLength();
+
+        int rafterAmount = ListGen.getRafterAmount(length, width);
+        int rafterSpacing = 0;
+
+        while (length - rafterWidth > (rafterAmount - 1) * rafterSpacing) {
+            rafterSpacing++;
+        }
+        for (int i = 0; i < rafterAmount; i++) {
+            svgList.add(new Rect(rafterSpacing * i, 0, rafterWidth, rafterLength));
+        }
+
+        //VINDKRYDS (Wind bracers)
+        svgList.add(new Line(rafterSpacing, overhangSides, (rafterSpacing * (rafterAmount - 2)), width - overhangSides));
+        svgList.add(new Line(rafterSpacing + 50, overhangSides, (rafterSpacing * (rafterAmount - 2)) + 50, width - overhangSides));
+        svgList.add(new Line(rafterSpacing, width - overhangSides, (rafterSpacing * (rafterAmount - 2)), overhangSides));
+        svgList.add(new Line(rafterSpacing + 50, width - overhangSides, (rafterSpacing * (rafterAmount - 2) + 50), overhangSides));
+
         //SVG AFSLUT (indre tegning)
         svgList.add(new SvgEnd(0, 0));
 
         //SVG PILE (arrows)
-        svgList.add(new Arrw(500, 100, 500 + length, 100, 0));
+        //Total bredde
+        svgList.add(new Arrw(500, 500 + width + 200, 500 + length, 500 + width + 200, 0));
+        //Total højde
+        svgList.add(new Arrw(200, 500, 200, 500 + width, -90));
+        //Overhæng
+        svgList.add(new Arrw(400, 500, 400, 500 + overhangSides, -90));
+        svgList.add(new Arrw(500, 175, 500 + overhangFront, 175, 0));
+        //Spær afstand
+        svgList.add(new Arrw(500, 425, 500 + rafterSpacing, 425, 0));
+        //Stolpe afstand
+        svgList.add(new Arrw(500 + overhangFront, 175, 500 + overhangFront + postSpacing, 175, 0));
 
         //SVG AFSLUT (ydre tegning)
         svgList.add(new SvgEnd(0, 0));

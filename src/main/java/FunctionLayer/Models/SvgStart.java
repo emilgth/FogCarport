@@ -18,7 +18,7 @@ public class SvgStart extends Svg {
         int a = length / 10;
         int b = width / 10;
         int lengthOffset = (length + 500) / 10;
-        int widthOffset = (width + 500) / 10;
+        int widthOffset = (width + 1000) / 10;
         int xOffset = (getX1() + 500) / 10;
         int yOffset = (getY1() + 500) / 10;
         return "<?xml version=\"1.0\"?><!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
