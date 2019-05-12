@@ -116,10 +116,13 @@ public class SvgGen {
         //Overhæng
         svgList.add(new Arrw(400, 500, 400, 500 + overhangSides, -90));
         svgList.add(new Arrw(500, 175, 500 + overhangFront, 175, 0));
+        svgList.add(new Arrw(500 + length - overhangSides, 175, 500 + length, 175, 0));
         //Spær afstand
         svgList.add(new Arrw(500, 425, 500 + rafterSpacing, 425, 0));
         //Stolpe afstand
-        svgList.add(new Arrw(500 + overhangFront, 175, 500 + overhangFront + postSpacing, 175, 0));
+        for (int i = 1; i < postAmount / 2; i++) {
+            svgList.add(new Arrw(500 + overhangFront + (postSpacing * (i - 1)), 175, 500 + overhangFront + (postSpacing * i), 175, 0));
+        }
 
         //SVG AFSLUT (ydre tegning)
         svgList.add(new SvgEnd(0, 0));
@@ -135,5 +138,21 @@ public class SvgGen {
         Derfor skal resterende length fordeles på ét mindre interval.
         */
         return (((length - (overhangFront + overhangSides)) / ((postAmount / 2) - 1)));
+    }
+
+    private static ArrayList<Svg> getSvgSideList(Order order) {
+        ArrayList<Svg> svgList = new ArrayList<>();
+
+        //CARPORT MÅL
+        int length = order.getLength();
+        int width = order.getWidth();
+        int height = order.getHeight();
+
+        //SVG START
+        svgList.add(new SvgStart(0, 0, length, width));
+
+        //
+
+        return svgList;
     }
 }

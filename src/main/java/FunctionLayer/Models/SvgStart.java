@@ -17,7 +17,7 @@ public class SvgStart extends Svg {
         int y = getY1() / 10;
         int a = length / 10;
         int b = width / 10;
-        int lengthOffset = (length + 500) / 10;
+        int lengthOffset = (length + 750) / 10;
         int widthOffset = (width + 1000) / 10;
         int xOffset = (getX1() + 500) / 10;
         int yOffset = (getY1() + 500) / 10;

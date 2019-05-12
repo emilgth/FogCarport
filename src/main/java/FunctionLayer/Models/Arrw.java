@@ -21,11 +21,11 @@ public class Arrw extends Svg {
         int textHoverDistance = -5;
         String text = "";
         if (angle == 0) { //text is vertical
-            text = "<text x=\"" + (xx / 2) + "\" y=\"" + (y + textHoverDistance) + "\">" + (x2 - getX1()) + "mm</text>";
+            text = "<text x=\"" + (x + ((xx - x) / 2) - 25) + "\" y=\"" + (y + textHoverDistance) + "\">" + (x2 - getX1()) + "mm</text>";
         }
         if (angle == -90) { //text is horizontal
-            text = "<text transform=\"rotate(" + angle + " " + (x + textHoverDistance) + "," + (50 + (yy / 2)) +
-                    ")\" x=\"" + (x + textHoverDistance) + "\" y=\"" + (50 + (yy / 2)) + "\">" + (y2 - getY1()) + "mm</text>";
+            text = "<text transform=\"rotate(" + angle + " " + (x + textHoverDistance) + "," + (y + ((yy - y) / 2) + 25) +
+                    ")\" x=\"" + (x + textHoverDistance) + "\" y=\"" + (y + ((yy - y) / 2) + 25) + "\">" + (y2 - getY1()) + "mm</text>";
         }
         return "<line x1=\"" + x + "\"  y1=\"" + y +
                 "\" x2=\"" + xx + "\"   y2=\"" + yy + "\" \n" +
