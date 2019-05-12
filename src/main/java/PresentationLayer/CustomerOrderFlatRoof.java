@@ -33,7 +33,8 @@ public class CustomerOrderFlatRoof extends Command {
 
         //todo hvad er formålet her?
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
-        ArrayList<Svg> svgList = SvgGen.getSvgTopList(order);
+        ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
+        ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
 
         OrderMapper orderMapper = new OrderMapper();
         orderMapper.insertOrder(order);
@@ -41,7 +42,8 @@ public class CustomerOrderFlatRoof extends Command {
         HttpSession session = request.getSession();
         session.setAttribute("order", order);
         session.setAttribute("orderLineList", orderLineList);
-        session.setAttribute("svgList",svgList);
+        session.setAttribute("svgTopList", svgTopList);
+        session.setAttribute("svgSideList", svgSideList);
 
         return "skitse";
     }

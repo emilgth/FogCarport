@@ -140,7 +140,7 @@ public class SvgGen {
         return (((length - (overhangFront + overhangSides)) / ((postAmount / 2) - 1)));
     }
 
-    private static ArrayList<Svg> getSvgSideList(Order order) {
+    public static ArrayList<Svg> getSvgSideList(Order order) {
         ArrayList<Svg> svgList = new ArrayList<>();
 
         //CARPORT MÅL
@@ -151,7 +151,15 @@ public class SvgGen {
         //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
 
-        //
+        //STOLPER
+        int postAmount = ListGen.getPostAmount(length);
+        int postSpacing = getPostSpacing(postAmount, length);
+        for (int i = 0; i < postAmount / 2; i++) {
+            svgList.add(new Rect(overhangFront + (postSpacing * i), 90 + (materialMap.get(84).getLength() / 100) * (9 * i), materialMap.get(84).getHeight(), materialMap.get(84).getLength() - (140 * i)));
+        }
+
+        //REMME
+        svgList.add(new AngledRect(50, 0, length - 100, 100, 5));
 
         return svgList;
     }

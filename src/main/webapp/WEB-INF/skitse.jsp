@@ -52,8 +52,11 @@
             </table>
 
         <div class="container">
-            <c:forEach items="${sessionScope.svgList}" var="svgList">
-                ${svgList.getModel()}
+            <c:forEach items="${sessionScope.svgTopList}" var="svgTopList">
+                ${svgTopList.getModel()}
+            </c:forEach>
+            <c:forEach items="${sessionScope.svgSideList}" var="svgSideList">
+                ${svgSideList.getModel()}
             </c:forEach>
         </div>
         <hr>
