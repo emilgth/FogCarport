@@ -55,8 +55,31 @@ public class SvgGen {
         }
 
         //REMME (beams)
+        //Da remme altid strækker den fulde længe af en given carport. Kan remme længden bestemmes ved antal remme.
+        Material beamMat = materialMap.get(ListGen.getRafterId(length));
+        int beamAmount = ListGen.getFitAmount(length, beamMat.getLength());
+        int beamLong = length / beamAmount;
+        int beamShort;
 
-
+        /*
+        beamShort bruges til at sikre at remme sammenføjninger altid sker over på stolper.
+        Dette sker ved at beamLong
+        */
+        if (beamAmount > 1) {
+            beamShort = beamLong;
+            beamAmount--;
+            while (beamLong < (overhangFront + (postSpacing * 2))) {
+                beamLong++;
+                beamShort--;
+            }
+            svgList.add(new Rect(beamLong, (overhangSides - (beamMat.getWidth() / 2)), beamShort, beamMat.getWidth()));
+            svgList.add(new Rect(beamLong, (width - overhangSides - (beamMat.getWidth() / 2)), beamShort, beamMat.getWidth()));
+        }
+        for (int i = 0; i < beamAmount; i++) {
+            svgList.add(new Rect((beamLong * i), (overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
+            svgList.add(new Rect((beamLong * i), (width - overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
+        }
+        
         //SVG AFSLUT (indre tegning)
         svgList.add(new SvgEnd(0, 0));
 
