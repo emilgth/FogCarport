@@ -31,21 +31,21 @@ public class SvgGen {
     public static ArrayList<Svg> getSvgTopList(Order order) {
         ArrayList<Svg> svgList = new ArrayList<>();
 
-        //Carport mål
+        //CARPORT MÅL
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
 
-        //Svg start
+        //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
 
-        //Ramme
+        //RAMME (frame)
         svgList.add(new Rect(0, 0, length, width));
 
-        //Stolper
+        //STOLPER (posts)
         int postAmount = ListGen.getPostAmount(length);
         int postSpacing = getPostSpacing(postAmount, length);
-        int postHeight = materialMap.get(84).getHeight();
+        int postHeight = materialMap.get(84).getHeight(); //Materiale 84 er 3m. høje stolper. De eneste vi bruger pt.
         int postWidth = materialMap.get(84).getWidth();
         int postXOffset = materialMap.get(84).getHeight() / 2;
         int postYOffset = materialMap.get(84).getWidth() / 2;
@@ -54,13 +54,16 @@ public class SvgGen {
             svgList.add(new Rect(((overhangFront - postXOffset) + (postSpacing * i)), (overhangSides - (postYOffset) + (width - (overhangSides * 2))), postHeight, postWidth));
         }
 
-        //Svg afslut
+        //REMME (beams)
+
+
+        //SVG AFSLUT (indre tegning)
         svgList.add(new SvgEnd(0, 0));
 
-        //Svg Pile
+        //SVG PILE (arrows)
         svgList.add(new Arrw(500, 100, 500 + length, 100, 0));
 
-        //Svg afslut
+        //SVG AFSLUT (ydre tegning)
         svgList.add(new SvgEnd(0, 0));
 
         return svgList;

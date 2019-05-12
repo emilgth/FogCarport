@@ -174,47 +174,56 @@ public class ListGen {
         */
         // </editor-fold>
 
-        //Carport mål
+        //CARPORT MÅL
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
 
-        //Sternbrædder
+        /*
+        Metoden vil nu tilføje materialer til orderLineList i form Orderline objekter. En orderline indeholder,
+        et materiale, et antal og en beskrivelse.
+        Ud fra orderLineList kan styklisten genereres på jsp siden.
+        Materialerne bliver tilføjet til listen i samme rækkefølge som de optræder på listen.
+        */
+
+        //STERNBRÆDDER (fascia boards)
         String lowerFasciaFrontBackDesc = "understernbrædder til for & bag ende";
         Material tempMat01 = materialMap.get(getLowerFasciaId(width));
-        //Amount ganges med 2 fordi det er både front og back, med skur er det kun front der har sternbrædder
+        //Amount ganges med 2 fordi det er både front og back, med skur er det kun front der har sternbrædder.
         orderLineList.add(new OrderLine(tempMat01, 2 * getFitAmount(width, tempMat01.getLength()), lowerFasciaFrontBackDesc));
 
         String lowerFasciaSidesDesc = "understernbrædder til siderne";
         Material tempMat02 = materialMap.get(getLowerFasciaId(length));
-        //Amount ganges også her med 2, fordi det er amount for begge sider
+        //Amount ganges også her med 2, fordi det er amount for begge sider.
         orderLineList.add(new OrderLine(tempMat02, 2 * getFitAmount(length, tempMat02.getLength()), lowerFasciaSidesDesc));
 
         String upperFasciaFrontBackDesc = "oversternbrædder til for & bag ende";
         Material tempMat03 = materialMap.get(getUpperFasciaId(width));
-        orderLineList.add(new OrderLine(tempMat03, 2 * getFitAmount(width, tempMat03.getLength()), upperFasciaFrontBackDesc));
+        //Amount gange IKKE med 2 her, fordi der aldrig er oversternbræt på bagenden. Da vandet i så fald ikke ville kunne løbe af.
+        orderLineList.add(new OrderLine(tempMat03, getFitAmount(width, tempMat03.getLength()), upperFasciaFrontBackDesc));
 
         String upperFasciaSidesDesc = "oversternbrædder til siderne";
         Material tempMat04 = materialMap.get(getUpperFasciaId(length));
+        //Amount ganges med 2, fordi der skal oversternbræt på begge sider.
         orderLineList.add(new OrderLine(tempMat04, 2 * getFitAmount(length, tempMat04.getLength()), upperFasciaSidesDesc));
 
-        //Remme
+        //REMME (beams)
         //Remme er bygget af spærtræ så metoden bruger rafterList()
         String beamDesc = "Remme i sider, sadles ned i stolper";
         Material tempMat05 = materialMap.get(getRafterId(length));
         //Amount ganges med 2 fordi der er remme i begge sider
         orderLineList.add(new OrderLine(tempMat05, 2 * getFitAmount(length, tempMat05.getLength()), beamDesc));
 
-        //Spær
+        //SPÆR (rafters)
         String rafterDesc = "Spær, monteres på rem";
         orderLineList.add(new OrderLine(materialMap.get(getRafterId(width)), getRafterAmount(length, width), rafterDesc));
 
-        //Stolper
+        //STOLPER (posts)
         String postDesc = "Stolper nedgraves 90 cm. i jord";
         //Stolper er som udgangspunkt altid 3m lange da højden ikke er variabel
         orderLineList.add(new OrderLine(materialMap.get(84), getPostAmount(length), postDesc));
 
-        //Vandbrædder
+        //VANDBRÆDDER (water boards)
         String waterboardSidesDesc = "vandbrædt på stern i sider";
         Material tempMat06 = materialMap.get(getWaterboardId(length));
         //Amount ganges med 2 fordi vandbrædder følger sternbrædder
@@ -225,7 +234,7 @@ public class ListGen {
         //Amount ganges ikke da det kun er til front
         orderLineList.add(new OrderLine(tempMat07, getFitAmount(width, tempMat07.getLength()), waterboardFrontDesc));
 
-        //Tagbeklædning
+        //TAGBEKLÆDNING (roof material)
         int roofArea = length * width;
         int tileAmount = 1;
         Material roofMaterial = materialMap.get(findBestFit(length, getRoofMaterialList()));
