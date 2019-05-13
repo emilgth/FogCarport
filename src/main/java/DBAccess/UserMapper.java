@@ -33,6 +33,12 @@ public class UserMapper {
         return user;
     }
 
+    /**
+     * @param email    user email
+     * @param password user password
+     * @return finds user in DB and returns all user data
+     * @throws LoginSampleException if user is not found in database or password and email doesn't match
+     */
     public static User login(String email, String password) throws LoginSampleException {
 
         try {
@@ -52,31 +58,31 @@ public class UserMapper {
                 boolean admin = resultSet.getBoolean("admin");
                 return new User(userId, email, password, surname, lastname, phone, admin);
             } else {
-                throw new LoginSampleException("shit");
+                throw new LoginSampleException("User with this email and password combination could not be found");
             }
 
         } catch (SQLException | ClassNotFoundException e) {
-            throw new LoginSampleException("shit fuck");
+            throw new LoginSampleException(e.getMessage(), "Something went wrong when accessing the database");
         }
     }
 
-    public static void createUser( User user ) throws LoginSampleException {
+    public static void createUser(User user) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO user (email, password, surname, lastname, phone) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
-            ps.setString( 1, user.getEmail() );
-            ps.setString( 2, user.getPassword() );
-            ps.setString(3, user.getSurname() );
-            ps.setString(4, user.getLastname() );
-            ps.setInt(5, user.getPhone() );
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getSurname());
+            ps.setString(4, user.getLastname());
+            ps.setInt(5, user.getPhone());
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
-            int id = ids.getInt( 1 );
-            user.setUserId( id );
-        } catch ( SQLException | ClassNotFoundException ex ) {
-            throw new LoginSampleException( ex.getMessage() );
+            int id = ids.getInt(1);
+            user.setUserId(id);
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
         }
     }
 }

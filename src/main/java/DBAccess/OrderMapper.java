@@ -39,7 +39,10 @@ public class OrderMapper {
         return orderList;
     }
 
-    public void insertOrder(Order order) {
+    /**
+     * @param order
+     */
+    public static void insertOrder(Order order) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {

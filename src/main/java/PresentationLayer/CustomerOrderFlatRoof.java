@@ -12,7 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
+/**
+ * @author Emil
+ */
 class CustomerOrderFlatRoof extends Command {
+    /**
+     * @param request servlet request
+     * @param response servlet response
+     * @return
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
