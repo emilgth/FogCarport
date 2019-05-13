@@ -1,6 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.Models.Order;
+import FunctionLayer.Models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,5 +67,36 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Order> getUserOrderList(User user) {
+        ArrayList<Order> orders = new ArrayList<>();
+
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE user_id = ?");
+            ps.setInt(1, user.getUserId());
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setOrderId(resultSet.getInt("order_id"));
+                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
+                order.setStatus(resultSet.getString("status"));
+                order.setOrderLineList(new ArrayList<>());
+                order.setPrice(resultSet.getDouble("price"));
+                order.setRoofId(resultSet.getInt("roof_id"));
+                order.setAngle(resultSet.getInt("roof_angle"));
+                order.setLength(resultSet.getInt("length"));
+                order.setWidth(resultSet.getInt("width"));
+                order.setHeight(resultSet.getInt("height"));
+                order.setShedLength(resultSet.getInt("shed_length"));
+                order.setShedWidth(resultSet.getInt("shed_width"));
+                orders.add(order);
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return orders;
     }
 }

@@ -16,6 +16,7 @@ abstract class Command {
         commands.put("customerOrder", new CustomerOrderFlatRoof());
         commands.put("login", new Login());
         commands.put("register", new Register());
+        commands.put("showCustomerOrder", new ShowCustomerOrder());
 
     }
 

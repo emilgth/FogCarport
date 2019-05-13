@@ -48,6 +48,12 @@ public class OrderMapperTest {
     }
 
     @Test
+    public void testSetUpOK() {
+        // Just check that we have a connection.
+        assertNotNull( testConnection );
+    }
+
+    @Test
     public void getOrderList() {
         ArrayList<Order> orderList = OrderMapper.getOrderList();
         assertEquals(2, orderList.size());
