@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-expand">
+        <div class="nav navbar-nav">
+            <a class="navbar-brand" href="WEB-INF/loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
+                                                                  alt="logo"></a>
+            <a href="${pageContext.request.contextPath}customerPage.jsp">Min Side</a>
+        </div>
+    </nav>
+</div>
 <div class="container"><h1>Kundeside</h1>
     <p>Mine ordrer</p>
     <div class="background">

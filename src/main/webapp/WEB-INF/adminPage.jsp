@@ -9,9 +9,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css.css">
 </head>
 <body>
-
+<div class="container">
+    <nav class="navbar navbar-expand">
+        <div class="nav navbar-nav">
+            <a class="navbar-brand" href="loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
+                                                                  alt="logo"></a>
+            <a href="${pageContext.request.contextPath}customerPage.jsp">Min Side</a>
+        </div>
+    </nav>
+</div>
 <p>du er logget ind som admin!!!</p>
 
 <!-- Optional JavaScript -->
