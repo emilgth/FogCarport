@@ -197,7 +197,7 @@ public class ListGenTest {
     @Test
     public void testGetRafterAmount() {
         int rafterAmount = ListGen.getRafterAmount(7800, 6000);
-        assertEquals(19, rafterAmount);
+        assertEquals(20, rafterAmount);
     }
     //</editor-fold>
 
