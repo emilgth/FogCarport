@@ -47,10 +47,10 @@ class CustomerOrderFlatRoof extends Command {
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
         ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
 
-        OrderMapper orderMapper = new OrderMapper();
-        orderMapper.insertOrder(order);
 
-        HttpSession session = request.getSession();
+        OrderMapper.insertOrder(order);
+
+
         session.setAttribute("order", order);
         session.setAttribute("orderLineList", orderLineList);
         session.setAttribute("svgTopList", svgTopList);

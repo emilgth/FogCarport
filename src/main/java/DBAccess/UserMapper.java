@@ -39,6 +39,7 @@ public class UserMapper {
      * @return finds user in DB and returns all user data
      * @throws LoginSampleException if user is not found in database or password and email doesn't match
      */
+
     public static User login(String email, String password) throws LoginSampleException {
 
         try {
@@ -84,5 +85,7 @@ public class UserMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
+
+
     }
 }

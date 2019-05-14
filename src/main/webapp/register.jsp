@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="WEB-INF/include/header.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,37 +20,9 @@
 
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-            <table>
-                <tr><td>Login</td>
-                    <td>
-                        <form name="login" action="FrontController" method="POST">
-                            <input type="hidden" name="command" value="login">
-                            Email:<br>
-                            <input type="text" name="email" value="admin">
-                            <br>
-                            Password:<br>
-                            <input type="password" name="password" value="admin123">
-                            <br>
-                            <input type="submit" value="Submit">
-                        </form>
-                    </td>
-                    <td>Or Register</td>
-                    <td>
-                        <form name="register" action="FrontController" method="POST">
-                            <input type="submit" name="command" value="register">
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </nav>
-</div>
+
 <div class="container mt-5 mb-5">
-    <h1>QUICKBYG</h1>
+    <h1>Opret konto</h1>
 </div>
 
 <div class="container-fluid background">

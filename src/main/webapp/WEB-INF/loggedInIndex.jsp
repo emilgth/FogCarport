@@ -4,7 +4,8 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="../WEB-INF/include/header.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +18,6 @@
 
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="loggedInIndex.jsp"><img src="../img/logo.png" class="img-fluid "
-                                                                  alt="logo"></a>
-            <a href="${pageContext.request.contextPath}customerPage.jsp">Min Side</a>
-        </div>
-    </nav>
-</div>
 <div class="container mt-5 mb-5">
     <h1>Hello ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
     <h1>QUICKBYG</h1>

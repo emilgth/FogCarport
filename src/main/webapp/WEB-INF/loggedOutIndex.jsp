@@ -1,42 +1,39 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="include/header.jsp"%>
+<%--
+  Created by IntelliJ IDEA.
+  User: karlf
+  Date: 13-05-2019
+  Time: 20:41
+  To change this template use File | Settings | File Templates.
+--%>
+
+<%@include file="../WEB-INF/include/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Adminside</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <title>QuickByg</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container mt-5 mb-5">
+    <h1>Farvel ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
+    <h1>QUICKBYG</h1>
+</div>
 
-
-
-
-
-<div class="container mt-5 mb-5"><h1>Adminside</h1>
-    <h2>Velkommen ${sessionScope.user.surname}</h2></div>
-
-<div class="container-fluid background mt-5 mb-5">
-    <div class="container background  pt-5 pb-5">
-        <form name="showAdminOrders" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showAdminOrders">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordre</button>
-        </form>
-    </div>
+<div class="container-fluid background">
+    <%
+        session.invalidate();
+        response.sendRedirect("index.jsp");
+    %>
 </div>
 
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

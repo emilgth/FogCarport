@@ -57,6 +57,7 @@ public class FrontController extends HttpServlet {
         processRequest(request, response);
     }
 
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *

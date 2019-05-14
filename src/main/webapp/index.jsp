@@ -4,7 +4,8 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="WEB-INF/include/header.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,20 +18,6 @@
 
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-
-            <form class="form-inline">
-                <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#login">
-                    Log ind
-                </button>
-                <a href="register.jsp" class="btn btn-primary" role="button">Registrer</a></form>
-
-        </div>
-    </nav>
-</div>
 
 <!-- The Modal -->
 <div class="modal" id="login">
@@ -110,6 +97,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+<%@include file="WEB-INF/include/footer.jsp"%>
 </body>
 </html>

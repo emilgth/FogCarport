@@ -19,13 +19,20 @@ public class LogicFacade {
         return UserMapper.login(email, password);
     }
 
-     public static User createUser( String email, String password, String surname, String lastname, int phone ) throws LoginSampleException {
-         User user = new User(email, password, surname, lastname, phone);
-         UserMapper.createUser( user );
-         return user;
-     }
+    public static User createUser(String email, String password, String surname, String lastname, int phone) throws LoginSampleException {
+        User user = new User(email, password, surname, lastname, phone);
+        UserMapper.createUser(user);
+        return user;
+    }
+
 
     public static ArrayList<Order> getUserOrders(User user) {
         return OrderMapper.getUserOrderList(user);
+    }
+
+
+
+    public static ArrayList<Order> getAllOrders () {return OrderMapper.getOrderList();
+
     }
 }
