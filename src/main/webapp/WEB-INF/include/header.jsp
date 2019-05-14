@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="css.css">
+
 <div class="container">
     <nav class="navbar navbar-expand">
         <div class="nav navbar-nav">

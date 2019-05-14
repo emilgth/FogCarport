@@ -41,7 +41,6 @@ class CustomerOrderFlatRoof extends Command {
         int shedWidth = Integer.parseInt(request.getParameter("Redskabsrum_bredde"));
         String comment = request.getParameter("bemaerkninger");
         Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth, comment);
-
         //todo hvad er formålet her?
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);

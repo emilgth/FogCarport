@@ -32,6 +32,7 @@ public class OrderMapper {
                 order.setHeight(resultSet.getInt("height"));
                 order.setShedLength(resultSet.getInt("shed_length"));
                 order.setShedWidth(resultSet.getInt("shed_width"));
+                order.setComment(resultSet.getString("comment"));
                 orderList.add(order);
             }
 
@@ -93,6 +94,7 @@ public class OrderMapper {
                 order.setHeight(resultSet.getInt("height"));
                 order.setShedLength(resultSet.getInt("shed_length"));
                 order.setShedWidth(resultSet.getInt("shed_width"));
+                order.setComment(resultSet.getString("comment"));
                 orders.add(order);
             }
 
@@ -155,6 +157,7 @@ public class OrderMapper {
                 order.setHeight(resultSet.getInt("height"));
                 order.setShedLength(resultSet.getInt("shed_length"));
                 order.setShedWidth(resultSet.getInt("shed_width"));
+                order.setComment(resultSet.getString("comment"));
                 orders.add(order);
             }
 
@@ -163,4 +166,48 @@ public class OrderMapper {
         }
         return orders;
     }
+
+    public static Order getSingleOrder(String orderId) {
+        Order order = new Order();
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
+            ps.setString(1, orderId);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                order.setOrderId(resultSet.getInt("order_id"));
+                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
+                order.setStatus(resultSet.getString("status"));
+                order.setOrderLineList(new ArrayList<>());
+                order.setPrice(resultSet.getDouble("price"));
+                order.setRoofId(resultSet.getInt("roof_id"));
+                order.setAngle(resultSet.getInt("roof_angle"));
+                order.setLength(resultSet.getInt("length"));
+                order.setWidth(resultSet.getInt("width"));
+                order.setHeight(resultSet.getInt("height"));
+                order.setShedLength(resultSet.getInt("shed_length"));
+                order.setShedWidth(resultSet.getInt("shed_width"));
+                order.setComment(resultSet.getString("comment"));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public static void setPriceAndStatus(double newPrice, int orderId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = Connector.connection();
+            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = 'confirmed', price = ? WHERE order_id = ?");
+
+            preparedStatement.setDouble(1, newPrice);
+            preparedStatement.setInt(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

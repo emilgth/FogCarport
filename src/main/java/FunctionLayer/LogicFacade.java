@@ -48,4 +48,12 @@ public class LogicFacade {
         order.setPrice(order.priceCalc(ListGen.getOrderLinelist(order)));
         OrderMapper.insertOrder(order);
     }
+
+    public static Order getSingleOrder(String orderId) {
+        return OrderMapper.getSingleOrder(orderId);
+    }
+
+    public static void confirmOrder(double newPrice, int orderId) {
+        OrderMapper.setPriceAndStatus(newPrice, orderId);
+    }
 }

@@ -22,6 +22,8 @@ abstract class Command {
         commands.put("customerPage", new CustomerPage());
         commands.put("loggedInIndex", new LoggedInIndex());
         commands.put("showNewOrders", new ShowNewOrders());
+        commands.put("adminShowSingleOrder", new AdminShowSingleOrder());
+        commands.put("confirmOrder", new ConfirmOrder());
 
     }
 

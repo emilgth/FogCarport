@@ -12,9 +12,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css.css">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
             <input type="hidden" name="command" value="showAdminOrders">
             <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordrer</button>
         </form>
+        <br>
         <form name="showNewOrders" action="FrontController" method="POST">
             <input type="hidden" name="command" value="showNewOrders">
             <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se nye ordrer</button>

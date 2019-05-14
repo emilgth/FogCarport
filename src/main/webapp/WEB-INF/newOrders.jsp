@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="container background pt-5 pb-5">
             <p>Alle mål er i millimeter</p>
-            <table class='table table-condensed table-striped table-hover table-primary'>
+            <table class='table table-condensed table-striped table-hover'>
                 <tr>
                     <th>Name</th>
                     <th>Ordre ID</th>
@@ -32,6 +32,7 @@
                     <th>Skurlængde</th>
                     <th>Skurbredde</th>
                     <th>Kommentar</th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${requestScope.orders}" var="orders">
                     <tr>
@@ -46,6 +47,11 @@
                         <td>${orders.getShedLength()}</td>
                         <td>${orders.getShedWidth()}</td>
                         <td>${orders.getComment()}</td>
+                        <td><form name="adminShowSingleOrder" action="FrontController" method="POST">
+                            <input type="hidden" name="command" value="adminShowSingleOrder">
+                            <input type="hidden" name="orderId" value="${orders.getOrderId()}">
+                            <button class="btn btn-primary" type="submit">Se ordre</button>
+                        </form></td>
                     </tr>
                 </c:forEach>
             </table>
