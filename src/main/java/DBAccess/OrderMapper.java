@@ -1,5 +1,6 @@
 package DBAccess;
 
+import FunctionLayer.ListGen;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.User;
 
@@ -46,6 +47,7 @@ public class OrderMapper {
     public static void insertOrder(Order order) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("insert into Fog.order " +
@@ -131,4 +133,34 @@ public class OrderMapper {
     }
 
 
+    public static ArrayList<Order> getPendingOrders() {
+        ArrayList<Order> orders = new ArrayList<>();
+
+        try {
+            Connection con = Connector.connection();
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM `order` where status = 'pending'");
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setOrderId(resultSet.getInt("order_id"));
+                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
+                order.setStatus(resultSet.getString("status"));
+                order.setOrderLineList(new ArrayList<>());
+                order.setPrice(resultSet.getDouble("price"));
+                order.setRoofId(resultSet.getInt("roof_id"));
+                order.setAngle(resultSet.getInt("roof_angle"));
+                order.setLength(resultSet.getInt("length"));
+                order.setWidth(resultSet.getInt("width"));
+                order.setHeight(resultSet.getInt("height"));
+                order.setShedLength(resultSet.getInt("shed_length"));
+                order.setShedWidth(resultSet.getInt("shed_width"));
+                orders.add(order);
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }

@@ -21,6 +21,7 @@ abstract class Command {
         commands.put("showAdminOrders", new ShowAdminOrders());
         commands.put("customerPage", new CustomerPage());
         commands.put("loggedInIndex", new LoggedInIndex());
+        commands.put("showNewOrders", new ShowNewOrders());
 
     }
 

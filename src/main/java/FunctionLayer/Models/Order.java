@@ -64,7 +64,7 @@ public class Order {
         this.comment = comment;
     }
 
-    private int priceCalc(ArrayList<OrderLine> orderLineList, ArrayList<Material> materialList) {
+    public int priceCalc(ArrayList<OrderLine> orderLineList) {
 
         int total = 0;
 

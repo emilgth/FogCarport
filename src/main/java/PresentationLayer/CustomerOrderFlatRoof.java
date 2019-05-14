@@ -47,8 +47,8 @@ class CustomerOrderFlatRoof extends Command {
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
         ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
 
+        FunctionLayer.LogicFacade.insertOrder(order);
 
-        OrderMapper.insertOrder(order);
 
 
         session.setAttribute("order", order);

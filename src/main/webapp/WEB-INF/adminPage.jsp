@@ -29,7 +29,11 @@
     <div class="container background  pt-5 pb-5">
         <form name="showAdminOrders" action="FrontController" method="POST">
             <input type="hidden" name="command" value="showAdminOrders">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordre</button>
+            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordrer</button>
+        </form>
+        <form name="showNewOrders" action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showNewOrders">
+            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se nye ordrer</button>
         </form>
     </div>
 </div>

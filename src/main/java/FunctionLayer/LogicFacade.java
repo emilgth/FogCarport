@@ -3,6 +3,7 @@ package FunctionLayer;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.Models.Order;
+import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.User;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class LogicFacade {
         return user;
     }
 
-
     public static ArrayList<Order> getUserOrders(User user) {
         return OrderMapper.getUserOrderList(user);
     }
@@ -35,8 +35,17 @@ public class LogicFacade {
     }
 
 
+    public static ArrayList<Order> getAllOrders() {
+        return OrderMapper.getOrderList();
 
-    public static ArrayList<Order> getAllOrders () {return OrderMapper.getOrderList();
+    }
 
+    public static ArrayList<Order> getPendingOrders() {
+        return OrderMapper.getPendingOrders();
+    }
+
+    public static void insertOrder(Order order) {
+        order.setPrice(order.priceCalc(ListGen.getOrderLinelist(order)));
+        OrderMapper.insertOrder(order);
     }
 }
