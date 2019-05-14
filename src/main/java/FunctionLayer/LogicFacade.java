@@ -30,6 +30,10 @@ public class LogicFacade {
         return OrderMapper.getUserOrderList(user);
     }
 
+    public static void updateUserData(User user) {
+        UserMapper.updateUser(user);
+    }
+
 
 
     public static ArrayList<Order> getAllOrders () {return OrderMapper.getOrderList();

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="include/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -18,7 +17,7 @@
 </head>
 <body>
 
-
+<%@include file="include/loggedInHeader.jsp"%>
 
 
 
@@ -27,14 +26,62 @@
 
 <div class="container-fluid background mt-5 mb-5">
     <div class="container background  pt-5 pb-5">
+
         <p>Mine info: </p>
         <p><i class='far fa-address-book'></i> ${sessionScope.user.surname} ${sessionScope.user.lastname}</p>
         <p><i class='far fa-envelope'></i> ${sessionScope.user.email}</p>
-        <p><i class='fas fa-mobile-alt'></i> ${sessionScope.user.email}</p>
+        <p><i class='fas fa-mobile-alt'></i> ${sessionScope.user.phone}</p>
+
         <form name="showCustomerOrders" action="FrontController" method="POST">
             <input type="hidden" name="command" value="showCustomerOrder">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se mine ordre</button>
+            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se mine ordrer</button>
         </form>
+
+        <br><br>
+
+        <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#updateUserInfo">
+            Redigér mine info
+        </button>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="updateUserInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Indtast nye info her</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="updateUserData" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="updateUserData">
+                    <p>E-mail:</p>
+                    <input type="email" name="email" value="${sessionScope.user.email}">
+                    <br>
+                    <p>Telefon:</p>
+                    <input type="tel" name="phone" value="${sessionScope.user.phone}">
+                    <p>Fornavn:</p>
+                    <input type="text" name="surname" value="${sessionScope.user.surname}">
+                    <p>Efternavn:</p>
+                    <input type="text" name="lastname" value="${sessionScope.user.lastname}">
+                    <p>Password:</p>
+                    <input type="password" name="password" value="${sessionScope.user.password}">
+                    <br><br>
+                    <input class="btn btn-primary" type="submit" value="Accepter">
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Afslut</button>
+            </div>
+
+        </div>
     </div>
 </div>
 

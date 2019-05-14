@@ -4,7 +4,6 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../WEB-INF/include/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +17,7 @@
 
 </head>
 <body>
+<%@include file="include/loggedInHeader.jsp"%>
 <div class="container mt-5 mb-5">
     <h1>Hello ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
     <h1>QUICKBYG</h1>

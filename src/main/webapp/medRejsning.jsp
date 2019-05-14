@@ -1,5 +1,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="WEB-INF/include/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="css.css">
 </head>
 
-
+<%@include file="WEB-INF/include/header.jsp"%>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand">

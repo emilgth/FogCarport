@@ -17,7 +17,10 @@ abstract class Command {
         commands.put("login", new Login());
         commands.put("register", new Register());
         commands.put("showCustomerOrder", new ShowCustomerOrder());
+        commands.put("updateUserData", new UpdateUserData());
         commands.put("showAdminOrders", new ShowAdminOrders());
+        commands.put("customerPage", new CustomerPage());
+        commands.put("loggedInIndex", new LoggedInIndex());
 
     }
 
@@ -31,8 +34,4 @@ abstract class Command {
 
     abstract String execute(HttpServletRequest request, HttpServletResponse response)
             throws LoginSampleException;
-
 }
-
-
-

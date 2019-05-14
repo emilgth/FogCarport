@@ -18,10 +18,10 @@ public class Login extends Command {
         User user = LogicFacade.login(email, password);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        if (!user.isAdmin()) {
-            return "loggedInIndex";
-        } else {
+        if (user.isAdmin()) {
             return "adminPage";
+        } else {
+            return "loggedInIndex";
         }
     }
 

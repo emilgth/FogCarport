@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="WEB-INF/include/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +19,7 @@
 
 </head>
 <body>
-
+<%@include file="WEB-INF/include/header.jsp"%>
 <div class="container mt-5 mb-5">
     <h1>Opret konto</h1>
 </div>

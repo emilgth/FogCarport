@@ -88,4 +88,24 @@ public class UserMapper {
 
 
     }
+
+    public static void updateUser(User user) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = Connector.connection();
+            preparedStatement = connection.prepareStatement("UPDATE Fog.user set email = ?, surname = ?, lastname = ?, " +
+                    "phone = ?, password = ? WHERE user_id = ?");
+
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setString(3, user.getLastname());
+            preparedStatement.setInt(4, user.getPhone());
+            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setInt(6, user.getUserId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

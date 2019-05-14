@@ -1,17 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: karlf
-  Date: 13-05-2019
-  Time: 20:15
-  To change this template use File | Settings | File Templates.
---%>
-
-<html>
-<head>
-
-
-</head>
-<body>
 <div class="container">
     <nav class="navbar navbar-expand">
         <div class="nav navbar-nav">
@@ -22,35 +8,43 @@
 
             <form class="form-inline">
                 <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#login">
-                    Log ind </button>
-                <a href="../register.jsp" class="btn btn-primary" role="button">Opret konto</a>
-                <a href="../customerPage.jsp" class="btn btn-primary" role="button">Min side</a>
-
-                <!-- Small modal -->
-                <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Log ud</button>
-
-                <!-- Small modal -->
-                <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Logout modal</button>
-
-                <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
-                            <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
-                            <div class="modal-footer"><a href="javascript:;" class="btn btn-primary btn-block">Logout</a></div>
-                        </div>
-                    </div>
-                </div>
-
+                    Log ind
+                </button>
+                <a href="register.jsp" class="btn btn-primary" role="button">Opret konto</a>
             </form>
-
-
-
         </div>
     </nav>
-
-
-
 </div>
-</body>
-</html>
+
+<!-- The Modal -->
+<div class="modal" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Log ind</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="login" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="login">
+                    <p>Email:</p>
+                    <input type="text" name="email" value="anders@email.com">
+                    <br>
+                    <p>Password:</p>
+                    <input type="password" name="password" value="1234">
+                    <br><br>
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

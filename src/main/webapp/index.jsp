@@ -4,7 +4,7 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="WEB-INF/include/header.jsp"%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,44 +18,10 @@
 
 </head>
 <body>
-
-<!-- The Modal -->
-<div class="modal" id="login">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Log ind</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form name="login" action="FrontController" method="POST">
-                    <input type="hidden" name="command" value="login">
-                    <p>Email:</p>
-                    <input type="text" name="email" value="anders@email.com">
-                    <br>
-                    <p>Password:</p>
-                    <input type="password" name="password" value="1234">
-                    <br><br>
-                    <input class="btn btn-primary" type="submit" value="Login">
-                </form>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
+<%@include file="WEB-INF/include/header.jsp" %>
 <div class="container mt-5 mb-5">
     <h1>QUICKBYG</h1>
 </div>
-
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <b>QUICK-BYG TILBUD</b>
@@ -97,6 +63,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<%@include file="WEB-INF/include/footer.jsp"%>
+<%@include file="WEB-INF/include/footer.jsp" %>
 </body>
 </html>
