@@ -9,10 +9,10 @@
             </table>
 
             <form class="form-inline">
-                <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#login">
+                <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
                     Log ind
                 </button>
-                <a href="register.jsp" class="btn btn-primary" role="button">Opret konto</a>
+                <a href="register.jsp" class="btn btn-link" role="button">Opret konto</a>
             </form>
         </div>
     </nav>
