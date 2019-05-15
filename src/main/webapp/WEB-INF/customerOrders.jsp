@@ -15,42 +15,44 @@
 
 </head>
 <body>
-<%@include file="include/loggedInHeader.jsp"%>
+<%@include file="include/loggedInHeader.jsp" %>
 <div class="container" style="padding-bottom: 200px">
     <h1>Dine Ordre</h1>
     <div class="container-fluid">
         <div class="container background pt-5 pb-5">
             <p>Alle mål er i millimeter</p>
-            <c:forEach items="${requestScope.orders}" var="orders">
-                <table class='table table-condensed table-striped table-hover'>
-                    <tr>
-                        <th>Ordre ID</th>
-                        <th>Status</th>
-                        <th>Pris</th>
-                        <th>Tag</th>
-                        <th>Tagvinkel</th>
-                        <th>Længde</th>
-                        <th>Bredde</th>
-                        <th>Højde</th>
-                        <th>Skurlængde</th>
-                        <th>Skurbredde</th>
-                        <th>Kommentar</th>
-                    </tr>
-                    <tr>
-                        <td>${orders.getOrderId()}</td>
-                        <td>${orders.getStatus()}</td>
-                        <td>${orders.getPrice()}</td>
-                        <td>${orders.getRoofId()}</td>
-                        <td>${orders.getAngle()}</td>
-                        <td>${orders.getLength()}</td>
-                        <td>${orders.getWidth()}</td>
-                        <td>${orders.getHeight()}</td>
-                        <td>${orders.getShedLength()}</td>
-                        <td>${orders.getShedWidth()}</td>
-                        <td>${orders.getComment()}</td>
-                    </tr>
-                </table>
+            <table class='table table-condensed table-striped table-hover'>
+                <tr>
+                    <th>Ordre ID</th>
+                    <th>Status</th>
+                    <th>Pris</th>
+                    <th>Tag</th>
+                    <th>Tagvinkel</th>
+                    <th>Længde</th>
+                    <th>Bredde</th>
+                    <th>Højde</th>
+                    <th>Skurlængde</th>
+                    <th>Skurbredde</th>
+                    <th>Kommentar</th>
+                </tr>
+                <c:forEach items="${requestScope.orders}" var="orders">
+
+                <tr>
+                    <td>${orders.getOrderId()}</td>
+                    <td>${orders.getStatus()}</td>
+                    <td>${orders.getPrice()}</td>
+                    <td>${orders.getRoofId()}</td>
+                    <td>${orders.getAngle()}</td>
+                    <td>${orders.getLength()}</td>
+                    <td>${orders.getWidth()}</td>
+                    <td>${orders.getHeight()}</td>
+                    <td>${orders.getShedLength()}</td>
+                    <td>${orders.getShedWidth()}</td>
+                    <td>${orders.getComment()}</td>
+                </tr>
+
             </c:forEach>
+            </table>
         </div>
     </div>
 </div>
