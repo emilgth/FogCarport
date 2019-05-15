@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <%@include file="include/loggedInHeader.jsp"%>
 <body>
