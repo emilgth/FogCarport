@@ -170,7 +170,7 @@ public class SvgGen {
             //Forskydning ligges til start x koordinat og trækkes fra længden på materialet.
             svgList.add(new Rect(50 + (int) c, (int) a + (beamMat.getHeight() / 2), postMat.getWidth(), height - ((int) a + (beamMat.getHeight() / 2))));
         }
-
+        
         //REMME
         /*
         Remme bliver flyttet 50 ind på x-aksen, da den ellers ville blive roteret delvis ud af viewboxen.
@@ -192,7 +192,7 @@ public class SvgGen {
         double c = overhangFront + (postSpacing * (postAmount / 2)); //Hypertenusen er length til hver stolpe.
         double a = c * Math.sin(A);
         int heightLoss = (int) a;
-        svgList.add(new Arrw(200 + length + 500, 500 + heightLoss - fasciaMat.getWidth(), 200 + length + 500, 500 + height, -90));
+        svgList.add(new Arrw(200 + length + 500, 500 + heightLoss - (fasciaMat.getWidth() / 2), 200 + length + 500, 500 + height, -90));
 
         //Stolpe afstand
         for (int i = 1; i < postAmount / 2; i++) {
