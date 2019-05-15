@@ -14,11 +14,17 @@ abstract class Command {
         commands = new HashMap<>();
         commands.put("builder", new Builder());
         commands.put("customerOrder", new CustomerOrderFlatRoof());
-        /*
         commands.put("login", new Login());
         commands.put("register", new Register());
+        commands.put("showCustomerOrder", new ShowCustomerOrder());
+        commands.put("updateUserData", new UpdateUserData());
+        commands.put("showAdminOrders", new ShowAdminOrders());
+        commands.put("customerPage", new CustomerPage());
+        commands.put("loggedInIndex", new LoggedInIndex());
+        commands.put("showNewOrders", new ShowNewOrders());
+        commands.put("adminShowSingleOrder", new AdminShowSingleOrder());
+        commands.put("confirmOrder", new ConfirmOrder());
 
-         */
     }
 
     static Command from(HttpServletRequest request) {

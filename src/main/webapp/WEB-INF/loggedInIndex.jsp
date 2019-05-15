@@ -4,7 +4,6 @@
     Author     : kasper
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +13,16 @@
     <title>QuickByg</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css.css">
+    <link rel="stylesheet" href="../css.css">
 
 </head>
 <body>
-<%@include file="WEB-INF/include/header.jsp" %>
+<%@include file="include/loggedInHeader.jsp"%>
 <div class="container mt-5 mb-5">
+    <h1>Hello ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
     <h1>QUICKBYG</h1>
 </div>
+
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <b>QUICK-BYG TILBUD</b>
@@ -39,14 +40,14 @@
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med fladt tag:</b><br>
-                    <a href="fladtTag.jsp"><img src="img/quickurejs.gif" alt="uden rejsning"></a></div>
+                    <a href="../fladtTag.jsp"><img src="../img/quickurejs.gif" alt="uden rejsning"></a></div>
             </div>
         </div>
         <hr>
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med rejsning:</b><br>
-                    <a href="medRejsning.jsp"><img src="img/quickmrejs.gif" alt="med rejsning"></a></div>
+                    <a href="../medRejsning.jsp"><img src="../img/quickmrejs.gif" alt="med rejsning"></a></div>
             </div>
         </div>
         <hr>
@@ -63,6 +64,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<%@include file="WEB-INF/include/footer.jsp" %>
+
 </body>
 </html>

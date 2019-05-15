@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -63,6 +64,12 @@ public class UserMapperTest {
         assertEquals("anders@email.com",user.getEmail());
     }
 
+    @Test
+    public void login() throws LoginSampleException {
+        int userID = 2;
+        assertEquals(userID, UserMapper.login("anders@email.com", "1234").getUserId());
+    }
+
     /*
     @Test( expected = LoginSampleException.class )
     public void testLogin02() throws LoginSampleException {
@@ -88,4 +95,6 @@ public class UserMapperTest {
     }
 
      */
+
+
 }

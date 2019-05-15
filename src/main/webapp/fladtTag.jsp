@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,28 +13,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css.css">
 </head>
-
+<%@include file="WEB-INF/include/header.jsp"%>
 
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-            <form class="form-inline" action="/action_page.php">
-                <label for="email" class="mr-sm-2">Email address:</label>
-                <input type="email" class="form-control mb-2 mr-sm-2" id="email">
-                <label for="pwd" class="mr-sm-2">Password:</label>
-                <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
-                <div class="form-check mb-2 mr-sm-2">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"> Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            </form>
-        </div>
-    </nav>
-</div>
 <div class="container mt-5 mb-5">
     <h1>CARPORT MED FLADT TAG</h1>
 </div>
@@ -210,7 +191,7 @@
             </div>
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
-                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2"></textarea>
+                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2">Kommentar</textarea>
             </div>
 
             <div class="form-group">

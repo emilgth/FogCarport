@@ -1,9 +1,10 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Success</title>
+    <title>Adminside</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,19 +12,33 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css.css">
 </head>
 <body>
-<%@include file="WEB-INF/include/header.jsp"%>
-<div class="container-fluid background pt-5 pb-5">
-    <div class="container">
-        <h1>Tak for din forespørgsel!</h1>
-        <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. <br>
-            Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
-        <hr>
-        <img src="img/quickmrejs.gif" class="img-fluid" alt="mrejs">
+
+<%@include file="include/loggedInHeader.jsp"%>
+
+
+
+<div class="container mt-5 mb-5"><h1>Adminside</h1>
+    <h2>Velkommen ${sessionScope.user.surname}</h2></div>
+
+<div class="container-fluid background mt-5 mb-5">
+    <div class="container background  pt-5 pb-5">
+        <form name="showAdminOrders" action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showAdminOrders">
+            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordrer</button>
+        </form>
+        <br>
+        <form name="showNewOrders" action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showNewOrders">
+            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se nye ordrer</button>
+        </form>
     </div>
 </div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -36,5 +51,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
