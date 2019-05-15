@@ -49,6 +49,7 @@ public class SvgGen {
         int postWidth = materialMap.get(84).getWidth();
         int postXOffset = materialMap.get(84).getHeight() / 2;
         int postYOffset = materialMap.get(84).getWidth() / 2;
+
         for (int i = 0; i < postAmount / 2; i++) {
             svgList.add(new Rect(((overhangFront - postXOffset) + (postSpacing * i)), (overhangSides - postYOffset), postHeight, postWidth));
             svgList.add(new Rect(((overhangFront - postXOffset) + (postSpacing * i)), (overhangSides - (postYOffset) + (width - (overhangSides * 2))), postHeight, postWidth));
@@ -147,11 +148,14 @@ public class SvgGen {
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
-        int beamAngle = 2; //Hældning på remme (vinkel A).
+        int angle = order.getAngle();
+        int beamAngle = 0;
+        if (angle == 0){
+            beamAngle = 2; //Hældning på remme (vinkel A).
+        }
 
         //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
-
 
         //STOLPER
         Material beamMat = materialMap.get(ListGen.getRafterId(length));
