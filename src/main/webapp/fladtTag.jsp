@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,28 +13,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css.css">
 </head>
-
+<%@include file="WEB-INF/include/header.jsp"%>
 
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-            <form class="form-inline" action="/action_page.php">
-                <label for="email" class="mr-sm-2">Email address:</label>
-                <input type="email" class="form-control mb-2 mr-sm-2" id="email">
-                <label for="pwd" class="mr-sm-2">Password:</label>
-                <input type="password" class="form-control mb-2 mr-sm-2" id="pwd">
-                <div class="form-check mb-2 mr-sm-2">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"> Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            </form>
-        </div>
-    </nav>
-</div>
 <div class="container mt-5 mb-5">
     <h1>CARPORT MED FLADT TAG</h1>
 </div>
@@ -59,7 +40,8 @@
         </div>
 
         <!-- select table-->
-        <form action="success.jsp" method="post" class="">
+        <form action="FrontController" method="post" class="">
+            <input type="hidden" name="command" value="customerOrder">
             <div id="table" class="form-horizontal">
                 <div class="form-group">
                                     <span>
@@ -70,24 +52,24 @@
                     <label title="Carport bredde" for="carport_bredde">Carport bredde</label>
                     <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde">
                         <option selected="selected" value="">Vælg bredde</option>
-                        <option value="240 cm">240 cm</option>
-                        <option value="270 cm">270 cm</option>
-                        <option value="300 cm">300 cm</option>
-                        <option value="330 cm">330 cm</option>
-                        <option value="360 cm">360 cm</option>
-                        <option value="390 cm">390 cm</option>
-                        <option value="420 cm">420 cm</option>
-                        <option value="450 cm">450 cm</option>
-                        <option value="480 cm">480 cm</option>
-                        <option value="510 cm">510 cm</option>
-                        <option value="540 cm">540 cm</option>
-                        <option value="570 cm">570 cm</option>
-                        <option value="600 cm">600 cm</option>
-                        <option value="630 cm">630 cm</option>
-                        <option value="660 cm">660 cm</option>
-                        <option value="690 cm">690 cm</option>
-                        <option value="720 cm">720 cm</option>
-                        <option value="750 cm">750 cm</option>
+                        <option value="2400">240 cm</option>
+                        <option value="2700">270 cm</option>
+                        <option value="3000">300 cm</option>
+                        <option value="3300">330 cm</option>
+                        <option value="3600">360 cm</option>
+                        <option value="3900">390 cm</option>
+                        <option value="4200">420 cm</option>
+                        <option value="4500">450 cm</option>
+                        <option value="4800">480 cm</option>
+                        <option value="5100">510 cm</option>
+                        <option value="5400">540 cm</option>
+                        <option value="5700">570 cm</option>
+                        <option value="6000">600 cm</option>
+                        <option value="6300">630 cm</option>
+                        <option value="6600">660 cm</option>
+                        <option value="6900">690 cm</option>
+                        <option value="7200">720 cm</option>
+                        <option value="7500">750 cm</option>
                     </select>
                 </div>
             </div>
@@ -95,25 +77,25 @@
                 <label title="Carport længde" for="carport_laengde">Carport længde</label>
                 <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde">
                     <option selected="selected" value="">Vælg længde</option>
-                    <option value="240 cm">240 cm</option>
-                    <option value="270 cm">270 cm</option>
-                    <option value="300 cm">300 cm</option>
-                    <option value="330 cm">330 cm</option>
-                    <option value="360 cm">360 cm</option>
-                    <option value="390 cm">390 cm</option>
-                    <option value="420 cm">420 cm</option>
-                    <option value="450 cm">450 cm</option>
-                    <option value="480 cm">480 cm</option>
-                    <option value="510 cm">510 cm</option>
-                    <option value="540 cm">540 cm</option>
-                    <option value="570 cm">570 cm</option>
-                    <option value="600 cm">600 cm</option>
-                    <option value="630 cm">630 cm</option>
-                    <option value="660 cm">660 cm</option>
-                    <option value="690 cm">690 cm</option>
-                    <option value="720 cm">720 cm</option>
-                    <option value="750 cm">750 cm</option>
-                    <option value="780 cm">780 cm</option>
+                    <option value="2400">240 cm</option>
+                    <option value="2700">270 cm</option>
+                    <option value="3000">300 cm</option>
+                    <option value="3300">330 cm</option>
+                    <option value="3600">360 cm</option>
+                    <option value="3900">390 cm</option>
+                    <option value="4200">420 cm</option>
+                    <option value="4500">450 cm</option>
+                    <option value="4800">480 cm</option>
+                    <option value="5100">510 cm</option>
+                    <option value="5400">540 cm</option>
+                    <option value="5700">570 cm</option>
+                    <option value="6000">600 cm</option>
+                    <option value="6300">630 cm</option>
+                    <option value="6600">660 cm</option>
+                    <option value="6900">690 cm</option>
+                    <option value="7200">720 cm</option>
+                    <option value="7500">750 cm</option>
+                    <option value="7800">780 cm</option>
                 </select>
             </div>
             <div class="form-group">
@@ -125,35 +107,35 @@
                     </span>
                 </label>
                 <select class="form-control" id="tag" name="Tag" title="Tag">
-                    <option selected="selected" value="Plasttrapezplader">Plasttrapezplader</option>
+                    <option selected="selected" value="1">Plasttrapezplader</option>
                 </select>
             </div>
             <div class="form-group">
                 <span><b>Redskabsrum:</b><br>NB! Der skal beregnes 15 cm tagudhæng på hver side af redskabsrummet*</span>
             </div>
             <div class="form-group">
-                <label title="Redskabsrum bredde" for="Redskabsrum bredde">Redskabsrum bredde</label>
-                <select class="form-control" id="Redskabsrum bredde" name="Redskabsrum_bredde"
+                <label title="Redskabsrum bredde" for="redskabsrum_bredde">Redskabsrum bredde</label>
+                <select class="form-control" id="redskabsrum_bredde" name="Redskabsrum_bredde"
                         title="Redskabsrum bredde">
-                    <option selected="selected" value="Ønsker ikke redskabsrum">Ønsker ikke redskabsrum</option>
-                    <option value="210 cm">210 cm</option>
-                    <option value="240 cm">240 cm</option>
-                    <option value="270 cm">270 cm</option>
-                    <option value="300 cm">300 cm</option>
-                    <option value="330 cm">330 cm</option>
-                    <option value="360 cm">360 cm</option>
-                    <option value="390 cm">390 cm</option>
-                    <option value="420 cm">420 cm</option>
-                    <option value="450 cm">450 cm</option>
-                    <option value="480 cm">480 cm</option>
-                    <option value="510 cm">510 cm</option>
-                    <option value="540 cm">540 cm</option>
-                    <option value="570 cm">570 cm</option>
-                    <option value="600 cm">600 cm</option>
-                    <option value="630 cm">630 cm</option>
-                    <option value="660 cm">660 cm</option>
-                    <option value="690 cm">690 cm</option>
-                    <option value="720 cm">720 cm</option>
+                    <option selected="selected" value="0">Ønsker ikke redskabsrum</option>
+                    <option value="2100">210 cm</option>
+                    <option value="2400">240 cm</option>
+                    <option value="2700">270 cm</option>
+                    <option value="3000">300 cm</option>
+                    <option value="3300">330 cm</option>
+                    <option value="3600">360 cm</option>
+                    <option value="3900">390 cm</option>
+                    <option value="4200">420 cm</option>
+                    <option value="4500">450 cm</option>
+                    <option value="4800">480 cm</option>
+                    <option value="5100">510 cm</option>
+                    <option value="5400">540 cm</option>
+                    <option value="5700">570 cm</option>
+                    <option value="6000">600 cm</option>
+                    <option value="6300">630 cm</option>
+                    <option value="6600">660 cm</option>
+                    <option value="6900">690 cm</option>
+                    <option value="7200">720 cm</option>
                 </select>
             </div>
 
@@ -161,26 +143,26 @@
                 <label title="Redskabsrum længde" for="redskabsrum_laengde">Redskabsrum længde</label>
                 <select class="form-control" id="redskabsrum_laengde" name="Redskabsrum_laengde"
                         title="Redskabsrum længde">
-                    <option selected="selected" value="Ønsker ikke redskabsrum">Ønsker ikke redskabsrum</option>
-                    <option value="150 cm">150 cm</option>
-                    <option value="180 cm">180 cm</option>
-                    <option value="210 cm">210 cm</option>
-                    <option value="240 cm">240 cm</option>
-                    <option value="270 cm">270 cm</option>
-                    <option value="300 cm">300 cm</option>
-                    <option value="330 cm">330 cm</option>
-                    <option value="360 cm">360 cm</option>
-                    <option value="390 cm">390 cm</option>
-                    <option value="420 cm">420 cm</option>
-                    <option value="450 cm">450 cm</option>
-                    <option value="480 cm">480 cm</option>
-                    <option value="510 cm">510 cm</option>
-                    <option value="540 cm">540 cm</option>
-                    <option value="570 cm">570 cm</option>
-                    <option value="600 cm">600 cm</option>
-                    <option value="630 cm">630 cm</option>
-                    <option value="660 cm">660 cm</option>
-                    <option value="690 cm">690 cm</option>
+                    <option selected="selected" value="0">Ønsker ikke redskabsrum</option>
+                    <option value="1500">150 cm</option>
+                    <option value="1800">180 cm</option>
+                    <option value="2100">210 cm</option>
+                    <option value="2400">240 cm</option>
+                    <option value="2700">270 cm</option>
+                    <option value="3000">300 cm</option>
+                    <option value="3300">330 cm</option>
+                    <option value="3600">360 cm</option>
+                    <option value="3900">390 cm</option>
+                    <option value="4200">420 cm</option>
+                    <option value="4500">450 cm</option>
+                    <option value="4800">480 cm</option>
+                    <option value="5100">510 cm</option>
+                    <option value="5400">540 cm</option>
+                    <option value="5700">570 cm</option>
+                    <option value="6000">600 cm</option>
+                    <option value="6300">630 cm</option>
+                    <option value="6600">660 cm</option>
+                    <option value="6900">690 cm</option>
                 </select>
             </div>
             <div class="form-group">
@@ -209,7 +191,7 @@
             </div>
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
-                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2"></textarea>
+                <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2">Kommentar</textarea>
             </div>
 
             <div class="form-group">
