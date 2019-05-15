@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import DBAccess.OrderMapper;
 import FunctionLayer.ListGen;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
@@ -34,21 +33,18 @@ class CustomerOrderFlatRoof extends Command {
         int angle = 0;
         int length = Integer.parseInt(request.getParameter("Carport_laengde"));
         int width = Integer.parseInt(request.getParameter("Carport_bredde"));
-
-        //todo er height altid 3000?
-        int height = 3000;
+        int height = 2300;
         int shedLength = Integer.parseInt(request.getParameter("Redskabsrum_laengde"));
         int shedWidth = Integer.parseInt(request.getParameter("Redskabsrum_bredde"));
         String comment = request.getParameter("bemaerkninger");
         Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth, comment);
-        //todo hvad er formålet her?
+
+        //TODO: Skal gå over logicfacade
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
         ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
 
         FunctionLayer.LogicFacade.insertOrder(order);
-
-
 
         session.setAttribute("order", order);
         session.setAttribute("orderLineList", orderLineList);

@@ -147,19 +147,60 @@ public class SvgGen {
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
+        int beamAngle = 2; //Hældning på remme (vinkel A).
 
         //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
 
+
         //STOLPER
+        Material beamMat = materialMap.get(ListGen.getRafterId(length));
+        Material postMat = materialMap.get(84);
         int postAmount = ListGen.getPostAmount(length);
         int postSpacing = getPostSpacing(postAmount, length);
-        for (int i = 0; i < postAmount / 2; i++) {
-            svgList.add(new Rect(overhangFront + (postSpacing * i), 90 + (materialMap.get(84).getLength() / 100) * (9 * i), materialMap.get(84).getHeight(), materialMap.get(84).getLength() - (140 * i)));
+
+        /*
+        Stolpe forskydning i forhold til hældning, bliver beregnet som højden (side a), i en retvinklet trekant
+        med hældning = vinkel A.
+        */
+        for (int i = 0; i < postAmount / 2; i++) { //Beregner forskydning (side a) for hver stolpe.
+            double A = Math.toRadians(beamAngle); //Java Math regner kun i radianer.
+            double c = overhangFront + (postSpacing * i); //Hypertenusen er length til hver stolpe.
+            double a = c * Math.sin(A);
+            //Forskydning ligges til start x koordinat og trækkes fra længden på materialet.
+            svgList.add(new Rect(50 + (int) c, (int) a + (beamMat.getHeight() / 2), postMat.getWidth(), height - ((int) a + (beamMat.getHeight() / 2))));
+        }
+        
+        //REMME
+        /*
+        Remme bliver flyttet 50 ind på x-aksen, da den ellers ville blive roteret delvis ud af viewboxen.
+        Der bliver ikke taget højde for beam materialets max længde, så length bliver brugt i stedet for.
+        */
+        svgList.add(new AngledRect(50, 0, length - 50, beamMat.getHeight(), beamAngle));
+
+        //STERNBRÆDDER
+        Material fasciaMat = materialMap.get(ListGen.getUpperFasciaId(length));
+        svgList.add(new AngledRect(50, 0, length - 50, fasciaMat.getWidth(), beamAngle));
+
+        //SVG AFSLUT (indre tegning)
+        svgList.add(new SvgEnd(0, 0));
+
+        //SVG PILE (arrows)
+        //Total højde
+        svgList.add(new Arrw(200, 500, 200, 500 + height, -90));
+        double A = Math.toRadians(beamAngle); //Java Math regner kun i radianer.
+        double c = overhangFront + (postSpacing * (postAmount / 2)); //Hypertenusen er length til hver stolpe.
+        double a = c * Math.sin(A);
+        int heightLoss = (int) a;
+        svgList.add(new Arrw(200 + length + 500, 500 + heightLoss - (fasciaMat.getWidth() / 2), 200 + length + 500, 500 + height, -90));
+
+        //Stolpe afstand
+        for (int i = 1; i < postAmount / 2; i++) {
+            svgList.add(new Arrw(500 + overhangFront + (postSpacing * (i - 1)) + (beamMat.getHeight() / 2), 500 + height + 175, 500 + overhangFront + (postSpacing * i) + (beamMat.getHeight() / 2), 500 + height + 175, 0));
         }
 
-        //REMME
-        svgList.add(new AngledRect(50, 0, length - 100, 100, 5));
+        //SVG AFSLUT (ydre tegning)
+        svgList.add(new SvgEnd(0, 0));
 
         return svgList;
     }
