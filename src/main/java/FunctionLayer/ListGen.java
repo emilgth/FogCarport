@@ -282,7 +282,7 @@ public class ListGen {
         while (length > getDistance(i)) {
             i++;
         }
-        return 2 + i * 2;
+        return 2 + (i * 2);
     }
 
     private static int getDistance(int i) {
@@ -344,15 +344,18 @@ public class ListGen {
 
         Mellem metoderne bliver brugt for overskuelighed og for at gøre koden mere testbar
         */
-        int i = findMaxFromList(size, list);
+        int maxMatLength = findMaxFromList(size, list);
+        int i = findFitFactor(size, maxMatLength);
         int tempResult = Integer.MAX_VALUE;
         int materialId = 0;
+
         for (Material material : list) {
             if (material.getLength() >= size / i && material.getLength() < tempResult) {
                 tempResult = material.getLength();
                 materialId = material.getMaterialId();
             }
         }
+
         return materialId;
     }
 
@@ -375,7 +378,7 @@ public class ListGen {
                 max = material.getLength();
             }
         }
-        return findFitFactor(size, max);
+        return max;
     }
 
     private static int findFitFactor(int size, int max) {
