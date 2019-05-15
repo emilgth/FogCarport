@@ -26,12 +26,11 @@ public class CustomerOrderFlatRoof extends Command {
         int length = Integer.parseInt(request.getParameter("Carport_laengde"));
         int width = Integer.parseInt(request.getParameter("Carport_bredde"));
         //todo er height altid 3000?
-        int height = 3000;
+        int height = 2300;
         int shedLength = Integer.parseInt(request.getParameter("Redskabsrum_laengde"));
         int shedWidth = Integer.parseInt(request.getParameter("Redskabsrum_bredde"));
         Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth);
 
-        //todo hvad er formålet her?
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
         ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
