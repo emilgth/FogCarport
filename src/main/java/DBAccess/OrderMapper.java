@@ -1,6 +1,6 @@
 package DBAccess;
 
-import FunctionLayer.ListGen;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.User;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class OrderMapper {
 
-    public static ArrayList<Order> getOrderList() {
+    public static ArrayList<Order> getOrderList() throws FogException {
         ArrayList<Order> orderList = new ArrayList<>();
 
         try {
@@ -36,8 +36,10 @@ public class OrderMapper {
                 orderList.add(order);
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getOrderList(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getOrderList(): JDBC driver ikke fundet");
         }
         return orderList;
     }
@@ -45,7 +47,7 @@ public class OrderMapper {
     /**
      * @param order
      */
-    public static void insertOrder(Order order) {
+    public static void insertOrder(Order order) throws FogException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -67,12 +69,16 @@ public class OrderMapper {
             preparedStatement.setInt(11, order.getShedWidth());
             preparedStatement.setString(12, order.getComment());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "insertOrder(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "insertOrder(): JDBC driver ikke fundet");
+        } catch (NullPointerException e) {
+            throw new FogException(e.toString(), "insertOrder(): Null pointer, check user");
         }
     }
 
-    public static ArrayList<Order> getUserOrderList(User user) {
+    public static ArrayList<Order> getUserOrderList(User user) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
 
         try {
@@ -97,14 +103,15 @@ public class OrderMapper {
                 order.setComment(resultSet.getString("comment"));
                 orders.add(order);
             }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getUserOrderList(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getUserOrderList(): JDBC driver ikke fundet");
         }
         return orders;
     }
 
-    public static ArrayList<Order> getAllOrders(Order order) {
+    public static ArrayList<Order> getAllOrders(Order order) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
 
         try {
@@ -128,14 +135,16 @@ public class OrderMapper {
                 orders.add(order);
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getAllOrders(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getAllOrders(): JDBC driver ikke fundet");
         }
         return orders;
     }
 
 
-    public static ArrayList<Order> getPendingOrders() {
+    public static ArrayList<Order> getPendingOrders() throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
 
         try {
@@ -161,13 +170,15 @@ public class OrderMapper {
                 orders.add(order);
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getPendingOrders(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getPendingOrders(): JDBC driver ikke fundet");
         }
         return orders;
     }
 
-    public static Order getSingleOrder(String orderId) {
+    public static Order getSingleOrder(String orderId) throws FogException {
         Order order = new Order();
         try {
             Connection con = Connector.connection();
@@ -189,24 +200,43 @@ public class OrderMapper {
                 order.setShedWidth(resultSet.getInt("shed_width"));
                 order.setComment(resultSet.getString("comment"));
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
         }
         return order;
     }
 
-    public static void setPriceAndStatus(double newPrice, int orderId) {
+    public static void setPrice(double newPrice, int orderId) throws FogException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = Connector.connection();
-            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = 'confirmed', price = ? WHERE order_id = ?");
-
+            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` SET price = ? WHERE order_id = ?");
             preparedStatement.setDouble(1, newPrice);
             preparedStatement.setInt(2, orderId);
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): JDBC driver ikke fundet");
+        }
+    }
+
+    public static void setStatus(String newStatus, int orderId) throws FogException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = Connector.connection();
+            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = ? WHERE order_id = ?");
+            preparedStatement.setString(1, newStatus);
+            preparedStatement.setInt(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): JDBC driver ikke fundet");
         }
     }
 }

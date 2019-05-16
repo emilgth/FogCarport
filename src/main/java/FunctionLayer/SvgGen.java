@@ -35,6 +35,8 @@ public class SvgGen {
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
+        int shedLength = order.getShedLength();
+        int shedWidth = order.getShedWidth();
 
         //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
@@ -42,18 +44,112 @@ public class SvgGen {
         //RAMME (frame)
         svgList.add(new Rect(0, 0, length, width));
 
-        //STOLPER (posts)
         int postAmount = ListGen.getPostAmount(length);
         int postSpacing = getPostSpacing(postAmount, length);
+
+        //SKUR
+        if (shedLength != 0 && shedWidth != 0) {
+            addShedWalls(svgList, shedWidth, shedLength, width, length);
+            addShedPosts(svgList, shedWidth, shedLength, width, length);
+        }
+
+        addPosts(svgList, width, postAmount, postSpacing);
+        addBeams(length, svgList, width, postSpacing);
+
+        //rafterSpacing is used by addArrows
+        int rafterSpacing = addRaftersAndWindBracers(svgList, length, width);
+
+        //SVG AFSLUT (indre tegning)
+        svgList.add(new SvgEnd(0, 0));
+
+        addArrows(svgList, length, width, postAmount, postSpacing, rafterSpacing);
+
+        //SVG AFSLUT (ydre tegning)
+        svgList.add(new SvgEnd(0, 0));
+
+        return svgList;
+    }
+
+    private static void addShedWalls(ArrayList<Svg> svgList, int shedWidth, int shedLength, int width, int length) {
+        int wallWidth = 50;
+        int postXOffset = materialMap.get(84).getHeight() / 2;
+        int postYOffset = materialMap.get(84).getWidth() / 2;
+
+        //vertical
+        svgList.add(new Rect((((length - overhangSides) - postXOffset) - shedLength) - wallWidth, (overhangSides - postYOffset) - wallWidth, wallWidth, (shedWidth + (postXOffset * 2)) + wallWidth * 2));
+        svgList.add(new Rect((length - overhangSides) + postXOffset, (overhangSides - postYOffset) - wallWidth, wallWidth, (shedWidth + (postXOffset * 2)) + wallWidth * 2));
+
+        //horizontal
+        svgList.add(new Rect(((((length - overhangSides) - postXOffset) - shedLength) - wallWidth), (overhangSides - postYOffset) - wallWidth, (shedLength + (postXOffset * 2)) + wallWidth * 2, wallWidth));
+        svgList.add(new Rect(((((length - overhangSides) - postXOffset) - shedLength) - wallWidth), ((overhangSides + (postYOffset))) + shedWidth, (shedLength + (postXOffset * 2)) + wallWidth * 2, wallWidth));
+    }
+
+    private static void addShedPosts(ArrayList<Svg> svgList, int shedWidth, int shedLength, int widtg, int length) {
         int postHeight = materialMap.get(84).getHeight(); //Materiale 84 er 3m. høje stolper. De eneste vi bruger pt.
         int postWidth = materialMap.get(84).getWidth();
         int postXOffset = materialMap.get(84).getHeight() / 2;
         int postYOffset = materialMap.get(84).getWidth() / 2;
+        //der er altid 4 posts
+        for (int i = 0; i < 4 / 2; i++) {
+            svgList.add(new Rect((length - overhangSides - postXOffset - (shedLength * i)), (overhangSides - postYOffset), postHeight, postWidth));
+            svgList.add(new Rect((length - overhangSides - postXOffset - (shedLength * i)), ((overhangSides - postYOffset) + shedWidth), postHeight, postWidth));
+        }
+    }
+
+    private static void addPosts(ArrayList<Svg> svgList, int width, int postAmount, int postSpacing) {
+        int postHeight = materialMap.get(84).getHeight(); //Materiale 84 er 3m. høje stolper. De eneste vi bruger pt.
+        int postWidth = materialMap.get(84).getWidth();
+        int postXOffset = materialMap.get(84).getHeight() / 2;
+        int postYOffset = materialMap.get(84).getWidth() / 2;
+
         for (int i = 0; i < postAmount / 2; i++) {
             svgList.add(new Rect(((overhangFront - postXOffset) + (postSpacing * i)), (overhangSides - postYOffset), postHeight, postWidth));
             svgList.add(new Rect(((overhangFront - postXOffset) + (postSpacing * i)), (overhangSides - (postYOffset) + (width - (overhangSides * 2))), postHeight, postWidth));
         }
+    }
 
+    private static void addArrows(ArrayList<Svg> svgList, int length, int width, int postAmount, int postSpacing, int rafterSpacing) {
+        //SVG PILE (arrows)
+        //Total bredde
+        svgList.add(new Arrw(500, 500 + width + 200, 500 + length, 500 + width + 200, 0));
+        //Total højde
+        svgList.add(new Arrw(200, 500, 200, 500 + width, -90));
+        //Overhæng
+        svgList.add(new Arrw(400, 500, 400, 500 + overhangSides, -90));
+        svgList.add(new Arrw(500, 175, 500 + overhangFront, 175, 0));
+        svgList.add(new Arrw(500 + length - overhangSides, 175, 500 + length, 175, 0));
+        //Spær afstand
+        svgList.add(new Arrw(500, 425, 500 + rafterSpacing, 425, 0));
+        //Stolpe afstand
+        for (int i = 1; i < postAmount / 2; i++) {
+            svgList.add(new Arrw(500 + overhangFront + (postSpacing * (i - 1)), 175, 500 + overhangFront + (postSpacing * i), 175, 0));
+        }
+    }
+
+    private static int addRaftersAndWindBracers(ArrayList<Svg> svgList, int length, int width) {
+        Material rafterMat = materialMap.get(ListGen.getRafterId(width));
+        int rafterWidth = rafterMat.getWidth();
+        int rafterLength = rafterMat.getLength();
+
+        int rafterAmount = ListGen.getRafterAmount(length, width);
+        int rafterSpacing = 0;
+
+        while (length - rafterWidth > (rafterAmount - 1) * rafterSpacing) {
+            rafterSpacing++;
+        }
+        for (int i = 0; i < rafterAmount; i++) {
+            svgList.add(new Rect(rafterSpacing * i, 0, rafterWidth, rafterLength));
+        }
+
+        //VINDKRYDS (Wind bracers)
+        svgList.add(new Line(rafterSpacing, overhangSides, (rafterSpacing * (rafterAmount - 2)), width - overhangSides));
+        svgList.add(new Line(rafterSpacing + 50, overhangSides, (rafterSpacing * (rafterAmount - 2)) + 50, width - overhangSides));
+        svgList.add(new Line(rafterSpacing, width - overhangSides, (rafterSpacing * (rafterAmount - 2)), overhangSides));
+        svgList.add(new Line(rafterSpacing + 50, width - overhangSides, (rafterSpacing * (rafterAmount - 2) + 50), overhangSides));
+        return rafterSpacing;
+    }
+
+    private static void addBeams(int length, ArrayList<Svg> svgList, int width, int postSpacing) {
         //REMME (beams)
         //Da remme altid strækker den fulde længe af en given carport. Kan remme længden bestemmes ved antal remme.
         Material beamMat = materialMap.get(ListGen.getRafterId(length));
@@ -83,51 +179,6 @@ public class SvgGen {
             svgList.add(new Rect((beamLong * i), (overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
             svgList.add(new Rect((beamLong * i), (width - overhangSides - (beamMat.getWidth() / 2)), beamLong, beamMat.getWidth()));
         }
-
-        //SPÆR (rafters)
-        Material rafterMat = materialMap.get(ListGen.getRafterId(width));
-        int rafterWidth = rafterMat.getWidth();
-        int rafterLength = rafterMat.getLength();
-
-        int rafterAmount = ListGen.getRafterAmount(length, width);
-        int rafterSpacing = 0;
-
-        while (length - rafterWidth > (rafterAmount - 1) * rafterSpacing) {
-            rafterSpacing++;
-        }
-        for (int i = 0; i < rafterAmount; i++) {
-            svgList.add(new Rect(rafterSpacing * i, 0, rafterWidth, rafterLength));
-        }
-
-        //VINDKRYDS (Wind bracers)
-        svgList.add(new Line(rafterSpacing, overhangSides, (rafterSpacing * (rafterAmount - 2)), width - overhangSides));
-        svgList.add(new Line(rafterSpacing + 50, overhangSides, (rafterSpacing * (rafterAmount - 2)) + 50, width - overhangSides));
-        svgList.add(new Line(rafterSpacing, width - overhangSides, (rafterSpacing * (rafterAmount - 2)), overhangSides));
-        svgList.add(new Line(rafterSpacing + 50, width - overhangSides, (rafterSpacing * (rafterAmount - 2) + 50), overhangSides));
-
-        //SVG AFSLUT (indre tegning)
-        svgList.add(new SvgEnd(0, 0));
-
-        //SVG PILE (arrows)
-        //Total bredde
-        svgList.add(new Arrw(500, 500 + width + 200, 500 + length, 500 + width + 200, 0));
-        //Total højde
-        svgList.add(new Arrw(200, 500, 200, 500 + width, -90));
-        //Overhæng
-        svgList.add(new Arrw(400, 500, 400, 500 + overhangSides, -90));
-        svgList.add(new Arrw(500, 175, 500 + overhangFront, 175, 0));
-        svgList.add(new Arrw(500 + length - overhangSides, 175, 500 + length, 175, 0));
-        //Spær afstand
-        svgList.add(new Arrw(500, 425, 500 + rafterSpacing, 425, 0));
-        //Stolpe afstand
-        for (int i = 1; i < postAmount / 2; i++) {
-            svgList.add(new Arrw(500 + overhangFront + (postSpacing * (i - 1)), 175, 500 + overhangFront + (postSpacing * i), 175, 0));
-        }
-
-        //SVG AFSLUT (ydre tegning)
-        svgList.add(new SvgEnd(0, 0));
-
-        return svgList;
     }
 
     private static int getPostSpacing(int postAmount, int length) {
@@ -147,11 +198,14 @@ public class SvgGen {
         int length = order.getLength();
         int width = order.getWidth();
         int height = order.getHeight();
-        int beamAngle = 2; //Hældning på remme (vinkel A).
+        int angle = order.getAngle();
+        int beamAngle = 0;
+        if (angle == 0) {
+            beamAngle = 2; //Hældning på remme (vinkel A).
+        }
 
         //SVG START
         svgList.add(new SvgStart(0, 0, length, width));
-
 
         //STOLPER
         Material beamMat = materialMap.get(ListGen.getRafterId(length));
@@ -159,32 +213,36 @@ public class SvgGen {
         int postAmount = ListGen.getPostAmount(length);
         int postSpacing = getPostSpacing(postAmount, length);
 
-        /*
-        Stolpe forskydning i forhold til hældning, bliver beregnet som højden (side a), i en retvinklet trekant
-        med hældning = vinkel A.
-        */
-        for (int i = 0; i < postAmount / 2; i++) { //Beregner forskydning (side a) for hver stolpe.
-            double A = Math.toRadians(beamAngle); //Java Math regner kun i radianer.
-            double c = overhangFront + (postSpacing * i); //Hypertenusen er length til hver stolpe.
-            double a = c * Math.sin(A);
-            //Forskydning ligges til start x koordinat og trækkes fra længden på materialet.
-            svgList.add(new Rect(50 + (int) c, (int) a + (beamMat.getHeight() / 2), postMat.getWidth(), height - ((int) a + (beamMat.getHeight() / 2))));
-        }
-        
+        addPostsSide(svgList, height, beamAngle, beamMat, postMat, postAmount, postSpacing);
+        addBeamsSide(svgList, length, beamAngle, beamMat);
+        Material fasciaMat = addUpperFascia(svgList, length, beamAngle);
+
+        //SVG AFSLUT (indre tegning)
+        svgList.add(new SvgEnd(0, 0));
+        addArrowsSide(svgList, length, height, beamAngle, beamMat, postAmount, postSpacing, fasciaMat);
+        //SVG AFSLUT (ydre tegning)
+        svgList.add(new SvgEnd(0, 0));
+
+        return svgList;
+    }
+
+    private static void addBeamsSide(ArrayList<Svg> svgList, int length, int beamAngle, Material beamMat) {
         //REMME
         /*
         Remme bliver flyttet 50 ind på x-aksen, da den ellers ville blive roteret delvis ud af viewboxen.
         Der bliver ikke taget højde for beam materialets max længde, så length bliver brugt i stedet for.
         */
         svgList.add(new AngledRect(50, 0, length - 50, beamMat.getHeight(), beamAngle));
+    }
 
+    private static Material addUpperFascia(ArrayList<Svg> svgList, int length, int beamAngle) {
         //STERNBRÆDDER
         Material fasciaMat = materialMap.get(ListGen.getUpperFasciaId(length));
         svgList.add(new AngledRect(50, 0, length - 50, fasciaMat.getWidth(), beamAngle));
+        return fasciaMat;
+    }
 
-        //SVG AFSLUT (indre tegning)
-        svgList.add(new SvgEnd(0, 0));
-
+    private static void addArrowsSide(ArrayList<Svg> svgList, int length, int height, int beamAngle, Material beamMat, int postAmount, int postSpacing, Material fasciaMat) {
         //SVG PILE (arrows)
         //Total højde
         svgList.add(new Arrw(200, 500, 200, 500 + height, -90));
@@ -198,10 +256,19 @@ public class SvgGen {
         for (int i = 1; i < postAmount / 2; i++) {
             svgList.add(new Arrw(500 + overhangFront + (postSpacing * (i - 1)) + (beamMat.getHeight() / 2), 500 + height + 175, 500 + overhangFront + (postSpacing * i) + (beamMat.getHeight() / 2), 500 + height + 175, 0));
         }
+    }
 
-        //SVG AFSLUT (ydre tegning)
-        svgList.add(new SvgEnd(0, 0));
-
-        return svgList;
+    private static void addPostsSide(ArrayList<Svg> svgList, int height, int beamAngle, Material beamMat, Material postMat, int postAmount, int postSpacing) {
+    /*
+    Stolpe forskydning i forhold til hældning, bliver beregnet som højden (side a), i en retvinklet trekant
+    med hældning = vinkel A.
+    */
+        for (int i = 0; i < postAmount / 2; i++) { //Beregner forskydning (side a) for hver stolpe.
+            double A = Math.toRadians(beamAngle); //Java Math regner kun i radianer.
+            double c = overhangFront + (postSpacing * i); //Hypertenusen er length til hver stolpe.
+            double a = c * Math.sin(A);
+            //Forskydning ligges til start x koordinat og trækkes fra længden på materialet.
+            svgList.add(new Rect(50 + (int) c, (int) a + (beamMat.getHeight() / 2), postMat.getWidth(), height - ((int) a + (beamMat.getHeight() / 2))));
+        }
     }
 }

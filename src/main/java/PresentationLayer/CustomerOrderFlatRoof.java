@@ -1,7 +1,7 @@
 package PresentationLayer;
 
+import FunctionLayer.FogException;
 import FunctionLayer.ListGen;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.Svg;
@@ -21,12 +21,20 @@ class CustomerOrderFlatRoof extends Command {
      * @param request servlet request
      * @param response servlet response
      * @return
-     * @throws LoginSampleException
+     * @throws FogException
      */
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
+        //checks if user is logged in
         HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            request.setAttribute("status", "ikke ok");
+            request.setAttribute("message", "Log venligst ind for at bestille");
+            request.getRequestDispatcher("fladtTag.jsp");
+            return "fladtTag";
+        }
+
         User user = (User) session.getAttribute("user");
         String status = "pending";
         int roofId = Integer.parseInt(request.getParameter("Tag"));
@@ -51,6 +59,6 @@ class CustomerOrderFlatRoof extends Command {
         session.setAttribute("svgTopList", svgTopList);
         session.setAttribute("svgSideList", svgSideList);
 
-        return "skitse";
+        return "/WEB-INF/skitse";
     }
 }
