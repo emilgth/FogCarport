@@ -6,6 +6,7 @@ public class SvgEnd extends Svg{
         super(x1, y1);
     }
 
+    
     @Override
     public String getModel() {
         return "</svg>";
