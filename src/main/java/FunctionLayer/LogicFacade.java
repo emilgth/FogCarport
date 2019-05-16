@@ -44,7 +44,7 @@ public class LogicFacade {
         return OrderMapper.getPendingOrders();
     }
 
-    public static void insertOrder(Order order) {
+    public static void insertOrder(Order order) throws LoginSampleException {
         order.setPrice(order.priceCalc(ListGen.getOrderLinelist(order)));
         OrderMapper.insertOrder(order);
     }

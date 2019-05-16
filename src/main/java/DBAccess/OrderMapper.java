@@ -1,6 +1,6 @@
 package DBAccess;
 
-import FunctionLayer.ListGen;
+import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.User;
 
@@ -45,7 +45,7 @@ public class OrderMapper {
     /**
      * @param order
      */
-    public static void insertOrder(Order order) {
+    public static void insertOrder(Order order) throws LoginSampleException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -67,8 +67,9 @@ public class OrderMapper {
             preparedStatement.setInt(11, order.getShedWidth());
             preparedStatement.setString(12, order.getComment());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+
+        } catch (SQLException | ClassNotFoundException | NullPointerException e) {
+            throw new LoginSampleException(e.toString(), "Fejl i insertorder");
         }
     }
 
