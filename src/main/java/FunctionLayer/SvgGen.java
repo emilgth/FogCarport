@@ -2,7 +2,6 @@ package FunctionLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.Models.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -170,7 +169,7 @@ public class SvgGen {
             //Forskydning ligges til start x koordinat og trækkes fra længden på materialet.
             svgList.add(new Rect(50 + (int) c, (int) a + (beamMat.getHeight() / 2), postMat.getWidth(), height - ((int) a + (beamMat.getHeight() / 2))));
         }
-        
+
         //REMME
         /*
         Remme bliver flyttet 50 ind på x-aksen, da den ellers ville blive roteret delvis ud af viewboxen.
