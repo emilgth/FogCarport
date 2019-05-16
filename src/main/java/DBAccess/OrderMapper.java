@@ -224,7 +224,7 @@ public class OrderMapper {
         }
     }
 
-    public static void setStatus(String newStatus, int orderId) {
+    public static void setStatus(String newStatus, int orderId) throws FogException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -233,8 +233,10 @@ public class OrderMapper {
             preparedStatement.setString(1, newStatus);
             preparedStatement.setInt(2, orderId);
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "setPriceAndStatus(): JDBC driver ikke fundet");
         }
     }
 }
