@@ -3,7 +3,6 @@ package FunctionLayer;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.Models.Order;
-import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.User;
 
 import java.util.ArrayList;
@@ -16,17 +15,17 @@ import java.util.ArrayList;
 public class LogicFacade {
 
 
-    public static User login(String email, String password) throws LoginSampleException {
+    public static User login(String email, String password) throws FogException {
         return UserMapper.login(email, password);
     }
 
-    public static User createUser(String email, String password, String surname, String lastname, int phone) throws LoginSampleException {
+    public static User createUser(String email, String password, String surname, String lastname, int phone) throws FogException {
         User user = new User(email, password, surname, lastname, phone);
         UserMapper.createUser(user);
         return user;
     }
 
-    public static ArrayList<Order> getUserOrders(User user) {
+    public static ArrayList<Order> getUserOrders(User user) throws FogException {
         return OrderMapper.getUserOrderList(user);
     }
 
@@ -35,25 +34,25 @@ public class LogicFacade {
     }
 
 
-    public static ArrayList<Order> getAllOrders() {
+    public static ArrayList<Order> getAllOrders() throws FogException {
         return OrderMapper.getOrderList();
 
     }
 
-    public static ArrayList<Order> getPendingOrders() {
+    public static ArrayList<Order> getPendingOrders() throws FogException {
         return OrderMapper.getPendingOrders();
     }
 
-    public static void insertOrder(Order order) throws LoginSampleException {
+    public static void insertOrder(Order order) throws FogException {
         order.setPrice(order.priceCalc(ListGen.getOrderLinelist(order)));
         OrderMapper.insertOrder(order);
     }
 
-    public static Order getSingleOrder(String orderId) {
+    public static Order getSingleOrder(String orderId) throws FogException {
         return OrderMapper.getSingleOrder(orderId);
     }
 
-    public static void confirmOrder(double newPrice, int orderId) {
+    public static void confirmOrder(double newPrice, int orderId) throws FogException {
         OrderMapper.setPriceAndStatus(newPrice, orderId);
     }
 }

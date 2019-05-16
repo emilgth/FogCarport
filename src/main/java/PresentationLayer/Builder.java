@@ -1,8 +1,8 @@
 package PresentationLayer;
 
 import DBAccess.OrderMapper;
+import FunctionLayer.FogException;
 import FunctionLayer.ListGen;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.Svg;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Builder extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         ArrayList<Order> orderList = OrderMapper.getOrderList();
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(orderList.get(0));

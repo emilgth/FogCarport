@@ -2,7 +2,7 @@ package PresentationLayer;
 
 import FunctionLayer.ListGen;
 import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.Svg;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class AdminShowSingleOrder extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String orderId = request.getParameter("orderId");
         Order order = LogicFacade.getSingleOrder(orderId);
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);

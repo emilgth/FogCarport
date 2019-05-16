@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -51,41 +51,41 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testGetUser() {
+    public void testGetUser() throws FogException {
         // Can we find a user
         User user = UserMapper.getUser( 2);
         assertNotNull(user);
     }
 
     @Test
-    public void testGetUserSpecificUser() {
+    public void testGetUserSpecificUser() throws FogException {
         // Can we find the right user
         User user = UserMapper.getUser(2);
         assertEquals("anders@email.com",user.getEmail());
     }
 
     @Test
-    public void login() throws LoginSampleException {
+    public void login() throws FogException {
         int userID = 2;
         assertEquals(userID, UserMapper.login("anders@email.com", "1234").getUserId());
     }
 
     /*
-    @Test( expected = LoginSampleException.class )
-    public void testLogin02() throws LoginSampleException {
+    @Test( expected = FogException.class )
+    public void testLogin02() throws FogException {
         // We should get an exception if we use the wrong password
         User user = UserMapper.login( "jens@somewhere.com", "larsen" );
     }
 
     @Test
-    public void testLogin03() throws LoginSampleException {
+    public void testLogin03() throws FogException {
         // Jens is supposed to be a customer
         User user = UserMapper.login( "jens@somewhere.com", "jensen" );
         assertEquals( "customer", user.getRole() );
     }
 
     @Test
-    public void testCreateUser01() throws LoginSampleException {
+    public void testCreateUser01() throws FogException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
         User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );

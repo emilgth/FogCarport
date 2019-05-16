@@ -1,7 +1,7 @@
 package PresentationLayer;
 
+import FunctionLayer.FogException;
 import FunctionLayer.ListGen;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.Svg;
@@ -21,10 +21,10 @@ class CustomerOrderFlatRoof extends Command {
      * @param request servlet request
      * @param response servlet response
      * @return
-     * @throws LoginSampleException
+     * @throws FogException
      */
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");

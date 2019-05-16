@@ -1,6 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.User;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ShowCustomerOrder extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         ArrayList<Order> orders = FunctionLayer.LogicFacade.getUserOrders(user);
