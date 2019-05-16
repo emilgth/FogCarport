@@ -19,9 +19,9 @@ public class Login extends Command {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
         if (user.isAdmin()) {
-            return "adminPage";
+            return "/WEB-INF/adminPage";
         } else {
-            return "loggedInIndex";
+            return "/WEB-INF/loggedInIndex";
         }
     }
 

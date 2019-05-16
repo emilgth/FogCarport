@@ -17,6 +17,6 @@ public class ShowCustomerOrder extends Command {
         User user = (User) session.getAttribute("user");
         ArrayList<Order> orders = FunctionLayer.LogicFacade.getUserOrders(user);
         request.setAttribute("orders", orders);
-        return "customerOrders";
+        return "/WEB-INF/customerOrders";
     }
 }

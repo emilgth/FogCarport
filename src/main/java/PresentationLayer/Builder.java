@@ -26,6 +26,6 @@ public class Builder extends Command {
         session.setAttribute("orderLineList", orderLineList);
         session.setAttribute("svgList", svgList);
 
-        return "skitse";
+        return "/WEB-INF/skitse";
     }
 }

@@ -13,6 +13,6 @@ public class ShowNewOrders extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         ArrayList<Order> orders = LogicFacade.getPendingOrders();
         request.setAttribute("orders", orders);
-        return "newOrders";
+        return "/WEB-INF/newOrders";
     }
 }

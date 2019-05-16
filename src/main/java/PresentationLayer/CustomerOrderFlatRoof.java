@@ -26,7 +26,15 @@ class CustomerOrderFlatRoof extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
+        //checks if user is logged in
         HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            request.setAttribute("status", "ikke ok");
+            request.setAttribute("message", "Log venligst ind for at bestille");
+            request.getRequestDispatcher("fladtTag.jsp");
+            return "fladtTag";
+        }
+
         User user = (User) session.getAttribute("user");
         String status = "pending";
         int roofId = Integer.parseInt(request.getParameter("Tag"));
@@ -51,6 +59,6 @@ class CustomerOrderFlatRoof extends Command {
         session.setAttribute("svgTopList", svgTopList);
         session.setAttribute("svgSideList", svgSideList);
 
-        return "skitse";
+        return "/WEB-INF/skitse";
     }
 }

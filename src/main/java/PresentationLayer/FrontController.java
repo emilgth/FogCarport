@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author kasper
@@ -47,13 +48,13 @@ public class FrontController extends HttpServlet {
         try {
             Command action = Command.from(request);
             String view = action.execute(request, response);
-            request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
+            request.getRequestDispatcher(view + ".jsp").forward(request, response);
         } catch (FogException ex) {
             LOGGER.log(Level.FINEST, ex.getShortMessage());
 
             request.setAttribute("message", ex.getShortMessage());
             request.setAttribute("status", "exception");
-            request.setAttribute("error", ex.getShortMessage());
+            request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

@@ -1,19 +1,19 @@
 package PresentationLayer;
 
-import FunctionLayer.FogException;
+import FunctionLayer.LoginSampleException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoggedInIndex extends Command {
+public class WithRoofCheck extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
-            return "index";
+            return "medRejsning";
         } else {
-            return "/WEB-INF/loggedInIndex";
+            return "/WEB-INF/medRejsningLoggedIn";
         }
     }
 }

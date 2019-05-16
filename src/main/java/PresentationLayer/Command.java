@@ -24,6 +24,9 @@ abstract class Command {
         commands.put("showNewOrders", new ShowNewOrders());
         commands.put("adminShowSingleOrder", new AdminShowSingleOrder());
         commands.put("confirmOrder", new ConfirmOrder());
+        commands.put("flatRoofCheck", new FlatRoofCheck());
+        commands.put("withRoofCheck", new WithRoofCheck());
+        commands.put("logOut", new LogOut());
 
     }
 
