@@ -23,7 +23,7 @@ public class Register extends Command {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("role", user.isAdmin());
-            return "loggedInIndex";
+            return "/WEB-INF/loggedInIndex";
         //} else {
          //   throw new LoginSampleException("the two passwords did not match");
         }

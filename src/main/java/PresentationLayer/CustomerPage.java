@@ -13,9 +13,9 @@ public class CustomerPage extends Command {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user.isAdmin()) {
-            return "adminPage";
+            return "/WEB-INF/adminPage";
         } else {
-            return "customerPage";
+            return "/WEB-INF/customerPage";
         }
     }
 }

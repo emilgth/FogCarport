@@ -20,7 +20,7 @@ public class UpdateUserData extends Command {
         user.setPassword(request.getParameter("password"));
         FunctionLayer.LogicFacade.updateUserData(user);
         session.setAttribute("user", user);
-        return "loggedInIndex";
+        return "/WEB-INF/loggedInIndex";
     }
 
 }

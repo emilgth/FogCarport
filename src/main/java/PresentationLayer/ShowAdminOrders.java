@@ -16,6 +16,6 @@ public class ShowAdminOrders extends Command {
 
         ArrayList<Order> orders = FunctionLayer.LogicFacade.getAllOrders();
         request.setAttribute("orders", orders);
-        return "adminOrders";
+        return "/WEB-INF/adminOrders";
     }
 }

@@ -26,7 +26,6 @@ public class AdminShowSingleOrder extends Command {
         request.setAttribute("orderLineList", orderLineList);
         request.setAttribute("svgTopList", svgTopList);
         request.setAttribute("svgSideList", svgSideList);
-        return "adminShowSingleOrder";
+        return "/WEB-INF/adminShowSingleOrder";
     }
-
 }

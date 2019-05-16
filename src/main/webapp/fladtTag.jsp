@@ -25,18 +25,16 @@
             <div class="col-8">
                 <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
-                    på<br>
-                    en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br><br>
+                    på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
 
-                    Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>
-                    Ved bestilling medfølger standardbyggevejledning.</p><br>
+                    Tilbud og skitsetegning fremsendes med post hurtigst muligt.
+                    Ved bestilling medfølger standardbyggevejledning.</p>
                 <b>Udfyld nedenstående omhyggeligt og klik på "Bestil tilbud"</b>
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
                 <img class="mx-auto d-block" src="img/quickurejs.gif" alt="fladt tag">
             </div>
-
         </div>
 
         <!-- select table-->
@@ -50,8 +48,8 @@
                 </div>
                 <div class="form-group">
                     <label title="Carport bredde" for="carport_bredde">Carport bredde</label>
-                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde">
-                        <option selected="selected" value="">Vælg bredde</option>
+                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde" required>
+                        <option selected="selected" value="" disabled>Vælg bredde</option>
                         <option value="2400">240 cm</option>
                         <option value="2700">270 cm</option>
                         <option value="3000">300 cm</option>
@@ -75,8 +73,8 @@
             </div>
             <div class="form-group">
                 <label title="Carport længde" for="carport_laengde">Carport længde</label>
-                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde">
-                    <option selected="selected" value="">Vælg længde</option>
+                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde" required>
+                    <option selected="selected" value="" disabled>Vælg længde</option>
                     <option value="2400">240 cm</option>
                     <option value="2700">270 cm</option>
                     <option value="3000">300 cm</option>
@@ -169,32 +167,10 @@
                 <hr>
             </div>
             <div class="form-group">
-                <label title="Navn" for="navn">Navn</label>
-                <input class="form-control" id="navn" name="navn" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="Adresse" for="adresse">Adresse</label>
-                <input class="form-control" id="adresse" name="adresse" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="Postnummer og by" for="postby">Postnummer og by</label>
-                <input class="form-control" id="postby" name="postby" size="20" type="text" value="">
-            </div>
-
-            <div class="form-group">
-                <label title="Telefon" for="telefon">Telefon</label>
-                <input class="form-control" id="telefon" name="telefon" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="E-mail adresse" for="email">E-mail adresse</label>
-                <input class="form-control" id="email" name="email" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
                 <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger"
                           rows="2">Kommentar</textarea>
             </div>
-
             <div class="form-group">
                 <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
                        class="btn btn-primary">

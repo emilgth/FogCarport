@@ -16,6 +16,6 @@ public class ConfirmOrder extends Command {
         LogicFacade.confirmOrder(newPrice, orderId);
         ArrayList<Order> orders = LogicFacade.getPendingOrders();
         request.setAttribute("orders", orders);
-        return "newOrders";
+        return "/WEB-INF/newOrders";
     }
 }
