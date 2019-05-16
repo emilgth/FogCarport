@@ -54,6 +54,7 @@ public class LogicFacade {
     }
 
     public static void confirmOrder(double newPrice, int orderId) {
-        OrderMapper.setPriceAndStatus(newPrice, orderId);
+        OrderMapper.setPrice(newPrice, orderId);
+        OrderMapper.setStatus("confirmed", orderId);
     }
 }

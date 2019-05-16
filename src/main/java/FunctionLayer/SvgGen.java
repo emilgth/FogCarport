@@ -47,14 +47,16 @@ public class SvgGen {
         int postAmount = ListGen.getPostAmount(length);
         int postSpacing = getPostSpacing(postAmount, length);
 
+        //SKUR
         if (shedLength != 0 && shedWidth != 0) {
-
             addShedWalls(svgList, shedWidth, shedLength, width, length);
             addShedPosts(svgList, shedWidth, shedLength, width, length);
         }
 
         addPosts(svgList, width, postAmount, postSpacing);
         addBeams(length, svgList, width, postSpacing);
+
+        //rafterSpacing is used by addArrows
         int rafterSpacing = addRaftersAndWindBracers(svgList, length, width);
 
         //SVG AFSLUT (indre tegning)

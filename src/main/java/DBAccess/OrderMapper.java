@@ -195,14 +195,27 @@ public class OrderMapper {
         return order;
     }
 
-    public static void setPriceAndStatus(double newPrice, int orderId) {
+    public static void setPrice(double newPrice, int orderId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = Connector.connection();
-            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = 'confirmed', price = ? WHERE order_id = ?");
-
+            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` SET price = ? WHERE order_id = ?");
             preparedStatement.setDouble(1, newPrice);
+            preparedStatement.setInt(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setStatus(String newStatus, int orderId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = Connector.connection();
+            preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = ? WHERE order_id = ?");
+            preparedStatement.setString(1, newStatus);
             preparedStatement.setInt(2, orderId);
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
