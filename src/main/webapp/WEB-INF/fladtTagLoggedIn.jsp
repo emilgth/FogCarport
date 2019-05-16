@@ -11,9 +11,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../css.css">
 </head>
-<%@include file="WEB-INF/include/header.jsp" %>
+<%@include file="include/loggedInHeader.jsp" %>
 
 <body>
 <div class="container mt-5 mb-5">
@@ -33,7 +33,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block" src="../img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -173,8 +173,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
-                       class="btn btn-primary disabled">
-                Log ind for at bestille
+                       class="btn btn-primary">
             </div>
         </form>
 
