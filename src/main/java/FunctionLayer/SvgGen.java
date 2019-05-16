@@ -199,9 +199,21 @@ public class SvgGen {
         int width = order.getWidth();
         int height = order.getHeight();
         int angle = order.getAngle();
+        int roofHeight = 0;
         int beamAngle = 0;
         if (angle == 0) {
             beamAngle = 2; //Hældning på remme (vinkel A).
+        } else {
+            /*
+            Hvis et tag opfattes som to retvinklede trekanter, med hældning = vinkel A
+            og hosliggende katete (b) = det halve af carport bredden. Så kan højden på taget (a) findes ved:
+            modstående katete = tan(V) * hosliggende katete, eller:
+            a = tan(A) * b
+            */
+            double b = width / 2;
+            double A = Math.toRadians(angle);
+
+            roofHeight += (int)(Math.tan(A) * b);
         }
 
         //SVG START
@@ -259,10 +271,10 @@ public class SvgGen {
     }
 
     private static void addPostsSide(ArrayList<Svg> svgList, int height, int beamAngle, Material beamMat, Material postMat, int postAmount, int postSpacing) {
-    /*
-    Stolpe forskydning i forhold til hældning, bliver beregnet som højden (side a), i en retvinklet trekant
-    med hældning = vinkel A.
-    */
+         /*
+         Stolpe forskydning i forhold til hældning, bliver beregnet som højden (side a), i en retvinklet trekant
+         med hældning = vinkel A.
+         */
         for (int i = 0; i < postAmount / 2; i++) { //Beregner forskydning (side a) for hver stolpe.
             double A = Math.toRadians(beamAngle); //Java Math regner kun i radianer.
             double c = overhangFront + (postSpacing * i); //Hypertenusen er length til hver stolpe.

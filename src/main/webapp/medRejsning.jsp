@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css.css">
 </head>
 
-<%@include file="WEB-INF/include/header.jsp"%>
+<%@include file="WEB-INF/include/header.jsp" %>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand">

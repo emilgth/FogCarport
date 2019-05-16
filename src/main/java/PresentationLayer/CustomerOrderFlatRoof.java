@@ -37,15 +37,19 @@ class CustomerOrderFlatRoof extends Command {
 
         User user = (User) session.getAttribute("user");
         String status = "pending";
-        int roofId = Integer.parseInt(request.getParameter("Tag"));
-        int angle = 0;
+        //int roofId = Integer.parseInt(request.getParameter("Tag")); //TODO Dette er en string ikke en int
+        int angle;
+        if (request.getParameter("Taghaeldning") == null){
+            angle = 0;
+        }
+        angle = Integer.parseInt(request.getParameter("Taghaeldning"));
         int length = Integer.parseInt(request.getParameter("Carport_laengde"));
         int width = Integer.parseInt(request.getParameter("Carport_bredde"));
         int height = 2300;
         int shedLength = Integer.parseInt(request.getParameter("Redskabsrum_laengde"));
         int shedWidth = Integer.parseInt(request.getParameter("Redskabsrum_bredde"));
         String comment = request.getParameter("bemaerkninger");
-        Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth, comment);
+        Order order = new Order(user, status, 1, angle, length, width, height, shedLength, shedWidth, comment);
 
         //TODO: Skal gå over logicfacade
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
