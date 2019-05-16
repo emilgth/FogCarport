@@ -214,27 +214,6 @@
                 <hr>
             </div>
             <div class="form-group">
-                <label title="Navn" for="navn">Navn</label>
-                <input class="form-control" id="navn" name="navn" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="Adresse" for="adresse">Adresse</label>
-                <input class="form-control" id="adresse" name="adresse" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="Postnummer og by" for="postby">Postnummer og by</label>
-                <input class="form-control" id="postby" name="postby" size="20" type="text" value="">
-            </div>
-
-            <div class="form-group">
-                <label title="Telefon" for="telefon">Telefon</label>
-                <input class="form-control" id="telefon" name="telefon" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
-                <label title="E-mail adresse" for="email">E-mail adresse</label>
-                <input class="form-control" id="email" name="email" size="20" type="text" value="">
-            </div>
-            <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
                 <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger" rows="2"></textarea>
             </div>

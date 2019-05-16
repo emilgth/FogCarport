@@ -1,13 +1,13 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.User;
 
 import java.sql.*;
 
 public class UserMapper {
 
-    public static User getUser(int userId) {
+    public static User getUser(int userId) throws FogException {
 
         User user = new User();
 
@@ -27,8 +27,10 @@ public class UserMapper {
                 user.setAdmin(resultSet.getBoolean("admin"));
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
         }
         return user;
     }
@@ -37,10 +39,10 @@ public class UserMapper {
      * @param email    user email
      * @param password user password
      * @return finds user in DB and returns all user data
-     * @throws LoginSampleException if user is not found in database or password and email doesn't match
+     * @throws FogException if user is not found in database or password and email doesn't match
      */
 
-    public static User login(String email, String password) throws LoginSampleException {
+    public static User login(String email, String password) throws FogException {
 
         try {
             Connection con = Connector.connection();
@@ -59,15 +61,17 @@ public class UserMapper {
                 boolean admin = resultSet.getBoolean("admin");
                 return new User(userId, email, password, surname, lastname, phone, admin);
             } else {
-                throw new LoginSampleException("User with this email and password combination could not be found");
+                throw new FogException("Login error", "User with this email and password combination could not be found");
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new LoginSampleException(e.getMessage(), "Something went wrong when accessing the database");
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "login(): SQL syntax");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "login(): JDBC driver ikke fundet");
         }
     }
 
-    public static void createUser(User user) throws LoginSampleException {
+    public static void createUser(User user) throws FogException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO user (email, password, surname, lastname, phone) VALUES (?, ?, ?, ?, ?)";
@@ -83,7 +87,7 @@ public class UserMapper {
             int id = ids.getInt(1);
             user.setUserId(id);
         } catch (SQLException | ClassNotFoundException ex) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new FogException(ex.getMessage());
         }
 
 

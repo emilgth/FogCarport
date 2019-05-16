@@ -16,7 +16,21 @@
             </form>
         </div>
     </nav>
+    <% String besked = (String) request.getAttribute("message");
+        String status = (String) request.getAttribute("status");
+        if (besked != null && status != null) {
+            String alert = "";
+            if (status.equals("ok")) {
+                alert = "<div class=\"alert alert-success\">_message_</div>";
+            } else {
+                alert = "<div class=\"alert alert-danger\">_message_</div>";
+            }
+            alert = alert.replace("_message_", besked);
+            out.println(alert);
+        }
+    %>
 </div>
+
 
 <!-- The Modal -->
 <div class="modal" id="login">
@@ -34,10 +48,10 @@
                 <form name="login" action="FrontController" method="POST">
                     <input type="hidden" name="command" value="login">
                     <p>Email:</p>
-                    <input type="text" name="email" value="anders@email.com">
+                    <input class="form-control" type="text" name="email" placeholder="email" value="anders@email.com" required>
                     <br>
                     <p>Password:</p>
-                    <input type="password" name="password" value="1234">
+                    <input class="form-control" type="password" name="password" placeholder="password" value="1234" required>
                     <br><br>
                     <input class="btn btn-primary" type="submit" value="Login">
                 </form>

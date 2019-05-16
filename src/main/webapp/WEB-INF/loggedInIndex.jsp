@@ -19,7 +19,6 @@
 <body>
 <%@include file="include/loggedInHeader.jsp"%>
 <div class="container mt-5 mb-5">
-    <h1>Hello ${sessionScope.user.surname} ${sessionScope.user.lastname}</h1>
     <h1>QUICKBYG</h1>
 </div>
 
@@ -40,14 +39,20 @@
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med fladt tag:</b><br>
-                    <a href="../fladtTag.jsp"><img src="../img/quickurejs.gif" alt="uden rejsning"></a></div>
+                    <form name="flatRoofCheck" action="FrontController" method="post">
+                        <input type="hidden" name="command" value="flatRoofCheck">
+                        <a href="FrontController?command=flatRoofCheck"><img src="../img/quickurejs.gif" alt="uden rejsning"></a>
+                    </form></div>
             </div>
         </div>
         <hr>
         <div class="row justify-content-md-center">
             <div class="col-xs">
                 <div class="container"><b>Carport med rejsning:</b><br>
-                    <a href="../medRejsning.jsp"><img src="../img/quickmrejs.gif" alt="med rejsning"></a></div>
+                    <form name="withRoofCheck" action="FrontController" method="post">
+                        <input type="hidden" name="command" value="withRoofCheck">
+                        <a href="FrontController?command=withRoofCheck"><img src="../img/quickmrejs.gif" alt="med rejsning"></a>
+                    </form></div>
             </div>
         </div>
         <hr>

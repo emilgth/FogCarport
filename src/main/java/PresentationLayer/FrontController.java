@@ -5,9 +5,12 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 
 import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +35,25 @@ public class FrontController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //Logger til håndtering af fejl
+        final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
+        FileHandler handler = new FileHandler("/Users/bueko/Documents/logs/controller_logger.log");
+
+        LOGGER.setLevel(Level.FINEST);
+
+        LOGGER.addHandler(handler);
+        handler.setFormatter(new VerySimpleFormatter());
+
         try {
             Command action = Command.from(request);
             String view = action.execute(request, response);
-            request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
-        } catch (LoginSampleException ex) {
+            request.getRequestDispatcher(view + ".jsp").forward(request, response);
+        } catch (FogException ex) {
+            LOGGER.log(Level.FINEST, ex.getShortMessage());
+
+            request.setAttribute("message", ex.getShortMessage());
+            request.setAttribute("status", "exception");
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }

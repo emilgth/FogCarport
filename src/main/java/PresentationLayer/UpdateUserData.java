@@ -1,6 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 import FunctionLayer.Models.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class UpdateUserData extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         user.setEmail(request.getParameter("email"));
@@ -20,7 +20,7 @@ public class UpdateUserData extends Command {
         user.setPassword(request.getParameter("password"));
         FunctionLayer.LogicFacade.updateUserData(user);
         session.setAttribute("user", user);
-        return "loggedInIndex";
+        return "/WEB-INF/loggedInIndex";
     }
 
 }

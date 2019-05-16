@@ -1,5 +1,6 @@
 package DBAccess;
 
+import FunctionLayer.FogException;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.User;
 import org.junit.Before;
@@ -54,13 +55,13 @@ public class OrderMapperTest {
     }
 
     @Test
-    public void getOrderList() {
+    public void getOrderList() throws FogException {
         ArrayList<Order> orderList = OrderMapper.getOrderList();
         assertEquals(2, orderList.size());
     }
 
     @Test
-    public void insertOrder() {
+    public void insertOrder() throws FogException {
         User user = new User();
         user.setUserId(2);
         Order order = new Order(user,  "status", 1, 0, 5000, 6000, 3000, 2000, 1000, "comment");

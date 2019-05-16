@@ -1,6 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.FogException;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +24,9 @@ abstract class Command {
         commands.put("showNewOrders", new ShowNewOrders());
         commands.put("adminShowSingleOrder", new AdminShowSingleOrder());
         commands.put("confirmOrder", new ConfirmOrder());
+        commands.put("flatRoofCheck", new FlatRoofCheck());
+        commands.put("withRoofCheck", new WithRoofCheck());
+        commands.put("logOut", new LogOut());
 
     }
 
@@ -36,5 +39,5 @@ abstract class Command {
     }
 
     abstract String execute(HttpServletRequest request, HttpServletResponse response)
-            throws LoginSampleException;
+            throws FogException;
 }
