@@ -8,13 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4 background">
+<footer class="page-footer font-small blue pt-4 footer-background">
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> MagaritaSystems.com</a>
+    <div class="container-fluid footer-background"><!-- Copyright -->
+
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> MagaritaSystems.com</a>
+        </div>
+        <!-- Copyright -->
     </div>
-    <!-- Copyright -->
 
 </footer>
 <!-- Footer -->

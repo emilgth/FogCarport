@@ -19,7 +19,17 @@ h1 {
     padding-bottom: 0;
 }
 
+.btn-primary {
+    background: #0c2069 !important;
+    border-color: #0c2069;
+}
+
 .btn-link {
-    font-size: larger!important;
-    color: white!important;
+    font-size: larger !important;
+    color: white !important;
+}
+
+.footer-background {
+    background: #0c2069;
+    color: white;
 }

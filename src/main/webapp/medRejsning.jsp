@@ -18,11 +18,21 @@
 <body>
 <div class="container mt-5 mb-5">
     <h1>CARPORT MED REJSNING</h1>
+    <p class="lead">Bemærk at det er nødvændigt at være logget ind for at bestille en carport - log ind eller registrer
+        Dem venligst i toppen af siden</p>
+
 </div>
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
+                <div class="list-group list-group-flush background">
+                    <button class="list-group-item list-group-item-action list-item-title">QUICKBYG</button>
+                    <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
+                    <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
+                </div>
+            </div>
+            <div class="col-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED REJSNING</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på<br>
@@ -200,8 +210,9 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
-                       class="btn btn-primary">
+                <input type="submit" name="Submit" title="Send forespørgsel" value="Bestil tilbud"
+                       class="btn btn-primary" disabled>
+                Log ind for at bestille
             </div>
         </form>
 
