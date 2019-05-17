@@ -12,14 +12,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
 <%@include file="include/loggedInHeader.jsp" %>
 <div class="container-fluid background pt-5 pb-5">
     <div class="container">
 
-        <p><i class='far fa-address-book'></i>
-            Navn: ${requestScope.order.getUser().getSurname()} ${requestScope.order.getUser().getLastname()}</p>
+        <p><i class='far fa-address-book'></i> ${requestScope.order.getUser().getSurname()} ${requestScope.order.getUser().getLastname()}</p>
         <p><i class='far fa-envelope'></i> ${requestScope.order.getUser().getEmail()}</p>
         <p><i class='fas fa-mobile-alt'></i> ${requestScope.order.getUser().getPhone()}</p>
 
@@ -62,8 +63,8 @@
                 <input type="hidden" name="command" value="confirmOrder">
                 <input type="hidden" name="orderId" value="${requestScope.order.orderId}">
                 <label for="newPrice">Indtast ønsket salgspris:</label>
-                <input type="text" class="form-control" id="newPrice" placeholder="${requestScope.suggestedPrice}" name="newPrice" value="">
-                <button class="btn btn-primary" type="submit">Bekræft</button>
+                <input type="text" class="form-control" id="newPrice" placeholder="${requestScope.suggestedPrice}" name="newPrice" value="" required>
+                <button class="btn btn-primary mt-1" type="submit">Bekræft</button>
             </form>
         </div>
     </div>

@@ -102,8 +102,8 @@
                         <b>Tag</b>
                     </span>
                 </label>
-                <select class="form-control" id="tag" name="Tag" title="Tagtype/farve">
-                    <option selected="selected" value="">Vælg tagtype/farve</option>
+                <select class="form-control" id="tag" name="Tag" title="Tagtype/farve" required>
+                    <option selected="selected" value="" disabled>Vælg tagtype/farve</option>
                     <option value="Betontagsten - Rød">Betontagsten - Rød</option>
                     <option value="Betontagsten - Teglrød">Betontagsten - Teglrød</option>
                     <option value="Betontagsten - Brun">Betontagsten - Brun</option>
@@ -196,7 +196,7 @@
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
                 <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger"
-                          rows="2">Kommentar</textarea>
+                          rows="2" placeholder="Indtast kommentar"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"

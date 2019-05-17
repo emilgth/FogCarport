@@ -21,12 +21,13 @@ abstract class Command {
         commands.put("showAdminOrders", new ShowAdminOrders());
         commands.put("customerPage", new CustomerPage());
         commands.put("loggedInIndex", new LoggedInIndex());
-        commands.put("showNewOrders", new ShowNewOrders());
+        commands.put("showNewOrders", new ShowOrdersByStatus());
         commands.put("adminShowSingleOrder", new AdminShowSingleOrder());
         commands.put("confirmOrder", new ConfirmOrder());
         commands.put("flatRoofCheck", new FlatRoofCheck());
         commands.put("withRoofCheck", new WithRoofCheck());
         commands.put("logOut", new LogOut());
+        commands.put("showOrdersByStatus", new ShowOrdersByStatus());
 
     }
 

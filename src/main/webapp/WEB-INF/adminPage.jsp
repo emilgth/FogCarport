@@ -27,15 +27,28 @@
 
 <div class="container-fluid background mt-5 mb-5">
     <div class="container background  pt-5 pb-5">
-        <form name="showAdminOrders" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showAdminOrders">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se alle ordrer</button>
-        </form>
-        <br>
-        <form name="showNewOrders" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showNewOrders">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se nye ordrer</button>
-        </form>
+        <div class="row">
+            <div class="col">
+                <form name="showAllOrders" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="showAllOrders">
+                    <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se alle ordrer</button>
+                </form>
+            </div>
+            <div class="col">
+                <form name="showNewOrders" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="showOrdersByStatus">
+                    <input type="hidden" name="status" value="pending">
+                    <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se nye ordrer</button>
+                </form>
+            </div>
+            <div class="col">
+                <form name="showAcceptedOrders" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="showOrdersByStatus">
+                    <input type="hidden" name="status" value="accepted">
+                    <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se accepterede ordrer</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,19 +1,20 @@
 <link rel="stylesheet" type="text/css" href="css.css">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="container">
     <nav class="navbar navbar-expand">
-        <div class="nav navbar-nav">
-            <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
-            <table>
-
-            </table>
-
-            <form class="form-inline">
-                <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
-                    Log ind
-                </button>
-                <a href="register.jsp" class="btn btn-link" role="button">Opret konto</a>
-            </form>
+        <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
+        <div class="container">
+            <div class="row flex-grow-1 justify-content-end">
+                <DIV CLASS="col-12">
+                    <form class="form-inline">
+                        <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
+                            LOG IND
+                        </button>
+                        <a href="register.jsp" class="btn btn-link" role="button">OPRET KONTO</a>
+                    </form>
+                </DIV>
+            </div>
         </div>
     </nav>
     <% String besked = (String) request.getAttribute("message");
@@ -21,9 +22,9 @@
         if (besked != null && status != null) {
             String alert = "";
             if (status.equals("ok")) {
-                alert = "<div class=\"alert alert-success\">_message_</div>";
+                alert = "<div class=\"alert alert-success mt-1\">_message_</div>";
             } else {
-                alert = "<div class=\"alert alert-danger\">_message_</div>";
+                alert = "<div class=\"alert alert-danger mt-1\">_message_</div>";
             }
             alert = alert.replace("_message_", besked);
             out.println(alert);
@@ -48,10 +49,12 @@
                 <form name="login" action="FrontController" method="POST">
                     <input type="hidden" name="command" value="login">
                     <p>Email:</p>
-                    <input class="form-control" type="text" name="email" placeholder="email" value="anders@email.com" required>
+                    <input class="form-control" type="text" name="email" placeholder="email" value="anders@email.com"
+                           required>
                     <br>
                     <p>Password:</p>
-                    <input class="form-control" type="password" name="password" placeholder="password" value="1234" required>
+                    <input class="form-control" type="password" name="password" placeholder="password" value="1234"
+                           required>
                     <br><br>
                     <input class="btn btn-primary" type="submit" value="Login">
                 </form>

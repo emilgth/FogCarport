@@ -11,11 +11,11 @@
             <div class="form-inline">
                 <form name="customerPage" action="FrontController" method="POST">
                     <input type="hidden" name="command" value="customerPage">
-                    <button class="btn btn-link" type="submit" value="Se mine ordrer ordrer">Min side</button>
+                    <button class="btn btn-link" type="submit" value="Se mine ordrer ordrer">MIN SIDE</button>
                 </form>
                 <form name="logOut" action="FrontController" method="post">
                     <input type="hidden" name="command" value="logOut">
-                    <button class="btn btn-link" type="submit">Log ud</button>
+                    <button class="btn btn-link" type="submit">LOG UD</button>
                 </form>
             </div>
         </div>
@@ -25,9 +25,9 @@
         if (besked != null && status != null) {
             String alert = "";
             if (status.equals("ok")) {
-                alert = "<div class=\"alert alert-success\">_message_</div>";
+                alert = "<div class=\"alert alert-success mt-1\">_message_</div>";
             } else {
-                alert = "<div class=\"alert alert-danger\">_message_</div>";
+                alert = "<div class=\"alert alert-danger mt-1\">_message_</div>";
             }
             alert = alert.replace("_message_", besked);
             out.println(alert);

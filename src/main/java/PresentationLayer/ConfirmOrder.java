@@ -14,7 +14,7 @@ public class ConfirmOrder extends Command {
         double newPrice = Double.parseDouble(request.getParameter("newPrice"));
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         LogicFacade.confirmOrder(newPrice, orderId);
-        ArrayList<Order> orders = LogicFacade.getPendingOrders();
+        ArrayList<Order> orders = LogicFacade.getOrdersByStatus("pending");
         request.setAttribute("orders", orders);
         return "/WEB-INF/newOrders";
     }

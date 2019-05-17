@@ -41,7 +41,7 @@
                 <div class="container"><b>Carport med fladt tag:</b><br>
                     <form name="flatRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="flatRoofCheck">
-                        <a href="FrontController?command=flatRoofCheck"><img src="../img/quickurejs.gif" alt="uden rejsning"></a>
+                        <a href="FrontController?command=flatRoofCheck"><img src="${pageContext.request.contextPath}/img/quickurejs.gif" alt="uden rejsning"></a>
                     </form></div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 <div class="container"><b>Carport med rejsning:</b><br>
                     <form name="withRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="withRoofCheck">
-                        <a href="FrontController?command=withRoofCheck"><img src="../img/quickmrejs.gif" alt="med rejsning"></a>
+                        <a href="FrontController?command=withRoofCheck"><img src="${pageContext.request.contextPath}/img/quickmrejs.gif" alt="med rejsning"></a>
                     </form></div>
             </div>
         </div>

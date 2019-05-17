@@ -20,19 +20,7 @@ public class OrderMapper {
 
             while (resultSet.next()) {
                 Order order = new Order();
-                order.setOrderId(resultSet.getInt("order_id"));
-                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
-                order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(new ArrayList<>());
-                order.setPrice(resultSet.getDouble("price"));
-                order.setRoofId(resultSet.getInt("roof_id"));
-                order.setAngle(resultSet.getInt("roof_angle"));
-                order.setLength(resultSet.getInt("length"));
-                order.setWidth(resultSet.getInt("width"));
-                order.setHeight(resultSet.getInt("height"));
-                order.setShedLength(resultSet.getInt("shed_length"));
-                order.setShedWidth(resultSet.getInt("shed_width"));
-                order.setComment(resultSet.getString("comment"));
+                getOrderFromDB(order, resultSet);
                 orderList.add(order);
             }
 
@@ -88,19 +76,7 @@ public class OrderMapper {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 Order order = new Order();
-                order.setOrderId(resultSet.getInt("order_id"));
-                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
-                order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(new ArrayList<>());
-                order.setPrice(resultSet.getDouble("price"));
-                order.setRoofId(resultSet.getInt("roof_id"));
-                order.setAngle(resultSet.getInt("roof_angle"));
-                order.setLength(resultSet.getInt("length"));
-                order.setWidth(resultSet.getInt("width"));
-                order.setHeight(resultSet.getInt("height"));
-                order.setShedLength(resultSet.getInt("shed_length"));
-                order.setShedWidth(resultSet.getInt("shed_width"));
-                order.setComment(resultSet.getString("comment"));
+                getOrderFromDB(order, resultSet);
                 orders.add(order);
             }
         } catch (SQLException e) {
@@ -111,69 +87,23 @@ public class OrderMapper {
         return orders;
     }
 
-    public static ArrayList<Order> getAllOrders(Order order) throws FogException {
+    public static ArrayList<Order> getOrdersByStatus(String status) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
-
         try {
             Connection con = Connector.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
-            ps.setInt(1, order.getOrderId());
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE status = ?");
+            ps.setString(1, status);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                order.setOrderId(resultSet.getInt("order_id"));
-                /*order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
-                order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(new ArrayList<>());
-                order.setPrice(resultSet.getDouble("price"));
-                order.setRoofId(resultSet.getInt("roof_id"));
-                order.setAngle(resultSet.getInt("roof_angle"));
-                order.setLength(resultSet.getInt("length"));
-                order.setWidth(resultSet.getInt("width"));
-                order.setHeight(resultSet.getInt("height"));
-                order.setShedLength(resultSet.getInt("shed_length"));
-                order.setShedWidth(resultSet.getInt("shed_width"));*/
-                orders.add(order);
-            }
-
-        } catch (SQLException e) {
-            throw new FogException(e.toString(), "getAllOrders(): SQL syntax fejl");
-        } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getAllOrders(): JDBC driver ikke fundet");
-        }
-        return orders;
-    }
-
-
-    public static ArrayList<Order> getPendingOrders() throws FogException {
-        ArrayList<Order> orders = new ArrayList<>();
-
-        try {
-            Connection con = Connector.connection();
-            Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM `order` where status = 'pending'");
-            while (resultSet.next()) {
                 Order order = new Order();
-                order.setOrderId(resultSet.getInt("order_id"));
-                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
-                order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(new ArrayList<>());
-                order.setPrice(resultSet.getDouble("price"));
-                order.setRoofId(resultSet.getInt("roof_id"));
-                order.setAngle(resultSet.getInt("roof_angle"));
-                order.setLength(resultSet.getInt("length"));
-                order.setWidth(resultSet.getInt("width"));
-                order.setHeight(resultSet.getInt("height"));
-                order.setShedLength(resultSet.getInt("shed_length"));
-                order.setShedWidth(resultSet.getInt("shed_width"));
-                order.setComment(resultSet.getString("comment"));
+                getOrderFromDB(order, resultSet);
                 orders.add(order);
             }
 
         } catch (SQLException e) {
-            throw new FogException(e.toString(), "getPendingOrders(): SQL syntax fejl");
+            throw new FogException(e.toString(), "getOrdersByStatus(): SQL syntax fejl");
         } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getPendingOrders(): JDBC driver ikke fundet");
+            throw new FogException(e.toString(), "getOrdersByStatus(): JDBC driver ikke fundet");
         }
         return orders;
     }
@@ -186,19 +116,7 @@ public class OrderMapper {
             ps.setString(1, orderId);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                order.setOrderId(resultSet.getInt("order_id"));
-                order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
-                order.setStatus(resultSet.getString("status"));
-                order.setOrderLineList(new ArrayList<>());
-                order.setPrice(resultSet.getDouble("price"));
-                order.setRoofId(resultSet.getInt("roof_id"));
-                order.setAngle(resultSet.getInt("roof_angle"));
-                order.setLength(resultSet.getInt("length"));
-                order.setWidth(resultSet.getInt("width"));
-                order.setHeight(resultSet.getInt("height"));
-                order.setShedLength(resultSet.getInt("shed_length"));
-                order.setShedWidth(resultSet.getInt("shed_width"));
-                order.setComment(resultSet.getString("comment"));
+                getOrderFromDB(order, resultSet);
             }
         } catch (SQLException e) {
             throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
@@ -206,6 +124,22 @@ public class OrderMapper {
             throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
         }
         return order;
+    }
+
+    private static void getOrderFromDB(Order order, ResultSet resultSet) throws SQLException, FogException {
+        order.setOrderId(resultSet.getInt("order_id"));
+        order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
+        order.setStatus(resultSet.getString("status"));
+        order.setOrderLineList(new ArrayList<>());
+        order.setPrice(resultSet.getDouble("price"));
+        order.setRoofId(resultSet.getInt("roof_id"));
+        order.setAngle(resultSet.getInt("roof_angle"));
+        order.setLength(resultSet.getInt("length"));
+        order.setWidth(resultSet.getInt("width"));
+        order.setHeight(resultSet.getInt("height"));
+        order.setShedLength(resultSet.getInt("shed_length"));
+        order.setShedWidth(resultSet.getInt("shed_width"));
+        order.setComment(resultSet.getString("comment"));
     }
 
     public static void setPrice(double newPrice, int orderId) throws FogException {
