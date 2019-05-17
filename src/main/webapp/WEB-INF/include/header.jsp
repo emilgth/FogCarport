@@ -1,20 +1,15 @@
-<link rel="stylesheet" type="text/css" href="css.css">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="container">
-    <nav class="navbar navbar-expand">
-        <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid " alt="logo"></a>
+    <nav class="navbar navbar-expand navbar-collapse">
+        <img src="img/logo.png" class="img-fluid navbar-brand" alt="logo">
         <div class="container">
-            <div class="row flex-grow-1 justify-content-end">
-                <DIV CLASS="col-12">
-                    <form class="form-inline">
-                        <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
-                            LOG IND
-                        </button>
-                        <a href="register.jsp" class="btn btn-link" role="button">OPRET KONTO</a>
-                    </form>
-                </DIV>
-            </div>
+            <form class="form-inline">
+                <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
+                    LOG IND
+                </button>
+                <a href="register.jsp" class="btn btn-link" role="button">OPRET KONTO</a>
+            </form>
         </div>
     </nav>
     <% String besked = (String) request.getAttribute("message");

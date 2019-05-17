@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,42 +18,46 @@
     <div class="container-fluid">
         <div class="container background pt-5 pb-5">
             <p>Alle mål er i millimeter</p>
-            <table class='table table-condensed table-striped table-hover'>
-                <tr>
-                    <th>Name</th>
-                    <th>Ordre ID</th>
-                    <th>Pris</th>
-                    <th>Tag</th>
-                    <th>Tagvinkel</th>
-                    <th>Længde</th>
-                    <th>Bredde</th>
-                    <th>Højde</th>
-                    <th>Skurlængde</th>
-                    <th>Skurbredde</th>
-                    <th>Kommentar</th>
-                    <th></th>
-                </tr>
-                <c:forEach items="${requestScope.orders}" var="orders">
+            <div class="table-responsive">
+                <table class='table table-condensed table-striped table-hover'>
                     <tr>
-                        <td>${orders.getUser().getSurname()} ${orders.getUser().getLastname()}</td>
-                        <td>${orders.getOrderId()}</td>
-                        <td>${orders.getPrice()},-</td>
-                        <td>${orders.getRoofId()}</td>
-                        <td>${orders.getAngle()}</td>
-                        <td>${orders.getLength()}</td>
-                        <td>${orders.getWidth()}</td>
-                        <td>${orders.getHeight()}</td>
-                        <td>${orders.getShedLength()}</td>
-                        <td>${orders.getShedWidth()}</td>
-                        <td>${orders.getComment()}</td>
-                        <td><form name="adminShowSingleOrder" action="FrontController" method="POST">
-                            <input type="hidden" name="command" value="adminShowSingleOrder">
-                            <input type="hidden" name="orderId" value="${orders.getOrderId()}">
-                            <button class="btn btn-primary" type="submit">Se ordre</button>
-                        </form></td>
+                        <th>Name</th>
+                        <th>Ordre ID</th>
+                        <th>Pris</th>
+                        <th>Tag</th>
+                        <th>Tagvinkel</th>
+                        <th>Længde</th>
+                        <th>Bredde</th>
+                        <th>Højde</th>
+                        <th>Skurlængde</th>
+                        <th>Skurbredde</th>
+                        <th>Kommentar</th>
+                        <th></th>
                     </tr>
-                </c:forEach>
-            </table>
+                    <c:forEach items="${requestScope.orders}" var="orders">
+                        <tr>
+                            <td>${orders.getUser().getSurname()} ${orders.getUser().getLastname()}</td>
+                            <td>${orders.getOrderId()}</td>
+                            <td>${orders.getPrice()},-</td>
+                            <td>${orders.getRoofId()}</td>
+                            <td>${orders.getAngle()}</td>
+                            <td>${orders.getLength()}</td>
+                            <td>${orders.getWidth()}</td>
+                            <td>${orders.getHeight()}</td>
+                            <td>${orders.getShedLength()}</td>
+                            <td>${orders.getShedWidth()}</td>
+                            <td>${orders.getComment()}</td>
+                            <td>
+                                <form name="adminShowSingleOrder" action="FrontController" method="POST">
+                                    <input type="hidden" name="command" value="adminShowSingleOrder">
+                                    <input type="hidden" name="orderId" value="${orders.getOrderId()}">
+                                    <button class="btn btn-primary" type="submit">Se ordre</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
 
         </div>
     </div>

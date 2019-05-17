@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class AdminShowSingleOrder extends Command {
+/**
+ * Gets an order specified by "orderId" from the database, generates an item list and SVG drawing
+ */
+class AdminShowSingleOrder extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String orderId = request.getParameter("orderId");

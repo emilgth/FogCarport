@@ -8,7 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class ConfirmOrder extends Command {
+/**
+ * Changes the price and status of a specific order
+ */
+class ConfirmOrder extends Command {
+    /**
+     * @param request .
+     * @param response .
+     * @return destination
+     * @throws FogException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         double newPrice = Double.parseDouble(request.getParameter("newPrice"));

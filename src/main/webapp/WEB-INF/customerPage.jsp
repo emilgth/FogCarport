@@ -17,12 +17,13 @@
 </head>
 <body>
 
-<%@include file="include/loggedInHeader.jsp"%>
+<%@include file="include/loggedInHeader.jsp" %>
 
 
-
-<div class="container mt-5 mb-5"><h1>Kundeside</h1>
-    <h2>Velkommen ${sessionScope.user.surname}</h2></div>
+<div class="container mt-5 mb-5">
+    <h1>Kundeside</h1>
+    <h2>Velkommen ${sessionScope.user.surname}</h2>
+</div>
 
 <div class="container-fluid background mt-5 mb-5">
     <div class="container background  pt-5 pb-5">

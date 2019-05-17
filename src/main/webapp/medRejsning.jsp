@@ -34,7 +34,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="img/quickmrejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="img/quickmrejs.gif" alt="fladt tag">
             </div>
         </div>
 

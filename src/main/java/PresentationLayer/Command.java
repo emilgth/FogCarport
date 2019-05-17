@@ -6,6 +6,9 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Command factory
+ */
 abstract class Command {
 
     private static HashMap<String, Command> commands;

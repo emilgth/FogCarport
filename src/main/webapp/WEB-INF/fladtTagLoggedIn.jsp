@@ -33,7 +33,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="../img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="../img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -48,7 +48,8 @@
                 </div>
                 <div class="form-group">
                     <label title="Carport bredde" for="carport_bredde">Carport bredde</label>
-                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde" required>
+                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde"
+                            required>
                         <option selected="selected" value="" disabled>Vælg bredde</option>
                         <option value="2400">240 cm</option>
                         <option value="2700">270 cm</option>
@@ -73,7 +74,8 @@
             </div>
             <div class="form-group">
                 <label title="Carport længde" for="carport_laengde">Carport længde</label>
-                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde" required>
+                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde"
+                        required>
                     <option selected="selected" value="" disabled>Vælg længde</option>
                     <option value="2400">240 cm</option>
                     <option value="2700">270 cm</option>
