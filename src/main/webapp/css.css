@@ -24,6 +24,10 @@ h1 {
     border-color: #0c2069;
 }
 
+.btn-primary:disabled {
+    border-color: #0c2069;
+}
+
 .btn-link {
     font-size: larger !important;
     color: white !important;
@@ -32,4 +36,19 @@ h1 {
 .footer-background {
     background: #0c2069;
     color: white;
+}
+
+body {
+    height: 100%;
+}
+
+.list-group-item {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+}
+
+.list-group-item.active {
+    background: #0c2069;
+    border-color: #0c2069;
+    border-radius: 5px;
 }

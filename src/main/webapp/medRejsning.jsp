@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,7 +28,7 @@
         <div class="row">
             <div class="col">
                 <div class="list-group list-group-flush background">
-                    <button class="list-group-item list-group-item-action list-item-title">QUICKBYG</button>
+                    <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
                     <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
                     <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
                 </div>
@@ -231,5 +232,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<%@include file="WEB-INF/include/footer.jsp" %>
 </body>
 </html>

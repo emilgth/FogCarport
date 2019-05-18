@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4 footer-background">
+<footer class="page-footer font-small blue pt-4 pb-4 footer-background ">
 
     <div class="container-fluid footer-background"><!-- Copyright -->
 
