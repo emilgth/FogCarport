@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 class CustomerOrderFlatRoof extends Command {
     /**
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @return
      * @throws FogException
@@ -39,10 +39,11 @@ class CustomerOrderFlatRoof extends Command {
         String status = "pending";
         //int roofId = Integer.parseInt(request.getParameter("Tag")); //TODO Dette er en string ikke en int
         int angle;
-        if (request.getParameter("Taghaeldning") == null){
+        if (request.getParameter("Taghaeldning") == null) {
             angle = 0;
+        } else {
+            angle = Integer.parseInt(request.getParameter("Taghaeldning"));
         }
-        angle = Integer.parseInt(request.getParameter("Taghaeldning"));
         int length = Integer.parseInt(request.getParameter("Carport_laengde"));
         int width = Integer.parseInt(request.getParameter("Carport_bredde"));
         int height = 2300;

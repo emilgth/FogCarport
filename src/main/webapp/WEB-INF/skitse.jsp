@@ -52,7 +52,7 @@
                 </c:forEach>
             </table>
 
-        <div class="container">
+        <div class="container" style="max-width: 60%">
             <c:forEach items="${sessionScope.svgTopList}" var="svgTopList">
                 ${svgTopList.getModel()}
             </c:forEach>
