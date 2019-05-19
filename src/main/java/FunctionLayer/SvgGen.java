@@ -254,7 +254,7 @@ public class SvgGen {
 
 
         //TAG
-        if (beamAngle != 0) {
+        if (beamAngle == 0) {
             svgList.add(new Rect(50, 20, length - 50, roofHeight));
             svgList.add(new Rect(50, 0, 50 + fasciaMat.getHeight(), roofHeight + fasciaMat.getWidth()));
             svgList.add(new Rect(length - 50 - fasciaMat.getHeight(), 0, 50 + fasciaMat.getHeight(), roofHeight + fasciaMat.getWidth()));
@@ -269,8 +269,10 @@ public class SvgGen {
         svgList.add(new Arrw(200, 500, 200, 500 + height + roofHeight, -90));
 
         //Højde på tag
-        svgList.add(new Arrw(400, 500, 400, 500 + roofHeight + fasciaMat.getWidth(), -90));
-
+        if (beamAngle == 0) {
+            svgList.add(new Arrw(400, 500, 400, 500 + roofHeight + fasciaMat.getWidth(), -90));
+        }
+        
         //Stolpe afstand
         int heightLoss;
         if (beamAngle != 0) {
