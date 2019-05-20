@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class ShowNewOrders extends Command {
+public class ShowOrdersByStatus extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        ArrayList<Order> orders = LogicFacade.getPendingOrders();
+        String status = request.getParameter("status");
+        ArrayList<Order> orders = LogicFacade.getOrdersByStatus(status);
         request.setAttribute("orders", orders);
         return "/WEB-INF/newOrders";
     }

@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,7 +23,20 @@
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
+                <div class="list-group list-group-flush background">
+                    <form action="FrontController?command=loggedInIndex" method="post">
+                        <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
+                    </form>
+                    <form action="FrontController?command=flatRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
+                    </form>
+                    <form action="FrontController?command=withRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
@@ -33,7 +47,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="../img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="../img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -102,8 +116,8 @@
                         <b>Tag</b>
                     </span>
                 </label>
-                <select class="form-control" id="tag" name="Tag" title="Tagtype/farve">
-                    <option selected="selected" value="">Vælg tagtype/farve</option>
+                <select class="form-control" id="tag" name="Tag" title="Tagtype/farve" required>
+                    <option selected="selected" value="" disabled>Vælg tagtype/farve</option>
                     <option value="Betontagsten - Rød">Betontagsten - Rød</option>
                     <option value="Betontagsten - Teglrød">Betontagsten - Teglrød</option>
                     <option value="Betontagsten - Brun">Betontagsten - Brun</option>
@@ -196,10 +210,10 @@
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
                 <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger"
-                          rows="2">Kommentar</textarea>
+                          rows="2" placeholder="Indtast kommentar"></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
+                <input type="submit" name="Submit" title="Send forespørgsel" value="Bestil tilbud"
                        class="btn btn-primary">
             </div>
         </form>
@@ -219,5 +233,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<%@include file="include/footer.jsp" %>
 </body>
 </html>

@@ -12,9 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>QuickByg</title>
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css.css">
 
 </head>
 <body>
@@ -41,7 +42,7 @@
                 <div class="container"><b>Carport med fladt tag:</b><br>
                     <form name="flatRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="flatRoofCheck">
-                        <a href="FrontController?command=flatRoofCheck"><img src="img/quickurejs.gif" alt="uden rejsning"></a>
+                        <a href="FrontController?command=flatRoofCheck"><img class="img-fluid rounded" src="img/quickurejs.gif" alt="uden rejsning"></a>
                     </form>
                 </div>
             </div>
@@ -52,7 +53,7 @@
                 <div class="container"><b>Carport med rejsning:</b><br>
                     <form name="withRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="withRoofCheck">
-                        <a href="FrontController?command=withRoofCheck"><img src="img/quickmrejs.gif" alt="med rejsning"></a>
+                        <a href="FrontController?command=withRoofCheck"><img class="img-fluid rounded" src="img/quickmrejs.gif" alt="med rejsning"></a>
                     </form>
                 </div>
             </div>

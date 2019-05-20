@@ -7,7 +7,12 @@ import java.sql.*;
 
 public class UserMapper {
 
-    public static User getUser(int userId) throws FogException {
+    /**
+     * @param userId used to select the correct user
+     * @return returns User object
+     * @throws FogException if there's problems with connecting to the database
+     */
+    static User getUser(int userId) throws FogException {
 
         User user = new User();
 

@@ -40,8 +40,8 @@ public class LogicFacade {
 
     }
 
-    public static ArrayList<Order> getPendingOrders() throws FogException {
-        return OrderMapper.getPendingOrders();
+    public static ArrayList<Order> getOrdersByStatus(String status) throws FogException {
+        return OrderMapper.getOrdersByStatus(status);
     }
 
     public static void insertOrder(Order order) throws FogException {

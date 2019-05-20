@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,36 +18,36 @@
 </head>
 <body>
 
-<%@include file="include/loggedInHeader.jsp"%>
+<%@include file="include/loggedInHeader.jsp" %>
 
+<div class="container mt-5 mb-5">
+    <h1>Kundeside</h1>
+    <h2>Velkommen ${sessionScope.user.surname}</h2>
+</div>
 
+<div class="container-fluid background" style="padding-bottom: 12%">
+    <div class="container background pt-5 pb-5">
+        <div class="row">
+            <div class="col"><p class="font-weight-bold">Mine info: </p>
+                <p><i class='far fa-address-book'></i> ${sessionScope.user.surname} ${sessionScope.user.lastname}</p>
+                <p><i class='far fa-envelope'></i> ${sessionScope.user.email}</p>
+                <p><i class='fas fa-mobile-alt'></i> ${sessionScope.user.phone}</p></div>
+        </div>
 
-<div class="container mt-5 mb-5"><h1>Kundeside</h1>
-    <h2>Velkommen ${sessionScope.user.surname}</h2></div>
-
-<div class="container-fluid background mt-5 mb-5">
-    <div class="container background  pt-5 pb-5">
-
-        <p>Mine info: </p>
-        <p><i class='far fa-address-book'></i> ${sessionScope.user.surname} ${sessionScope.user.lastname}</p>
-        <p><i class='far fa-envelope'></i> ${sessionScope.user.email}</p>
-        <p><i class='fas fa-mobile-alt'></i> ${sessionScope.user.phone}</p>
-
-        <form name="showCustomerOrders" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showCustomerOrder">
-            <button class="btn btn-primary" type="submit" value="Se mine ordrer ordrer">Se mine ordrer</button>
-        </form>
-
-        <br><br>
-
-        <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#updateUserInfo">
-            Redigér mine info
-        </button>
+        <div class="row">
+            <form name="showCustomerOrders" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showCustomerOrder">
+                <button class="btn btn-primary mr-1" type="submit" value="Se mine ordrer ordrer">Se mine ordrer</button>
+            </form>
+            <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#updateUserInfo">
+                Redigér mine info
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- The Modal -->
-<div class="modal" id="updateUserInfo">
+<div class="modal fade" id="updateUserInfo">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -60,18 +61,33 @@
             <div class="modal-body">
                 <form name="updateUserData" action="FrontController" method="POST">
                     <input type="hidden" name="command" value="updateUserData">
-                    <p>E-mail:</p>
-                    <input type="email" name="email" value="${sessionScope.user.email}">
+                    <label>
+                        Fornavn:
+                        <input class="form-control" type="text" name="surname" value="${sessionScope.user.surname}"
+                               required>
+                    </label>
+                    <label>
+                        Efternavn:
+                        <input class="form-control" type="text" name="lastname" value="${sessionScope.user.lastname}"
+                               required>
+                    </label>
+                    <label>
+                        E-mail:
+                        <input class="form-control" type="email" name="email" value="${sessionScope.user.email}"
+                               required>
+                    </label>
                     <br>
-                    <p>Telefon:</p>
-                    <input type="tel" name="phone" value="${sessionScope.user.phone}">
-                    <p>Fornavn:</p>
-                    <input type="text" name="surname" value="${sessionScope.user.surname}">
-                    <p>Efternavn:</p>
-                    <input type="text" name="lastname" value="${sessionScope.user.lastname}">
-                    <p>Password:</p>
-                    <input type="password" name="password" value="${sessionScope.user.password}">
-                    <br><br>
+                    <label>
+                        Password:
+                        <input class="form-control" type="password" name="password"
+                               value="${sessionScope.user.password}" required>
+                    </label>
+                    <label>
+                        Telefon:
+                        <input class="form-control" type="number" name="phone" value="${sessionScope.user.phone}"
+                               required>
+                    </label>
+                    <br>
                     <input class="btn btn-primary" type="submit" value="Accepter">
                 </form>
             </div>
@@ -97,6 +113,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+<%@include file="include/footer.jsp" %>
 </body>
 </html>

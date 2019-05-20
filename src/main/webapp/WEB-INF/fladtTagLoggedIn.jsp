@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,7 +23,20 @@
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
+                <div class="list-group list-group-flush background">
+                    <form action="FrontController?command=loggedInIndex" method="post">
+                        <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
+                    </form>
+                    <form action="FrontController?command=flatRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action active">CARPORT MED FLADT TAG</button>
+                    </form>
+                    <form action="FrontController?command=withRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action">CARPORT MED REJSNING</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
@@ -33,7 +47,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="../img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="../img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -48,7 +62,8 @@
                 </div>
                 <div class="form-group">
                     <label title="Carport bredde" for="carport_bredde">Carport bredde</label>
-                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde" required>
+                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde"
+                            required>
                         <option selected="selected" value="" disabled>Vælg bredde</option>
                         <option value="2400">240 cm</option>
                         <option value="2700">270 cm</option>
@@ -73,7 +88,8 @@
             </div>
             <div class="form-group">
                 <label title="Carport længde" for="carport_laengde">Carport længde</label>
-                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde" required>
+                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde"
+                        required>
                     <option selected="selected" value="" disabled>Vælg længde</option>
                     <option value="2400">240 cm</option>
                     <option value="2700">270 cm</option>
@@ -172,7 +188,7 @@
                           rows="2">Kommentar</textarea>
             </div>
             <div class="form-group">
-                <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
+                <input type="submit" name="Submit" title="Send forespørgsel" value="Bestil tilbud"
                        class="btn btn-primary">
             </div>
         </form>
@@ -192,5 +208,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<%@include file="include/footer.jsp" %>
 </body>
 </html>
