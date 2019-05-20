@@ -18,7 +18,7 @@
 
 <body>
 <div class="container mt-5 mb-5">
-    <h1>CARPORT MED FLADT TAG</h1>
+    <h1>CARPORT MED REJSNING</h1>
 </div>
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
+                <h3>QUICK-BYG TILBUD - CARPORT MED REJSNING</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
 
@@ -47,7 +47,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block img-fluid rounded" src="${pageContext.request.contextPath}/img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="${pageContext.request.contextPath}/img/quickmrejs.gif" alt="fladt tag">
             </div>
         </div>
 

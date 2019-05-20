@@ -53,7 +53,7 @@
             </table>
         </div>
 
-        <div class="container">
+        <div class="container" style="max-width: 60%">
             <div class="row">
                 <div class="col">
                     <c:forEach items="${requestScope.svgTopList}" var="svgTopList">
