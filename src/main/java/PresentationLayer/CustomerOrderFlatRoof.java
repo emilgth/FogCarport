@@ -2,6 +2,7 @@ package PresentationLayer;
 
 import FunctionLayer.FogException;
 import FunctionLayer.ListGen;
+import FunctionLayer.LogicFacade;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
 import FunctionLayer.Models.Svg;
@@ -41,7 +42,6 @@ class CustomerOrderFlatRoof extends Command {
 
         User user = (User) session.getAttribute("user");
         String status = "pending";
-        //int roofId = Integer.parseInt(request.getParameter("Tag")); //TODO Dette er en string ikke en int
         int angle;
         if (request.getParameter("Taghaeldning") == null) {
             angle = 0;
@@ -56,10 +56,9 @@ class CustomerOrderFlatRoof extends Command {
         String comment = request.getParameter("bemaerkninger");
         Order order = new Order(user, status, 1, angle, length, width, height, shedLength, shedWidth, comment);
 
-        //TODO: Skal gå over logicfacade
-        ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
-        ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
-        ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);
+        ArrayList<OrderLine> orderLineList = LogicFacade.getOrderLinelist(order);
+        ArrayList<Svg> svgTopList = LogicFacade.getSvgTopList(order);
+        ArrayList<Svg> svgSideList = LogicFacade.getSvgSideList(order);
 
         FunctionLayer.LogicFacade.insertOrder(order);
 
@@ -68,7 +67,6 @@ class CustomerOrderFlatRoof extends Command {
         session.setAttribute("svgTopList", svgTopList);
         session.setAttribute("svgSideList", svgSideList);
 
-        //todo send the user to success page instead
         return "/WEB-INF/skitse";
     }
 }

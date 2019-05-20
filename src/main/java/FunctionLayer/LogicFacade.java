@@ -4,6 +4,7 @@ import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.Models.Order;
 import FunctionLayer.Models.OrderLine;
+import FunctionLayer.Models.Svg;
 import FunctionLayer.Models.User;
 
 import java.util.ArrayList;
@@ -56,5 +57,17 @@ public class LogicFacade {
     public static void confirmOrder(double newPrice, int orderId) throws FogException {
         OrderMapper.setPrice(newPrice, orderId);
         OrderMapper.setStatus("confirmed", orderId);
+    }
+
+    public static ArrayList<OrderLine> getOrderLinelist(Order order) {
+        return ListGen.getOrderLinelist(order);
+    }
+
+    public static ArrayList<Svg> getSvgTopList(Order order) {
+        return SvgGen.getSvgTopList(order);
+    }
+
+    public static ArrayList<Svg> getSvgSideList(Order order) {
+        return SvgGen.getSvgSideList(order);
     }
 }
