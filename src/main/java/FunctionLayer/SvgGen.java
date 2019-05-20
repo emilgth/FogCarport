@@ -138,7 +138,7 @@ public class SvgGen {
             rafterSpacing++;
         }
         for (int i = 0; i < rafterAmount; i++) {
-            svgList.add(new Rect(rafterSpacing * i, 0, rafterWidth, rafterLength));
+            svgList.add(new Rect(rafterSpacing * i, 0, rafterWidth, width));
         }
 
         //VINDKRYDS (Wind bracers)

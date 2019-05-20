@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -29,7 +29,7 @@
         <p><i class='far fa-envelope'></i> ${requestScope.order.getUser().getEmail()}</p>
         <p><i class='fas fa-mobile-alt'></i> ${requestScope.order.getUser().getPhone()}</p>
 
-        <div class="table-responsive">
+        <div class="table-responsive mb-5">
             <table class='table table-condensed table-striped table-hover'>
                 <tr>
                     <th>Materiale</th>
@@ -54,20 +54,13 @@
         </div>
 
         <div class="container" style="max-width: 60%">
-            <div class="row">
-                <div class="col">
-                    <c:forEach items="${requestScope.svgTopList}" var="svgTopList">
-                        ${svgTopList.getModel()}
-                    </c:forEach>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <c:forEach items="${requestScope.svgSideList}" var="svgSideList">
-                        ${svgSideList.getModel()}
-                    </c:forEach>
-                </div>
-            </div>
+            <c:forEach items="${requestScope.svgTopList}" var="svgTopList">
+                ${svgTopList.getModel()}
+            </c:forEach>
+
+            <c:forEach items="${requestScope.svgSideList}" var="svgSideList">
+                ${svgSideList.getModel()}
+            </c:forEach>
         </div>
         <hr>
 
@@ -80,7 +73,7 @@
                         <input type="hidden" name="command" value="confirmOrder">
                         <input type="hidden" name="orderId" value="${requestScope.order.orderId}">
                         <label for="newPrice">Indtast ønsket salgspris:</label>
-                        <input type="text" class="form-control" id="newPrice"
+                        <input type="number" class="form-control" id="newPrice"
                                placeholder="${requestScope.suggestedPrice}"
                                name="newPrice" value="" required>
                         <button class="btn btn-primary mt-1" type="submit">Bekræft</button>
