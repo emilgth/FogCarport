@@ -47,7 +47,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block img-fluid rounded" src="../img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="${pageContext.request.contextPath}/img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
