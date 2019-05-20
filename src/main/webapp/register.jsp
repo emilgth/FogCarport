@@ -30,29 +30,29 @@
         <h1>Fog Register formular</h1>
         <form name="register" action="FrontController" method="POST">
             <input type="hidden" name="command" value="register">
-            <table style="with: 50%">
+            <table class="table table-responsive">
                 <tr>
                     <td>E-mail</td>
                     <td><input type="text" name="email" /></td>
                 </tr>
                 <tr>
                     <td>Kodeord</td>
-                    <td><input type="password" name="password" /></td>
-                </tr>
-                <tr>
-                    <td>Fornavn</td>
-                    <td><input type="text" name="surname" /></td>
-                </tr>
-                <tr>
-                    <td>Efternavn</td>
-                    <td><input type="text" name="lastname" /></td>
-                </tr>
-                <tr>
-                    <td>Telefonnummer</td>
-                    <td><input type="text" name="phone" /></td>
-                </tr>
-                </table>
-            <input type="submit" value="Submit">
+            <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>Fornavn</td>
+                <td><input type="text" name="surname" /></td>
+            </tr>
+            <tr>
+                <td>Efternavn</td>
+                <td><input type="text" name="lastname" /></td>
+            </tr>
+            <tr>
+                <td>Telefonnummer</td>
+                <td><input type="text" name="phone" /></td>
+            </tr>
+            </table>
+            <input class="btn btn-primary" type="submit" value="Submit">
         </form>
     </div>
 </div>

@@ -23,7 +23,7 @@
 <body>
 <div class="container" style="padding-bottom: 200px">
     <h1>Alle Ordre</h1>
-    <div class="container-fluid">
+    <div class="container-fluid background">
         <div class="container background pt-5 pb-5">
             <p>Alle mål er i millimeter</p>
             <div class="table-responsive">

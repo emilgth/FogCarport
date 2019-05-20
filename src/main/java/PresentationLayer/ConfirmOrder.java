@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 class ConfirmOrder extends Command {
     /**
-     * @param request .
-     * @param response .
-     * @return destination
-     * @throws FogException
+     * @param request servlet request
+     * @param response servlet response
+     * @return jsp address
+     * @throws FogException if an error occurs, most likely when connecting to the database
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {

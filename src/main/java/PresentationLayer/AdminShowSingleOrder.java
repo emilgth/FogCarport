@@ -16,6 +16,12 @@ import java.util.ArrayList;
  * Gets an order specified by "orderId" from the database, generates an item list and SVG drawing
  */
 class AdminShowSingleOrder extends Command {
+    /**
+     * @param request servlet request
+     * @param response servlet response
+     * @return jsp address
+     * @throws FogException if an error occurs
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String orderId = request.getParameter("orderId");

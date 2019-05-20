@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,47 +17,48 @@
 </head>
 <body>
 <%@include file="include/loggedInHeader.jsp" %>
-<div class="container" style="padding-bottom: 200px">
+<div class="container mt-5 mb-5">
     <h1>Dine Ordre</h1>
-    <div class="container-fluid">
-        <div class="container background pt-5 pb-5">
-            <p>Alle mål er i millimeter</p>
-            <div class="table-responsive">
-                <table class='table table-condensed table-striped table-hover'>
+</div>
+<div class="container-fluid background pr-0 pl-0">
+    <div class="container background pt-5 pb-5">
+        <p>Alle mål er i millimeter</p>
+        <div class="table-responsive">
+            <table class='table table-condensed table-striped table-hover'>
+                <tr>
+                    <th>Ordre ID</th>
+                    <th>Status</th>
+                    <th>Pris</th>
+                    <th>Tag</th>
+                    <th>Tagvinkel</th>
+                    <th>Længde</th>
+                    <th>Bredde</th>
+                    <th>Højde</th>
+                    <th>Skurlængde</th>
+                    <th>Skurbredde</th>
+                    <th>Kommentar</th>
+                </tr>
+                <c:forEach items="${requestScope.orders}" var="orders">
+
                     <tr>
-                        <th>Ordre ID</th>
-                        <th>Status</th>
-                        <th>Pris</th>
-                        <th>Tag</th>
-                        <th>Tagvinkel</th>
-                        <th>Længde</th>
-                        <th>Bredde</th>
-                        <th>Højde</th>
-                        <th>Skurlængde</th>
-                        <th>Skurbredde</th>
-                        <th>Kommentar</th>
+                        <td>${orders.getOrderId()}</td>
+                        <td>${orders.getStatus()}</td>
+                        <td>${orders.getPrice()}</td>
+                        <td>${orders.getRoofId()}</td>
+                        <td>${orders.getAngle()}</td>
+                        <td>${orders.getLength()}</td>
+                        <td>${orders.getWidth()}</td>
+                        <td>${orders.getHeight()}</td>
+                        <td>${orders.getShedLength()}</td>
+                        <td>${orders.getShedWidth()}</td>
+                        <td>${orders.getComment()}</td>
                     </tr>
-                    <c:forEach items="${requestScope.orders}" var="orders">
 
-                        <tr>
-                            <td>${orders.getOrderId()}</td>
-                            <td>${orders.getStatus()}</td>
-                            <td>${orders.getPrice()}</td>
-                            <td>${orders.getRoofId()}</td>
-                            <td>${orders.getAngle()}</td>
-                            <td>${orders.getLength()}</td>
-                            <td>${orders.getWidth()}</td>
-                            <td>${orders.getHeight()}</td>
-                            <td>${orders.getShedLength()}</td>
-                            <td>${orders.getShedWidth()}</td>
-                            <td>${orders.getComment()}</td>
-                        </tr>
-
-                    </c:forEach>
-                </table>
-            </div>
+                </c:forEach>
+            </table>
         </div>
     </div>
+        <%@include file="include/footer.jsp" %>
 </div>
 
 <!-- Optional JavaScript -->
@@ -71,6 +72,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<%@include file="include/footer.jsp" %>
+
 </body>
 </html>

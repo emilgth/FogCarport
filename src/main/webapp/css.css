@@ -40,6 +40,7 @@ h1 {
 
 body {
     height: 100%;
+
 }
 
 .list-group-item {
@@ -51,4 +52,9 @@ body {
     background: #0c2069;
     border-color: #0c2069;
     border-radius: 5px;
+}
+
+.btn-danger {
+    background: orange;
+    border-color: orange;
 }

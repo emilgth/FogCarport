@@ -25,9 +25,15 @@
         <div class="row">
             <div class="col">
                 <div class="list-group list-group-flush background">
-                    <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
-                    <button class="list-group-item list-group-item-action active">CARPORT MED FLADT TAG</button>
-                    <button class="list-group-item list-group-item-action">CARPORT MED REJSNING</button>
+                    <form action="FrontController?command=loggedInIndex" method="post">
+                        <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
+                    </form>
+                    <form action="FrontController?command=flatRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action active">CARPORT MED FLADT TAG</button>
+                    </form>
+                    <form action="FrontController?command=withRoofCheck" method="post">
+                        <button class="list-group-item list-group-item-action">CARPORT MED REJSNING</button>
+                    </form>
                 </div>
             </div>
             <div class="col-6">

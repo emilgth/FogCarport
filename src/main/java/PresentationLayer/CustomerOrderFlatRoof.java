@@ -15,13 +15,17 @@ import java.util.ArrayList;
 
 /**
  * @author Emil
+ * Handles when a customer orders a new car port. It handles both types of carport.
+ * It pulls the order parameters from request, and user information from session.
+ * Generates item list with the ListGen.getOrderLinesList method, and generates an svg drawing with SvgGen.
+ * Finally the order is inserted into the database and the user is sent to a success page
  */
 class CustomerOrderFlatRoof extends Command {
     /**
      * @param request  servlet request
      * @param response servlet response
-     * @return
-     * @throws FogException
+     * @return jsp address
+     * @throws FogException see FogException class
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
@@ -64,6 +68,7 @@ class CustomerOrderFlatRoof extends Command {
         session.setAttribute("svgTopList", svgTopList);
         session.setAttribute("svgSideList", svgSideList);
 
+        //todo send the user to success page instead
         return "/WEB-INF/skitse";
     }
 }

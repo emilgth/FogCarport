@@ -7,10 +7,9 @@
                     <input type="hidden" name="command" value="customerPage">
                     <button class="btn btn-link" type="submit" value="Se mine ordrer ordrer">MIN SIDE</button>
                 </form>
-                <form name="logOut" action="FrontController" method="post">
-                    <input type="hidden" name="command" value="logOut">
-                    <button class="btn btn-link" type="submit">LOG UD</button>
-                </form>
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#logout">
+                    LOG UD
+                </button>
             </div>
         </div>
     </nav>
@@ -27,6 +26,32 @@
             out.println(alert);
         }
     %>
+</div>
+
+<!-- Button trigger modal -->
+<form name="logOut" action="FrontController" method="post">
+    <input type="hidden" name="command" value="logOut">
+    <button class="btn btn-link" type="submit">LOG UD</button>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="logout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Er du sikker?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fortryd</button>
+                <form name="logOut" action="FrontController" method="post">
+                    <input type="hidden" name="command" value="logOut">
+                    <button class="btn btn-danger" type="submit">Log ud</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 

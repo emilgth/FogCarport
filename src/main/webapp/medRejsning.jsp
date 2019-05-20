@@ -28,19 +28,24 @@
         <div class="row">
             <div class="col">
                 <div class="list-group list-group-flush background">
-                    <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
-                    <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
-                    <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
+                    <form action="index.jsp">
+                        <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
+                    </form>
+                    <form action="fladtTag.jsp">
+                        <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
+                    </form>
+                    <form action="medRejsning.jsp">
+                        <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
+                    </form>
                 </div>
             </div>
             <div class="col-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED REJSNING</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
-                    på<br>
-                    en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br><br>
+                    på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
 
-                    Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br>
-                    Ved bestilling medfølger standardbyggevejledning.</p><br>
+                    Tilbud og skitsetegning fremsendes med post hurtigst muligt.
+                    Ved bestilling medfølger standardbyggevejledning.</p>
                 <b>Udfyld nedenstående omhyggeligt og klik på "Bestil tilbud"</b>
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>

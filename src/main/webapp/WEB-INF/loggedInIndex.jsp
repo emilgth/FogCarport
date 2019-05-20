@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css.css">
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16"/>
 
 </head>
 <body>
-<%@include file="include/loggedInHeader.jsp"%>
+<%@include file="include/loggedInHeader.jsp" %>
 <div class="container mt-5 mb-5">
     <h1>QUICKBYG</h1>
 </div>
@@ -42,8 +42,11 @@
                 <div class="container"><b>Carport med fladt tag:</b><br>
                     <form name="flatRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="flatRoofCheck">
-                        <a href="FrontController?command=flatRoofCheck"><img class="img-fluid rounded"src="${pageContext.request.contextPath}/img/quickurejs.gif" alt="uden rejsning"></a>
-                    </form></div>
+                        <a href="FrontController?command=flatRoofCheck"><img class="img-fluid rounded"
+                                                                             src="${pageContext.request.contextPath}/img/quickurejs.gif"
+                                                                             alt="uden rejsning"></a>
+                    </form>
+                </div>
             </div>
         </div>
         <hr>
@@ -52,8 +55,11 @@
                 <div class="container"><b>Carport med rejsning:</b><br>
                     <form name="withRoofCheck" action="FrontController" method="post">
                         <input type="hidden" name="command" value="withRoofCheck">
-                        <a href="FrontController?command=withRoofCheck"><img class="img-fluid rounded" src="${pageContext.request.contextPath}/img/quickmrejs.gif" alt="med rejsning"></a>
-                    </form></div>
+                        <a href="FrontController?command=withRoofCheck"><img class="img-fluid rounded"
+                                                                             src="${pageContext.request.contextPath}/img/quickmrejs.gif"
+                                                                             alt="med rejsning"></a>
+                    </form>
+                </div>
             </div>
         </div>
         <hr>

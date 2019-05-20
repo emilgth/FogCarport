@@ -8,7 +8,9 @@
                 <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">
                     LOG IND
                 </button>
-                <a href="register.jsp" class="btn btn-link" role="button">OPRET KONTO</a>
+                <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#register">
+                    OPRET BRUGER
+                </button>
             </form>
         </div>
     </nav>
@@ -29,7 +31,7 @@
 
 
 <!-- The Modal -->
-<div class="modal" id="login">
+<div class="modal fade" id="login">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -43,19 +45,71 @@
             <div class="modal-body">
                 <form name="login" action="FrontController" method="POST">
                     <input type="hidden" name="command" value="login">
-                    <p>Email:</p>
-                    <input class="form-control" type="text" name="email" placeholder="email" value="anders@email.com"
-                           required>
+                    <label> E-mail:
+                        <input class="form-control" type="text" name="email" placeholder="email"
+                               value="anders@email.com"
+                               required>
+                    </label>
                     <br>
-                    <p>Password:</p>
-                    <input class="form-control" type="password" name="password" placeholder="password" value="1234"
-                           required>
+                    <label> Password:
+                        <input class="form-control" type="password" name="password" placeholder="password" value="1234"
+                               required>
+                    </label>
                     <br><br>
                     <input class="btn btn-primary" type="submit" value="Login">
                 </form>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer">
+            <div class="modal-footer background">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="register">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Registrering</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="register" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="register">
+                    <label>
+                        E-mail
+                        <input class="form-control" type="email" name="email" required/>
+                    </label>
+                    <label>
+                        Kodeord
+                        <input class="form-control" type="password" name="password" required/>
+                    </label>
+
+                    <label>
+                        Fornavn
+                        <input class="form-control" type="text" name="surname" required/>
+                    </label>
+
+                    <label>
+                        Efternavn
+                        <input class="form-control" type="text" name="lastname" required/>
+                    </label>
+
+                    <label>
+                        Telefonnummer
+                        <input class="form-control" type="number" name="phone" required/>
+                    </label>
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer background">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
