@@ -272,7 +272,7 @@ public class SvgGen {
         if (beamAngle == 0) {
             svgList.add(new Arrw(400, 500, 400, 500 + roofHeight + fasciaMat.getWidth(), -90));
         }
-        
+
         //Stolpe afstand
         int heightLoss;
         if (beamAngle != 0) {
