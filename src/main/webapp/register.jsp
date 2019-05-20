@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css.css">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
 
 </head>
 <body>
@@ -29,29 +30,29 @@
         <h1>Fog Register formular</h1>
         <form name="register" action="FrontController" method="POST">
             <input type="hidden" name="command" value="register">
-            <table style="with: 50%">
+            <table class="table table-responsive">
                 <tr>
                     <td>E-mail</td>
                     <td><input type="text" name="email" /></td>
                 </tr>
                 <tr>
                     <td>Kodeord</td>
-                    <td><input type="password" name="password" /></td>
-                </tr>
-                <tr>
-                    <td>Fornavn</td>
-                    <td><input type="text" name="surname" /></td>
-                </tr>
-                <tr>
-                    <td>Efternavn</td>
-                    <td><input type="text" name="lastname" /></td>
-                </tr>
-                <tr>
-                    <td>Telefonnummer</td>
-                    <td><input type="text" name="phone" /></td>
-                </tr>
-                </table>
-            <input type="submit" value="Submit">
+            <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>Fornavn</td>
+                <td><input type="text" name="surname" /></td>
+            </tr>
+            <tr>
+                <td>Efternavn</td>
+                <td><input type="text" name="lastname" /></td>
+            </tr>
+            <tr>
+                <td>Telefonnummer</td>
+                <td><input type="text" name="phone" /></td>
+            </tr>
+            </table>
+            <input class="btn btn-primary" type="submit" value="Submit">
         </form>
     </div>
 </div>
@@ -67,6 +68,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+<%@include file="WEB-INF/include/footer.jsp" %>
 </body>
 </html>

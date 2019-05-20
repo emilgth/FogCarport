@@ -15,13 +15,17 @@ import java.util.ArrayList;
 
 /**
  * @author Emil
+ * Handles when a customer orders a new car port. It handles both types of carport.
+ * It pulls the order parameters from request, and user information from session.
+ * Generates item list with the ListGen.getOrderLinesList method, and generates an svg drawing with SvgGen.
+ * Finally the order is inserted into the database and the user is sent to a success page
  */
 class CustomerOrderFlatRoof extends Command {
     /**
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
-     * @return
-     * @throws FogException
+     * @return jsp address
+     * @throws FogException see FogException class
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
@@ -37,15 +41,20 @@ class CustomerOrderFlatRoof extends Command {
 
         User user = (User) session.getAttribute("user");
         String status = "pending";
-        int roofId = Integer.parseInt(request.getParameter("Tag"));
-        int angle = 0;
+        //int roofId = Integer.parseInt(request.getParameter("Tag")); //TODO Dette er en string ikke en int
+        int angle;
+        if (request.getParameter("Taghaeldning") == null) {
+            angle = 0;
+        } else {
+            angle = Integer.parseInt(request.getParameter("Taghaeldning"));
+        }
         int length = Integer.parseInt(request.getParameter("Carport_laengde"));
         int width = Integer.parseInt(request.getParameter("Carport_bredde"));
         int height = 2300;
         int shedLength = Integer.parseInt(request.getParameter("Redskabsrum_laengde"));
         int shedWidth = Integer.parseInt(request.getParameter("Redskabsrum_bredde"));
         String comment = request.getParameter("bemaerkninger");
-        Order order = new Order(user, status, roofId, angle, length, width, height, shedLength, shedWidth, comment);
+        Order order = new Order(user, status, 1, angle, length, width, height, shedLength, shedWidth, comment);
 
         //TODO: Skal gå over logicfacade
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
@@ -59,6 +68,7 @@ class CustomerOrderFlatRoof extends Command {
         session.setAttribute("svgTopList", svgTopList);
         session.setAttribute("svgSideList", svgSideList);
 
+        //todo send the user to success page instead
         return "/WEB-INF/skitse";
     }
 }

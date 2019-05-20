@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class CustomerPage extends Command {
+/**
+ * Checks if the user is and admin. Admins are sent to adminPage, regular users are sent to customerPage
+ */
+class CustomerPage extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user.isAdmin()) {

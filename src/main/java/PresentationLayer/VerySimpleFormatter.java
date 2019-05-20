@@ -9,6 +9,7 @@ public class VerySimpleFormatter extends Formatter {
 
     private static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
 
+
     @Override
     public String format(final LogRecord record) {
         return String.format(
@@ -19,3 +20,4 @@ public class VerySimpleFormatter extends Formatter {
                 formatMessage(record));
     }
 }
+

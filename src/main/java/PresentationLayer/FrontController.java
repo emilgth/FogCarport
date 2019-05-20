@@ -16,7 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author kasper
@@ -38,7 +37,7 @@ public class FrontController extends HttpServlet {
 
         //Logger til håndtering af fejl
         final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
-        FileHandler handler = new FileHandler("/Users/bueko/Documents/logs/controller_logger.log");
+        FileHandler handler = new FileHandler(System.getenv("FOG_LOG_PATH"));
 
         LOGGER.setLevel(Level.FINEST);
 

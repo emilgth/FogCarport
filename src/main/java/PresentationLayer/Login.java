@@ -9,8 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-public class Login extends Command {
+/**
+ * Login method
+ */
+class Login extends Command {
 
+    /**
+     * @param request servlet request
+     * @param response servlet response
+     * @return jsp address
+     * @throws FogException see FogException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String email = request.getParameter("email");

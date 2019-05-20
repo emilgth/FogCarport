@@ -13,7 +13,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
 </head>
 <body>
 <%@include file="include/loggedInHeader.jsp"%>
@@ -52,7 +52,7 @@
                 </c:forEach>
             </table>
 
-        <div class="container">
+        <div class="container" style="max-width: 60%">
             <c:forEach items="${sessionScope.svgTopList}" var="svgTopList">
                 ${svgTopList.getModel()}
             </c:forEach>

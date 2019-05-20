@@ -7,22 +7,37 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
 </head>
 <%@include file="WEB-INF/include/header.jsp" %>
 
 <body>
 <div class="container mt-5 mb-5">
     <h1>CARPORT MED FLADT TAG</h1>
+    <p class="lead">Bemærk at det er nødvændigt at være logget ind for at bestille en carport - log ind eller registrer Dem venligst i toppen af siden</p>
 </div>
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
+                <div class="list-group list-group-flush background">
+                    <form action="index.jsp">
+                        <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
+                    </form>
+                    <form action="fladtTag.jsp">
+                        <button class="list-group-item list-group-item-action active">CARPORT MED FLADT TAG</button>
+                    </form>
+                    <form action="medRejsning.jsp">
+                        <button class="list-group-item list-group-item-action">CARPORT MED REJSNING</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
@@ -33,7 +48,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block" src="img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="img/quickurejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -172,8 +187,8 @@
                           rows="2">Kommentar</textarea>
             </div>
             <div class="form-group">
-                <input type="submit" name="Submit" title="Send forespørgsel" value="Send forespørgsel"
-                       class="btn btn-primary disabled">
+                <input type="submit" name="Submit" title="Send forespørgsel" value="Bestil tilbud"
+                       class="btn btn-primary" disabled>
                 Log ind for at bestille
             </div>
         </form>
@@ -193,5 +208,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<%@include file="WEB-INF/include/footer.jsp" %>
 </body>
 </html>

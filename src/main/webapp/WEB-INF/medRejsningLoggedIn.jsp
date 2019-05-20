@@ -18,7 +18,7 @@
 
 <body>
 <div class="container mt-5 mb-5">
-    <h1>CARPORT MED FLADT TAG</h1>
+    <h1>CARPORT MED REJSNING</h1>
 </div>
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
@@ -29,15 +29,15 @@
                         <button class="list-group-item list-group-item-action font-weight-bold">QUICKBYG</button>
                     </form>
                     <form action="FrontController?command=flatRoofCheck" method="post">
-                        <button class="list-group-item list-group-item-action active">CARPORT MED FLADT TAG</button>
+                        <button class="list-group-item list-group-item-action">CARPORT MED FLADT TAG</button>
                     </form>
                     <form action="FrontController?command=withRoofCheck" method="post">
-                        <button class="list-group-item list-group-item-action">CARPORT MED REJSNING</button>
+                        <button class="list-group-item list-group-item-action active">CARPORT MED REJSNING</button>
                     </form>
                 </div>
             </div>
             <div class="col-6">
-                <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
+                <h3>QUICK-BYG TILBUD - CARPORT MED REJSNING</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>
 
@@ -47,7 +47,7 @@
                 <p>Felter markeret * SKAL udfyldes!</p>
             </div>
             <div class="col">
-                <img class="mx-auto d-block img-fluid rounded" src="${pageContext.request.contextPath}/img/quickurejs.gif" alt="fladt tag">
+                <img class="mx-auto d-block img-fluid rounded" src="${pageContext.request.contextPath}/img/quickmrejs.gif" alt="fladt tag">
             </div>
         </div>
 
@@ -62,8 +62,7 @@
                 </div>
                 <div class="form-group">
                     <label title="Carport bredde" for="carport_bredde">Carport bredde</label>
-                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde"
-                            required>
+                    <select class="form-control" id="carport_bredde" name="Carport_bredde" title="Carport bredde" required>
                         <option selected="selected" value="" disabled>Vælg bredde</option>
                         <option value="2400">240 cm</option>
                         <option value="2700">270 cm</option>
@@ -88,8 +87,7 @@
             </div>
             <div class="form-group">
                 <label title="Carport længde" for="carport_laengde">Carport længde</label>
-                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde"
-                        required>
+                <select class="form-control" id="carport_laengde" name="Carport_laengde" title="Carport længde" required>
                     <option selected="selected" value="" disabled>Vælg længde</option>
                     <option value="2400">240 cm</option>
                     <option value="2700">270 cm</option>
@@ -116,12 +114,39 @@
                 <label title="Tag" for="tag">
                     <span>
                         <b>Tag</b>
-                        <br>
-                        NB! Da der er valgt fladt tag, er der kun en tagtype tilgængelig
                     </span>
                 </label>
-                <select class="form-control" id="tag" name="Tag" title="Tag">
-                    <option selected="selected" value="1">Plasttrapezplader</option>
+                <select class="form-control" id="tag" name="Tag" title="Tagtype/farve" required>
+                    <option selected="selected" value="" disabled>Vælg tagtype/farve</option>
+                    <option value="Betontagsten - Rød">Betontagsten - Rød</option>
+                    <option value="Betontagsten - Teglrød">Betontagsten - Teglrød</option>
+                    <option value="Betontagsten - Brun">Betontagsten - Brun</option>
+                    <option value="Betontagsten - Sort">Betontagsten - Sort</option>
+                    <option value="Eternittag B6 - Grå">Eternittag B6 - Grå</option>
+                    <option value="Eternittag B6 - Sort">Eternittag B6 - Sort</option>
+                    <option value="Eternittag B6 - Mokka (brun)">Eternittag B6 - Mokka (brun)</option>
+                    <option value="Eternittag B6 - Rødbrun">Eternittag B6 - Rødbrun</option>
+                    <option value="Eternittag B6 - Teglrød">Eternittag B6 - Teglrød</option>
+                    <option value="Eternittag B7 - Grå">Eternittag B7 - Grå</option>
+                    <option value="Eternittag B7 - Sort">Eternittag B7 - Sort</option>
+                    <option value="Eternittag B7 - Mokka (brun)">Eternittag B7 - Mokka (brun)</option>
+                    <option value="Eternittag B7 - Rødbrun">Eternittag B7 - Rødbrun</option>
+                    <option value="Eternittag B7 - Teglrød">Eternittag B7 - Teglrød</option>
+                    <option value="Eternittag B7 - Rødflammet">Eternittag B7 - Rødflammet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label title="Taghældning" for="taghaeldning">
+                    Taghældning
+                </label>
+                <select class="form-control" id="taghaeldning" name="Taghaeldning" title="Taghældning">
+                    <option value="15">15 grader</option>
+                    <option value="20">20 grader</option>
+                    <option selected="selected" value="25">25 grader</option>
+                    <option value="30">30 grader</option>
+                    <option value="35">35 grader</option>
+                    <option value="40">40 grader</option>
+                    <option value="45">45 grader</option>
                 </select>
             </div>
             <div class="form-group">
@@ -185,7 +210,7 @@
             <div class="form-group">
                 <label title="Evt. bemærkninger" for="bemaerkninger">Evt. bemærkninger</label>
                 <textarea class="form-control" cols="20" id="bemaerkninger" name="bemaerkninger"
-                          rows="2">Kommentar</textarea>
+                          rows="2" placeholder="Indtast kommentar"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" name="Submit" title="Send forespørgsel" value="Bestil tilbud"
