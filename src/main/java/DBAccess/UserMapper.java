@@ -46,7 +46,6 @@ public class UserMapper {
      * @return finds user in DB and returns all user data
      * @throws FogException if user is not found in database or password and email doesn't match
      */
-
     public static User login(String email, String password) throws FogException {
 
         try {
