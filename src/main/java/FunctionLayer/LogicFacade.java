@@ -44,6 +44,14 @@ public class LogicFacade {
         return OrderMapper.getOrdersByStatus(status);
     }
 
+
+
+    public static ArrayList<Order> getCustomerOrdersByStatus(String status, int user_id) throws FogException {
+        return OrderMapper.getCustomerOrdersByStatus(status, user_id);
+    }
+
+
+
     public static void insertOrder(Order order) throws FogException {
         order.setPrice(order.priceCalc(ListGen.getOrderLinelist(order)));
         OrderMapper.insertOrder(order);
@@ -51,6 +59,10 @@ public class LogicFacade {
 
     public static Order getSingleOrder(String orderId) throws FogException {
         return OrderMapper.getSingleOrder(orderId);
+    }
+
+    public static Order getSingleCustomerOrder(String orderId) throws FogException {
+        return OrderMapper.getSingleCustomerOrder(orderId);
     }
 
     public static void confirmOrder(double newPrice, int orderId) throws FogException {

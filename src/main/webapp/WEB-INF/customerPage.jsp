@@ -25,6 +25,25 @@
     <h2>Velkommen ${sessionScope.user.surname}</h2>
 </div>
 
+<div class="container-fluid background mt-5" style="padding-bottom: 20%">
+    <div class="container background  pt-5 pb-5">
+        <div class="row">
+            <form class="mr-2" name="showNewCustomerOrders" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showNewCustomerOrders">
+                <input type="hidden" name="status" value="pending">
+                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se afventende ordrer</button>
+            </form>
+
+            <form class="mr-2" name="showCustomerOrdersByStatus" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showCustomerOrdersByStatus">
+                <input type="hidden" name="status" value="accepted">
+                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se accepterede ordrer</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid background" style="padding-bottom: 12%">
     <div class="container background pt-5 pb-5">
         <div class="row">

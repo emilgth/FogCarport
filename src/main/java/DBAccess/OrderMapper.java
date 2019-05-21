@@ -108,7 +108,47 @@ public class OrderMapper {
         return orders;
     }
 
+    public static ArrayList<Order> getCustomerOrdersByStatus(String status, int user_id) throws FogException {
+        ArrayList<Order> orders = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE status = ? and user_id = ?");
+            ps.setString(1, status);
+            ps.setInt(2, user_id);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                getOrderFromDB(order, resultSet);
+                orders.add(order);
+            }
+
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getOrdersByStatus(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getOrdersByStatus(): JDBC driver ikke fundet");
+        }
+        return orders;
+    }
+
     public static Order getSingleOrder(String orderId) throws FogException {
+        Order order = new Order();
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
+            ps.setString(1, orderId);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                getOrderFromDB(order, resultSet);
+            }
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
+        }
+        return order;
+    }
+
+    public static Order getSingleCustomerOrder(String orderId) throws FogException {
         Order order = new Order();
         try {
             Connection con = Connector.connection();
