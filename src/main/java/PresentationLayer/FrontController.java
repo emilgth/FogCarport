@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
 
+    private final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
+    private FileHandler handler;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,13 +39,14 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
 
         //Logger til håndtering af fejl
-        final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
-        FileHandler handler = new FileHandler(System.getenv("FOG_LOG_PATH"));
+        if (handler == null) {
+            handler = new FileHandler(System.getenv("FOG_LOG_PATH"));
 
-        LOGGER.setLevel(Level.FINEST);
+            LOGGER.setLevel(Level.FINEST);
 
-        LOGGER.addHandler(handler);
-        handler.setFormatter(new VerySimpleFormatter());
+            LOGGER.addHandler(handler);
+            handler.setFormatter(new VerySimpleFormatter());
+        }
 
         try {
             Command action = Command.from(request);
