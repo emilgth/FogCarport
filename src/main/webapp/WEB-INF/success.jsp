@@ -19,22 +19,8 @@
 <%@include file="include/loggedInHeader.jsp"%>
 <div class="container-fluid background pt-5 pb-5">
     <div class="container">
-        <p>Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
-
-        <div class="container" style="max-width: 60%">
-            <c:forEach items="${sessionScope.svgTopList}" var="svgTopList">
-                ${svgTopList.getModel()}
-            </c:forEach>
-            <c:forEach items="${sessionScope.svgSideList}" var="svgSideList">
-                ${svgSideList.getModel()}
-            </c:forEach>
-        </div>
-        <hr>
-
-        <form action="FrontController?command=customerOrderRequest" method="post">
-            <button class="btn btn-primary">Bestil</button>
-        </form>
-            <button onclick="goBack()" class="btn btn-danger">Fortryd</button>
+        <h1>Tak for din forespørgsel!</h1>
+        <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. </p>
     </div>
 </div>
 

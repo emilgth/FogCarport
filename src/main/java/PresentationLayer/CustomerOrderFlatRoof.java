@@ -60,8 +60,7 @@ class CustomerOrderFlatRoof extends Command {
         ArrayList<Svg> svgTopList = LogicFacade.getSvgTopList(order);
         ArrayList<Svg> svgSideList = LogicFacade.getSvgSideList(order);
 
-        FunctionLayer.LogicFacade.insertOrder(order);
-
+        //TODO lav om til request
         session.setAttribute("order", order);
         session.setAttribute("orderLineList", orderLineList);
         session.setAttribute("svgTopList", svgTopList);

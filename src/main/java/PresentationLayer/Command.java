@@ -15,7 +15,7 @@ abstract class Command {
 
     private static void initCommands() {
         commands = new HashMap<>();
-        commands.put("builder", new Builder());
+        commands.put("customerOrderRequest", new Success());
         commands.put("customerOrder", new CustomerOrderFlatRoof());
         commands.put("login", new Login());
         commands.put("register", new Register());
