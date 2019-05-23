@@ -8,8 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * Handles CRUD operations relatied to the materials table
+ */
 public class MaterialMapper {
 
+    /**
+     * @return An arrayList with all the materials in the DB
+     */
     public static ArrayList<Material> getMaterialList() {
         ArrayList<Material> materialList = new ArrayList<>();
 
