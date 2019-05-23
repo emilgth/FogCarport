@@ -36,7 +36,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-sm-12 col-md-6">
                 <h3>QUICK-BYG TILBUD - CARPORT MED FLADT TAG</h3>
                 <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning
                     på en carport indenfor vores standardprogram, der tilpasses dine specifikke ønsker.<br>

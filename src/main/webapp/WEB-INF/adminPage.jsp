@@ -28,8 +28,8 @@
 <div class="container-fluid background mt-5" style="padding-bottom: 20%">
     <div class="container background  pt-5 pb-5">
         <div class="row">
-            <form class="mr-2" name="showAllOrders" action="FrontController" method="POST">
-                <input type="hidden" name="command" value="showAllOrders">
+            <form class="mr-2" name="showAdminOrders" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showAdminOrders">
                 <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se alle ordrer</button>
             </form>
 
