@@ -31,6 +31,10 @@ abstract class Command {
         commands.put("withRoofCheck", new WithRoofCheck());
         commands.put("logOut", new LogOut());
         commands.put("showOrdersByStatus", new ShowOrdersByStatus());
+        commands.put("showCustomerOrdersByStatus", new ShowCustomerOrdersByStatus());
+        commands.put("showNewCustomerOrders", new ShowCustomerOrdersByStatus());
+        commands.put("customerShowSingleOrder", new CustomerShowSingleOrder());
+        commands.put("customerAcceptOrder", new CustomerAcceptOrder());
 
     }
 

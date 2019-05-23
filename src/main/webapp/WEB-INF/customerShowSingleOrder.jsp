@@ -1,10 +1,17 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: karlf
+  Date: 21-05-2019
+  Time: 13:48
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Adminside</title>
+    <title>Afventene Ordre ${requestScope.order.orderId}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,40 +23,41 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
+
 </head>
 <body>
-
 <%@include file="include/loggedInHeader.jsp" %>
+<div class="container-fluid background pt-5 pb-5">
+    <div class="container">
 
+        <p>
+            <i class='far fa-address-book'></i> ${requestScope.order.getUser().getSurname()} ${requestScope.order.getUser().getLastname()}
+        </p>
+        <p><i class='far fa-envelope'></i> ${requestScope.order.getUser().getEmail()}</p>
+        <p><i class='fas fa-mobile-alt'></i> ${requestScope.order.getUser().getPhone()}</p>
+        <div class="container" style="max-width: 60%">
+            <c:forEach items="${requestScope.svgTopList}" var="svgTopList">
+                ${svgTopList.getModel()}
+            </c:forEach>
 
-<div class="container mt-5 mb-5"><h1>Adminside</h1>
-    <h2>Velkommen ${sessionScope.user.surname}</h2></div>
-
-<div class="container-fluid background mt-5" style="padding-bottom: 20%">
-    <div class="container background  pt-5 pb-5">
-        <div class="row">
-            <form class="mr-2" name="showAdminOrders" action="FrontController" method="POST">
-                <input type="hidden" name="command" value="showAdminOrders">
-                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se alle ordrer</button>
-            </form>
-
-            <form class="mr-2" name="showNewOrders" action="FrontController" method="POST">
-                <input type="hidden" name="command" value="showOrdersByStatus">
-                <input type="hidden" name="status" value="pending">
-                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se nye ordrer</button>
-            </form>
-
-            <form class="mr-2" name="showOrderByStatus" action="FrontController" method="POST">
-                <input type="hidden" name="command" value="showOrdersByStatus">
-                <input type="hidden" name="status" value="pending
-">
-                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se accepterede ordrer</button>
-            </form>
-
+            <c:forEach items="${requestScope.svgSideList}" var="svgSideList">
+                ${svgSideList.getModel()}
+            </c:forEach>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <p>Samlet Pris: ${requestScope.suggestedPrice}</p>
+                <div class="form-group">
+                    <form name="customerAcceptOrder" action="FrontController" method="POST">
+                        <input type="hidden" name="command" value="customerAcceptOrder">
+                        <input type="hidden" name="orderId" value="${requestScope.order.orderId}">
+                        <button class="btn btn-primary mt-1" type="submit">Bekræft</button>
+                    </form>
+                </div>
+            </div>
     </div>
 </div>
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
