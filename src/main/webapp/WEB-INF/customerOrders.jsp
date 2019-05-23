@@ -37,6 +37,7 @@
                     <th>Skurlængde</th>
                     <th>Skurbredde</th>
                     <th>Kommentar</th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${requestScope.orders}" var="orders">
 
@@ -52,11 +53,12 @@
                         <td>${orders.getShedLength()}</td>
                         <td>${orders.getShedWidth()}</td>
                         <td>${orders.getComment()}</td>
-                        <form name="customerShowSingleOrder" action="FrontController" method="POST">
-                            <input type="hidden" name="command" value="customerShowSingleOrder">
-                            <input type="hidden" name="orderId" value="${orders.getOrderId()}">
-                            <button class="btn btn-primary" type="submit">Se ordre</button>
-                        </form>
+                        <td>
+                            <form name="customerShowSingleOrder" action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="customerShowSingleOrder">
+                                <input type="hidden" name="orderId" value="${orders.getOrderId()}">
+                                <button class="btn btn-primary" type="submit">Se ordre</button>
+                            </form>
                         </td>
                     </tr>
 
@@ -64,7 +66,7 @@
             </table>
         </div>
     </div>
-        <%@include file="include/footer.jsp" %>
+    <%@include file="include/footer.jsp" %>
 </div>
 
 <!-- Optional JavaScript -->
