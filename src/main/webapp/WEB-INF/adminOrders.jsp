@@ -7,21 +7,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon-16x16.png" sizes="16x16"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
 </head>
-<%@include file="include/loggedInHeader.jsp" %>
 <body>
+<%@include file="include/loggedInHeader.jsp" %>
 <div class="container" style="padding-bottom: 200px">
     <h1>Alle Ordre</h1>
     <div class="container-fluid background">
@@ -57,6 +60,13 @@
                             <td>${orders.getShedLength()}</td>
                             <td>${orders.getShedWidth()}</td>
                             <td>${orders.getComment()}</td>
+                            <td>
+                            <form name="adminShowSingleOrder" action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="adminShowSingleOrder">
+                                <input type="hidden" name="orderId" value="${orders.getOrderId()}">
+                                <button class="btn btn-primary" type="submit">Se ordre</button>
+                            </form>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>

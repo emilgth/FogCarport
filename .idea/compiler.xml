@@ -10,6 +10,7 @@
         <module name="KasperWebProjekt" />
         <module name="FogCarport0905" />
         <module name="FogCarport" />
+        <module name="FogCarport2105" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FogCarport" options="-endorseddirs C:\Users\Emil\OneDrive\Datamatiker\FogCarport\target/endorsed" />
       <module name="FogCarport0905" options="-endorseddirs &quot;C:\Users\karlf\Desktop\Datamatiker 2019\FogCarport0905\target/endorsed&quot;" />
+      <module name="FogCarport2105" options="-endorseddirs &quot;C:\Users\karlf\Desktop\Datamatiker 2019\FogCarport2105\target/endorsed&quot;" />
       <module name="KasperWebProjekt" options="-endorseddirs &quot;/Users/jobe/Google Drive/CBA/Kurser/2_Sem_Spring_2019/KodeGitHub/KaspersWebProjekt/target/endorsed&quot;" />
       <module name="Projekter" options="-endorseddirs C:\Users\bueko\Documents\Projekter\target/endorsed" />
     </option>
