@@ -41,7 +41,8 @@
 
             <form class="mr-2" name="showOrderByStatus" action="FrontController" method="POST">
                 <input type="hidden" name="command" value="showOrdersByStatus">
-                <input type="hidden" name="status" value="accepted">
+                <input type="hidden" name="status" value="pending
+">
                 <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se accepterede ordrer</button>
             </form>
 

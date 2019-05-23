@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Changes the price and status of a specific order
  */
-class ConfirmCustomerOrder extends Command {
+class CustomerAcceptOrder extends Command {
     /**
      * @param request servlet request
      * @param response servlet response
@@ -21,10 +21,9 @@ class ConfirmCustomerOrder extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         int orderId = Integer.parseInt(request.getParameter("orderId"));
-        double newPrice = Double.parseDouble(request.getParameter("newPrice"));
-        LogicFacade.confirmOrder(newPrice, orderId);
-        ArrayList<Order> orders = LogicFacade.getOrdersByStatus("pending");
+        LogicFacade.customerAcceptOrder(orderId);
+        ArrayList<Order> orders = LogicFacade.getOrdersByStatus("accepted");
         request.setAttribute("orders", orders);
-        return "/WEB-INF/customerNewOrders";
+        return "/WEB-INF/acceptedCustomerOrder";
     }
 }

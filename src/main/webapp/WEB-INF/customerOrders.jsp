@@ -52,12 +52,11 @@
                         <td>${orders.getShedLength()}</td>
                         <td>${orders.getShedWidth()}</td>
                         <td>${orders.getComment()}</td>
-                        <td>
-                            <form name="customerShowSingleOrder" action="FrontController" method="POST">
-                                <input type="hidden" name="command" value="customerShowSingleOrder">
-                                <input type="hidden" name="orderId" value="${orders.getOrderId()}">
-                                <button class="btn btn-primary" type="submit">Se ordre</button>
-                            </form>
+                        <form name="customerShowSingleOrder" action="FrontController" method="POST">
+                            <input type="hidden" name="command" value="customerShowSingleOrder">
+                            <input type="hidden" name="orderId" value="${orders.getOrderId()}">
+                            <button class="btn btn-primary" type="submit">Se ordre</button>
+                        </form>
                         </td>
                     </tr>
 

@@ -11,7 +11,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Bekæfted Ordre ${requestScope.order.orderId}</title>
+    <title>Afventene Ordre ${requestScope.order.orderId}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,31 +35,6 @@
         </p>
         <p><i class='far fa-envelope'></i> ${requestScope.order.getUser().getEmail()}</p>
         <p><i class='fas fa-mobile-alt'></i> ${requestScope.order.getUser().getPhone()}</p>
-
-        <div class="table-responsive mb-5">
-            <table class='table table-condensed table-striped table-hover'>
-                <tr>
-                    <th>Materiale</th>
-                    <th>Længde</th>
-                    <th>Antal</th>
-                    <th>Enhed</th>
-                    <th>Beskrivelse</th>
-                </tr>
-                <c:forEach items="${requestScope.orderLineList}" var="orderLine">
-                    <tr>
-                        <td>
-                                ${orderLine.getMaterial().getWidth()}x${orderLine.getMaterial().getHeight()}mm.
-                                ${orderLine.getMaterial().getName()}
-                        </td>
-                        <td>${orderLine.getMaterial().getLength()}</td>
-                        <td>${orderLine.getAmount()}</td>
-                        <td>${orderLine.getMaterial().getUnit()}</td>
-                        <td>${orderLine.getDescription()}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-
         <div class="container" style="max-width: 60%">
             <c:forEach items="${requestScope.svgTopList}" var="svgTopList">
                 ${svgTopList.getModel()}
@@ -70,19 +45,17 @@
             </c:forEach>
         </div>
         <hr>
-
         <div class="row">
             <div class="col">
-                <p>Pris: ${requestScope.suggestedPrice} DKK</p>
+                <p>Samlet Pris: ${requestScope.suggestedPrice}</p>
                 <div class="form-group">
-                    <form name="confirmOrder" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="confirmOrder">
+                    <form name="customerAcceptOrder" action="FrontController" method="POST">
+                        <input type="hidden" name="command" value="customerAcceptOrder">
                         <input type="hidden" name="orderId" value="${requestScope.order.orderId}">
                         <button class="btn btn-primary mt-1" type="submit">Bekræft</button>
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 

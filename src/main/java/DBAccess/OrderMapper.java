@@ -148,6 +148,24 @@ public class OrderMapper {
         return order;
     }
 
+    public static Order getSingleConfirmedCustomerOrder(String orderId) throws FogException {
+        Order order = new Order();
+        try {
+            Connection con = Connector.connection();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
+            ps.setString(1, orderId);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                getOrderFromDB(order, resultSet);
+            }
+        } catch (SQLException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
+        } catch (ClassNotFoundException e) {
+            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
+        }
+        return order;
+    }
+
     public static Order getSingleCustomerOrder(String orderId) throws FogException {
         Order order = new Order();
         try {
