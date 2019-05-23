@@ -31,10 +31,12 @@
         </div>
         <hr>
 
-        <form action="FrontController?command=customerOrderRequest" method="post">
-            <button class="btn btn-primary">Bestil</button>
-        </form>
+        <div class="row">
+            <form action="FrontController?command=customerOrderRequest" method="post">
+                <button class="btn btn-primary mr-1">Bestil</button>
+            </form>
             <button onclick="goBack()" class="btn btn-danger">Fortryd</button>
+        </div>
     </div>
 </div>
 

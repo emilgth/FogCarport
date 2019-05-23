@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Generates item list with the ListGen.getOrderLinesList method, and generates an svg drawing with SvgGen.
  * Finally the order is inserted into the database and the user is sent to a success page
  */
-class CustomerOrderFlatRoof extends Command {
+class CustomerOrder extends Command {
     /**
      * @param request  servlet request
      * @param response servlet response

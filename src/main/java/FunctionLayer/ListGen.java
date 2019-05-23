@@ -344,7 +344,7 @@ public class ListGen {
 
         Mellem metoderne bliver brugt for overskuelighed og for at gøre koden mere testbar
         */
-        int maxMatLength = findMaxFromList(size, list);
+        int maxMatLength = findMaxFromList(list);
         int i = findFitFactor(size, maxMatLength);
         int tempResult = Integer.MAX_VALUE;
         int materialId = 0;
@@ -364,7 +364,7 @@ public class ListGen {
         return findBestFit(size, getWaterboardList());
     }
 
-    private static int findMaxFromList(int size, ArrayList<Material> list) {
+    private static int findMaxFromList(ArrayList<Material> list) {
         /*
         Denne metode finder et max, som bruges af findFitFactor() til at finde en factor i som
         size delt med bliver mindre end (<=) det længste materiale i list
