@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>kasper.osterbye</groupId>
-    <artifactId>KaspersWebProjekt</artifactId>
-    <version>0.1-Test</version>
+    <groupId>margarita.systems</groupId>
+    <artifactId>FogCarport</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>KaspersWebProjekt</name>
+    <name>FogCarport</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -21,7 +21,6 @@
             <artifactId>bootstrap</artifactId>
             <version>4.3.1</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -51,7 +50,6 @@
             <version>1.2</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -120,5 +118,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

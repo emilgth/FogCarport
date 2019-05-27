@@ -2,7 +2,7 @@
 
 <div class="container">
     <nav class="navbar navbar-expand navbar-collapse">
-        <img src="img/logo.png" class="img-fluid navbar-brand" alt="logo">
+        <a class="navbar-brand" href="index.jsp"><img src="img/logo.png" class="img-fluid" alt="logo"></a>
         <div class="container">
             <form class="form-inline">
                 <button type="button" class="btn btn-link mr-1" data-toggle="modal" data-target="#login">

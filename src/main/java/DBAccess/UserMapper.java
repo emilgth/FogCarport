@@ -5,6 +5,9 @@ import FunctionLayer.Models.User;
 
 import java.sql.*;
 
+/**
+ * Handles CRUD operations for the user table in DB
+ */
 public class UserMapper {
 
     /**
@@ -75,6 +78,10 @@ public class UserMapper {
         }
     }
 
+    /**
+     * @param user User object containing data to be inserted into database
+     * @throws FogException see FE
+     */
     public static void createUser(User user) throws FogException {
         try {
             Connection con = Connector.connection();
@@ -97,6 +104,9 @@ public class UserMapper {
 
     }
 
+    /**
+     * @param user User object containing data to be inserted into database
+     */
     public static void updateUser(User user) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

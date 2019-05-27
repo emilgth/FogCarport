@@ -7,21 +7,24 @@ package PresentationLayer;
 
 import FunctionLayer.FogException;
 
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * @author kasper
+ * FrontController is a servlet that processes all requests from the JSPs
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+
+    private final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
+    private FileHandler handler;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +39,14 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
 
         //Logger til håndtering af fejl
-        final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
-        FileHandler handler = new FileHandler(System.getenv("FOG_LOG_PATH"));
+        if (handler == null) {
+            handler = new FileHandler(System.getenv("FOG_LOG_PATH"));
 
-        LOGGER.setLevel(Level.FINEST);
+            LOGGER.setLevel(Level.FINEST);
 
-        LOGGER.addHandler(handler);
-        handler.setFormatter(new VerySimpleFormatter());
+            LOGGER.addHandler(handler);
+            handler.setFormatter(new VerySimpleFormatter());
+        }
 
         try {
             Command action = Command.from(request);

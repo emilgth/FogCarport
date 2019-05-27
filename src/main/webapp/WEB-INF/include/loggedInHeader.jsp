@@ -1,6 +1,6 @@
 <div class="container">
     <nav class="navbar navbar-expand navbar-collapse">
-        <img src="img/logo.png" class="img-fluid navbar-brand" alt="logo">
+        <a class="navbar-brand" href="FrontController?command=loggedInIndex"><img src="img/logo.png" class="img-fluid" alt="logo"></a>
         <div class="container">
             <div class="form-inline">
                 <form name="customerPage" action="FrontController" method="POST">

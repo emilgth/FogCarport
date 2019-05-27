@@ -1,22 +1,24 @@
 package PresentationLayer;
 
 import FunctionLayer.FogException;
+import FunctionLayer.LogicFacade;
+import FunctionLayer.Models.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Checks if user is logged in and sends them to appropriate page
+ * inserts order into database
  */
-class WithRoofCheck extends Command {
+class Success extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+
         HttpSession session = request.getSession();
-        if (session.getAttribute("user") == null) {
-            return "medRejsning";
-        } else {
-            return "/WEB-INF/medRejsningLoggedIn";
-        }
+        Order order = (Order) session.getAttribute("order");
+        LogicFacade.insertOrder(order);
+
+        return "/WEB-INF/success";
     }
 }

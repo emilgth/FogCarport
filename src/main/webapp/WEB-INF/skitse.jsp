@@ -19,38 +19,7 @@
 <%@include file="include/loggedInHeader.jsp"%>
 <div class="container-fluid background pt-5 pb-5">
     <div class="container">
-        <h1>Tak for din forespørgsel!</h1>
-        <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. <br>
-            Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
-        <p>Dette er en demo version!</p>
-
-            <tr>
-                <td>Email: ${sessionScope.order.getUser().getEmail()}</td>
-                <br>
-                <td>Navn: ${sessionScope.order.getUser().getSurname()}</td>
-                <td> ${sessionScope.order.getUser().getLastname()}</td>
-            </tr>
-            <table class='table table-condensed table-striped table-hover'>
-                <tr>
-                    <th>Materiale</th>
-                    <th>Længde</th>
-                    <th>Antal</th>
-                    <th>Enhed</th>
-                    <th>Beskrivelse</th>
-                </tr>
-                <c:forEach items="${sessionScope.orderLineList}" var="orderLine">
-                    <tr>
-                        <td>
-                                ${orderLine.getMaterial().getWidth()}x${orderLine.getMaterial().getHeight()}mm.
-                                ${orderLine.getMaterial().getName()}
-                        </td>
-                        <td>${orderLine.getMaterial().getLength()}</td>
-                        <td>${orderLine.getAmount()}</td>
-                        <td>${orderLine.getMaterial().getUnit()}</td>
-                        <td>${orderLine.getDescription()}</td>
-                    </tr>
-                </c:forEach>
-            </table>
+        <p>Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
 
         <div class="container" style="max-width: 60%">
             <c:forEach items="${sessionScope.svgTopList}" var="svgTopList">
@@ -62,6 +31,12 @@
         </div>
         <hr>
 
+        <div class="row">
+            <form action="FrontController?command=customerOrderRequest" method="post">
+                <button class="btn btn-primary mr-1">Bestil</button>
+            </form>
+            <button onclick="goBack()" class="btn btn-danger">Fortryd</button>
+        </div>
     </div>
 </div>
 
@@ -76,5 +51,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>

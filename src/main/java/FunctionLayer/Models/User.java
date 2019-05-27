@@ -1,9 +1,12 @@
 package FunctionLayer.Models;
 
+/**
+ * Object used for both customer and admins
+ */
 public class User {
     private int userId;
-    private String email; //TODO regex
-    private String password; //TODO hash
+    private String email; //Validering sker via html på frontend.
+    private String password; //Vi bruger ikke kryptering, da det vil kræve javascript.
     private String surname;
     private String lastname;
     private int phone;
@@ -13,7 +16,7 @@ public class User {
     }
 
     public User(String email, String password, String surname, String lastname, int phone) {
-        this.userId = 2; //todo userid skal ændres når der er login
+        this.userId = 0; //Placeholder for return generated i mapper.
         this.email = email;
         this.password = password;
         this.surname = surname;

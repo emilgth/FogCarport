@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import FunctionLayer.FogException;
 import FunctionLayer.Models.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Checks if the user is and admin. Admins are sent to adminPage, regular users are sent to customerPage
+ * Checks if the user is an admin. Admins are sent to adminPage, regular users are sent to customerPage
  */
 class CustomerPage extends Command {
     @Override

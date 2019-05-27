@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class ShowCustomerOrder extends Command {
+/**
+ * Retrieves an arrayList of all orders belonging to the user
+ */
+class ShowCustomerOrder extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {

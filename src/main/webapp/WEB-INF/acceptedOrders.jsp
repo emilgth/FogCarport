@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Accepterede Ordrer</title>
+    <title>Kundeside</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,60 +13,114 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
-<%@include file="include/loggedInHeader.jsp" %>
-<div class="container">
-    <h1>Accepterede Ordrer</h1>
-</div>
-<div class="container-fluid background">
-    <div class="container background pt-5 pb-5">
-        <p>Alle mål er i millimeter</p>
-        <div class="table-responsive">
-            <table class='table table-condensed table-striped table-hover'>
-                <tr>
-                    <th>Name</th>
-                    <th>Ordre ID</th>
-                    <th>Pris</th>
-                    <th>Tag</th>
-                    <th>Tagvinkel</th>
-                    <th>Længde</th>
-                    <th>Bredde</th>
-                    <th>Højde</th>
-                    <th>Skurlængde</th>
-                    <th>Skurbredde</th>
-                    <th>Kommentar</th>
-                    <th></th>
-                </tr>
-                <c:forEach items="${requestScope.orders}" var="orders">
-                    <tr>
-                        <td>${orders.getUser().getSurname()} ${orders.getUser().getLastname()}</td>
-                        <td>${orders.getOrderId()}</td>
-                        <td>${orders.getPrice()},-</td>
-                        <td>${orders.getRoofId()}</td>
-                        <td>${orders.getAngle()}</td>
-                        <td>${orders.getLength()}</td>
-                        <td>${orders.getWidth()}</td>
-                        <td>${orders.getHeight()}</td>
-                        <td>${orders.getShedLength()}</td>
-                        <td>${orders.getShedWidth()}</td>
-                        <td>${orders.getComment()}</td>
-                        <td>
-                            <form name="adminShowSingleOrder" action="FrontController" method="POST">
-                                <input type="hidden" name="command" value="adminShowSingleOrder">
-                                <input type="hidden" name="orderId" value="${orders.getOrderId()}">
-                                <button class="btn btn-primary" type="submit">Se ordre</button>
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
 
+<%@include file="include/loggedInHeader.jsp" %>
+
+<div class="container mt-5 mb-5">
+    <h1>Kundeside</h1>
+    <h2>Dit tilbud er nu accepteret, ${sessionScope.user.surname}</h2>
+</div>
+
+<div class="container-fluid background mt-5" style="padding-bottom: 20%">
+    <div class="container background  pt-5 pb-5">
+        <div class="row">
+            <form class="mr-2" name="showNewCustomerOrders" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showNewCustomerOrders">
+                <input type="hidden" name="status" value="pending">
+                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Afventende ordre</button>
+            </form>
+
+            <form class="mr-2" name="showCustomerOrdersByStatus" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showCustomerOrdersByStatus">
+                <input type="hidden" name="status" value="confirmed">
+                <button class="btn btn-primary" type="submit" value="Se mine ordrer">Se tilbud</button>
+            </form>
+
+        </div>
     </div>
 </div>
-<%@include file="include/footer.jsp" %>
+
+<div class="container-fluid background" style="padding-bottom: 12%">
+    <div class="container background pt-5 pb-5">
+        <div class="row">
+            <div class="col"><p class="font-weight-bold">Mine info: </p>
+                <p><i class='far fa-address-book'></i> ${sessionScope.user.surname} ${sessionScope.user.lastname}</p>
+                <p><i class='far fa-envelope'></i> ${sessionScope.user.email}</p>
+                <p><i class='fas fa-mobile-alt'></i> ${sessionScope.user.phone}</p></div>
+        </div>
+
+        <div class="row">
+            <form name="showCustomerOrders" action="FrontController" method="POST">
+                <input type="hidden" name="command" value="showCustomerOrder">
+                <button class="btn btn-primary mr-1" type="submit" value="Se mine ordrer ordrer">Se mine ordrer</button>
+            </form>
+            <button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#updateUserInfo">
+                Redigér mine info
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="updateUserInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Indtast nye info her</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="updateUserData" action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="updateUserData">
+                    <label>
+                        Fornavn:
+                        <input class="form-control" type="text" name="surname" value="${sessionScope.user.surname}"
+                               required>
+                    </label>
+                    <label>
+                        Efternavn:
+                        <input class="form-control" type="text" name="lastname" value="${sessionScope.user.lastname}"
+                               required>
+                    </label>
+                    <label>
+                        E-mail:
+                        <input class="form-control" type="email" name="email" value="${sessionScope.user.email}"
+                               required>
+                    </label>
+                    <br>
+                    <label>
+                        Password:
+                        <input class="form-control" type="password" name="password"
+                               value="${sessionScope.user.password}" required>
+                    </label>
+                    <label>
+                        Telefon:
+                        <input class="form-control" type="number" name="phone" value="${sessionScope.user.phone}"
+                               required>
+                    </label>
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="Accepter">
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Afslut</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -78,5 +132,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<%@include file="include/footer.jsp" %>
 </body>
 </html>

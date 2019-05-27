@@ -1,7 +1,8 @@
 package FunctionLayer.Models;
 
-//Material er materialer i materialelisten
-
+/**
+ * Object representing a row in the materials DB table
+ */
 public class Material {
     private int materialId;
     private String name;
@@ -11,6 +12,7 @@ public class Material {
     private int height;
     private int length;
 
+    //todo kun den tomme constructor bliver brugt - skal de andre slette?
     public Material() {
     }
 

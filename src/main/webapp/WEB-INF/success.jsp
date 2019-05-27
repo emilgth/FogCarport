@@ -1,28 +1,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!doctype html>
 <html lang="en">
+<html>
 <head>
-    <title>Success</title>
+    <title>Demo</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
 </head>
 <body>
-<%@include file="WEB-INF/include/header.jsp"%>
+<%@include file="include/loggedInHeader.jsp"%>
 <div class="container-fluid background pt-5 pb-5">
     <div class="container">
         <h1>Tak for din forespørgsel!</h1>
-        <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. <br>
-            Herunder kan du se en skitse af hvordan din carport vil se ud:</p>
-        <hr>
-        <img src="img/quickmrejs.gif" class="img-fluid" alt="mrejs">
+        <p>Din forespørgsel er modtaget, vi vender tilbage snarest muligt med et tilbud. </p>
     </div>
 </div>
 
@@ -37,6 +35,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<%@include file="WEB-INF/include/footer.jsp" %>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>

@@ -15,8 +15,8 @@ abstract class Command {
 
     private static void initCommands() {
         commands = new HashMap<>();
-        commands.put("builder", new Builder());
-        commands.put("customerOrder", new CustomerOrderFlatRoof());
+        commands.put("customerOrderRequest", new Success());
+        commands.put("customerOrder", new CustomerOrder());
         commands.put("login", new Login());
         commands.put("register", new Register());
         commands.put("showCustomerOrder", new ShowCustomerOrder());
@@ -31,6 +31,10 @@ abstract class Command {
         commands.put("withRoofCheck", new WithRoofCheck());
         commands.put("logOut", new LogOut());
         commands.put("showOrdersByStatus", new ShowOrdersByStatus());
+        commands.put("showCustomerOrdersByStatus", new ShowCustomerOrdersByStatus());
+        commands.put("showNewCustomerOrders", new ShowCustomerOrdersByStatus());
+        commands.put("customerShowSingleOrder", new CustomerShowSingleOrder());
+        commands.put("customerAcceptOrder", new CustomerAcceptOrder());
 
     }
 

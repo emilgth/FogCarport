@@ -67,6 +67,6 @@ public class OrderMapperTest {
         Order order = new Order(user,  "status", 1, 0, 5000, 6000, 3000, 2000, 1000, "comment");
         OrderMapper.insertOrder(order);
         ArrayList<Order> orderList = OrderMapper.getOrderList();
-        assertEquals(3, orderList.size());
+        assertEquals(2, orderList.size());
     }
 }
