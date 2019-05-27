@@ -43,8 +43,8 @@ public class OrderMapper {
      * @param order inserted into the DB
      */
     public static void insertOrder(Order order) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
 
         try {
             connection = Connector.connection();
@@ -177,54 +177,11 @@ public class OrderMapper {
         return order;
     }
 
-    //todo never used, should be removed
-    public static Order getSingleConfirmedCustomerOrder(String orderId) throws FogException {
-        Order order = new Order();
-        try {
-            Connection con = Connector.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
-            ps.setString(1, orderId);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                getOrderFromDB(order, resultSet);
-            }
-        } catch (SQLException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
-        } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
-        }
-        return order;
-    }
-
-    /**
-     * @param orderId String
-     * @return
-     * @throws FogException
-     */
-    //todo why
-    public static Order getSingleCustomerOrder(String orderId) throws FogException {
-        Order order = new Order();
-        try {
-            Connection con = Connector.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
-            ps.setString(1, orderId);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                getOrderFromDB(order, resultSet);
-            }
-        } catch (SQLException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
-        } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
-        }
-        return order;
-    }
-
     /**
      * @param order empty Order object
      * @param resultSet RS returned from ps.executeQuery()
-     * @throws SQLException
-     * @throws FogException
+     * @throws SQLException .
+     * @throws FogException .
      */
     private static void getOrderFromDB(Order order, ResultSet resultSet) throws SQLException, FogException {
         order.setOrderId(resultSet.getInt("order_id"));
@@ -248,8 +205,8 @@ public class OrderMapper {
      * @throws FogException see FE
      */
     public static void setPrice(double newPrice, int orderId) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("UPDATE Fog.`order` SET price = ? WHERE order_id = ?");
@@ -269,8 +226,8 @@ public class OrderMapper {
      * @throws FogException see FE
      */
     public static void setStatus(String newStatus, int orderId) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = ? WHERE order_id = ?");

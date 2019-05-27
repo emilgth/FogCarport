@@ -1,45 +1,30 @@
 package FunctionLayer.Models;
 
-//OrderLine er stykker i styklisten
-
+/**
+ * Object representing an order's orderLines
+ */
 public class OrderLine {
     private Material material;
     private int amount;
     private String description;
 
-    public OrderLine(Material material, int amount) {
-        this.material = material;
-        this.amount = amount;
-        this.description = "";
-    }
-
+    /**
+     * @param material material object
+     * @param amount how many
+     * @param description material description
+     */
     public OrderLine(Material material, int amount, String description) {
         this.material = material;
         this.amount = amount;
         this.description = description;
     }
 
-    public Material getMaterial() {
+    Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
-
-    public int getAmount() {
+    int getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

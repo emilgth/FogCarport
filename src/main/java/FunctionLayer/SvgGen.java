@@ -6,8 +6,14 @@ import FunctionLayer.Models.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Generates the SVG drawing element to be inserted into JSP
+ */
 public class SvgGen {
 
+    /**
+     * Used only for filling materialMap
+     */
     private static ArrayList<Material> dontUseThisList = MaterialMapper.getMaterialList();
     private static HashMap<Integer, Material> materialMap = getMaterialMap(dontUseThisList);
 
@@ -28,6 +34,10 @@ public class SvgGen {
     private static int overhangSides = 300; //max 300
     private static int maxPostSpacing = 3100; //max 3100
 
+    /**
+     * @param order order to generate svg for
+     * @return arrayList of svg elements displaying carport from the top
+     */
     public static ArrayList<Svg> getSvgTopList(Order order) {
         ArrayList<Svg> svgList = new ArrayList<>();
 
@@ -70,6 +80,13 @@ public class SvgGen {
         return svgList;
     }
 
+    /**
+     * @param svgList the arrayList to insert element into
+     * @param shedWidth width of shed
+     * @param shedLength length of shed
+     * @param width width of carport
+     * @param length length of carport
+     */
     private static void addShedWalls(ArrayList<Svg> svgList, int shedWidth, int shedLength, int width, int length) {
         int wallWidth = 50;
         int postXOffset = materialMap.get(84).getHeight() / 2;
@@ -84,7 +101,14 @@ public class SvgGen {
         svgList.add(new Rect(((((length - overhangSides) - postXOffset) - shedLength) - wallWidth), ((overhangSides + (postYOffset))) + shedWidth, (shedLength + (postXOffset * 2)) + wallWidth * 2, wallWidth));
     }
 
-    private static void addShedPosts(ArrayList<Svg> svgList, int shedWidth, int shedLength, int widtg, int length) {
+    /**
+     * @param svgList the arrayList to insert element into
+     * @param shedWidth width of shed
+     * @param shedLength length of shed
+     * @param width width of carport
+     * @param length length of carport
+     */
+    private static void addShedPosts(ArrayList<Svg> svgList, int shedWidth, int shedLength, int width, int length) {
         int postHeight = materialMap.get(84).getHeight(); //Materiale 84 er 3m. høje stolper. De eneste vi bruger pt.
         int postWidth = materialMap.get(84).getWidth();
         int postXOffset = materialMap.get(84).getHeight() / 2;
@@ -96,6 +120,12 @@ public class SvgGen {
         }
     }
 
+    /**
+     * @param svgList the arrayList to insert element into
+     * @param width width of carport
+     * @param postAmount amount of posts to draw
+     * @param postSpacing spacing between posts
+     */
     private static void addPosts(ArrayList<Svg> svgList, int width, int postAmount, int postSpacing) {
         int postHeight = materialMap.get(84).getHeight(); //Materiale 84 er 3m. høje stolper. De eneste vi bruger pt.
         int postWidth = materialMap.get(84).getWidth();
@@ -108,6 +138,14 @@ public class SvgGen {
         }
     }
 
+    /**
+     * @param svgList the arrayList to insert element into
+     * @param length length of carport
+     * @param width width of carport
+     * @param postAmount amount of posts to draw
+     * @param postSpacing spacing between posts
+     * @param rafterSpacing spacing between rafters
+     */
     private static void addArrows(ArrayList<Svg> svgList, int length, int width, int postAmount, int postSpacing, int rafterSpacing) {
         //SVG PILE (arrows)
         //Total bredde
@@ -126,6 +164,12 @@ public class SvgGen {
         }
     }
 
+    /**
+     * @param svgList the arrayList to insert element into
+     * @param length length of carport
+     * @param width width of carport
+     * @return int rafterSpacing to be used by addArrows()
+     */
     private static int addRaftersAndWindBracers(ArrayList<Svg> svgList, int length, int width) {
         Material rafterMat = materialMap.get(ListGen.getRafterId(width));
         int rafterWidth = rafterMat.getWidth();
@@ -149,6 +193,12 @@ public class SvgGen {
         return rafterSpacing;
     }
 
+    /**
+     * @param length length of carport
+     * @param svgList the arrayList to insert element into
+     * @param width width of carport
+     * @param postSpacing spacing between posts
+     */
     private static void addBeams(int length, ArrayList<Svg> svgList, int width, int postSpacing) {
         //REMME (beams)
         //Da remme altid strækker den fulde længe af en given carport. Kan remme længden bestemmes ved antal remme.
@@ -181,6 +231,11 @@ public class SvgGen {
         }
     }
 
+    /**
+     * @param postAmount amount of posts to draw
+     * @param length length of carport
+     * @return spacing between posts
+     */
     private static int getPostSpacing(int postAmount, int length) {
         /*
         postAmount bliver først delt med 2, da længden postSpacing beskriver afstanden mellem stolper,
@@ -191,6 +246,10 @@ public class SvgGen {
         return (((length - (overhangFront + overhangSides)) / ((postAmount / 2) - 1)));
     }
 
+    /**
+     * @param order order to generate svg elements for
+     * @return arrayList of svg elements to display drawing of carport from the side
+     */
     public static ArrayList<Svg> getSvgSideList(Order order) {
         ArrayList<Svg> svgList = new ArrayList<>();
 

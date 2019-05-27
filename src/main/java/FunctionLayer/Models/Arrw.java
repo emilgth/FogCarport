@@ -1,10 +1,20 @@
 package FunctionLayer.Models;
 
+/**
+ * Used for drawing SVG arrows
+ */
 public class Arrw extends Svg {
     private int x2;
     private int y2;
     private int angle;
 
+    /**
+     * @param x1 start coordinate
+     * @param y1 start coordinate
+     * @param x2 end coordinate
+     * @param y2 end coordinate
+     * @param angle arrow angle
+     */
     public Arrw(int x1, int y1, int x2, int y2, int angle) {
         super(x1, y1);
         this.x2 = x2;
@@ -12,6 +22,9 @@ public class Arrw extends Svg {
         this.angle = angle;
     }
 
+    /**
+     * @return SVG element to be displayed on JSP
+     */
     @Override
     public String getModel() {
         int x = getX1() / 10;

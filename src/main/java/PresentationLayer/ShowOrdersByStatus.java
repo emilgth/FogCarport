@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class ShowOrdersByStatus extends Command {
+/**
+ * Shows all orders with a specific status
+ */
+class ShowOrdersByStatus extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String status = request.getParameter("status");

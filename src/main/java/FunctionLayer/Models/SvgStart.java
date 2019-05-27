@@ -1,5 +1,8 @@
 package FunctionLayer.Models;
 
+/**
+ * SVG starting tag
+ */
 public class SvgStart extends Svg {
 
     private int length;

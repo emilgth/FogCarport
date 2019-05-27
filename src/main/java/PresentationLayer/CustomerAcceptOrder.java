@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 /**
- * Changes the price and status of a specific order
+ * Changes the status of a specific order
  */
 class CustomerAcceptOrder extends Command {
     /**
