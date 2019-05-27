@@ -83,10 +83,6 @@ public class LogicFacade {
 
     public static ArrayList<Svg> getSvgSideList(Order order) {
         return SvgGen.getSvgSideList(order);
-=========
-    public static void customerAcceptOrder( int orderId) throws FogException {
-        OrderMapper.setStatus("accepted", orderId);
 
->>>>>>>>> Temporary merge branch 2
     }
 }
