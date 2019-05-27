@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -18,10 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css.css">
 </head>
 <body>
-
 <%@include file="include/loggedInHeader.jsp" %>
-
-
 <div class="container mt-5 mb-5"><h1>Adminside</h1>
     <h2>Velkommen ${sessionScope.user.surname}</h2></div>
 

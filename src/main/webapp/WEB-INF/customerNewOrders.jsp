@@ -18,7 +18,7 @@
 <body>
 <%@include file="include/loggedInHeader.jsp" %>
 <div class="container">
-    <h1>Afentende ordre</h1>
+    <h1>Dine ordre</h1>
 </div>
 <div class="container-fluid background">
     <div class="container background pt-5 pb-5">
