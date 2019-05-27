@@ -19,8 +19,7 @@ import java.util.ArrayList;
 class Builder extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-
-        //TODO FIX!!!
+        
         ArrayList<Order> orderList = OrderMapper.getOrderList();
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(orderList.get(0));
         ArrayList<Svg> svgList = SvgGen.getSvgTopList(orderList.get(0));
