@@ -7,8 +7,15 @@ import FunctionLayer.Models.User;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Handles CRUD operations for the order table
+ */
 public class OrderMapper {
 
+    /**
+     * @return ArrayList with all the orders in the DB
+     * @throws FogException see FogException
+     */
     public static ArrayList<Order> getOrderList() throws FogException {
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -33,11 +40,11 @@ public class OrderMapper {
     }
 
     /**
-     * @param order
+     * @param order inserted into the DB
      */
     public static void insertOrder(Order order) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
 
         try {
             connection = Connector.connection();
@@ -66,6 +73,11 @@ public class OrderMapper {
         }
     }
 
+    /**
+     * @param user Is used to select orders connected to specific user
+     * @return ArrayList with specific user's orders
+     * @throws FogException see FogException
+     */
     public static ArrayList<Order> getUserOrderList(User user) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
 
@@ -87,6 +99,11 @@ public class OrderMapper {
         return orders;
     }
 
+    /**
+     * @param status used to select orders with desired status (pending, confirmed, accepted)
+     * @return all orders with desired status
+     * @throws FogException see FE
+     */
     public static ArrayList<Order> getOrdersByStatus(String status) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
         try {
@@ -108,6 +125,12 @@ public class OrderMapper {
         return orders;
     }
 
+    /**
+     * @param status String status
+     * @param user_id int user id
+     * @return all orders with correct status and user_id
+     * @throws FogException see FE
+     */
     public static ArrayList<Order> getCustomerOrdersByStatus(String status, int user_id) throws FogException {
         ArrayList<Order> orders = new ArrayList<>();
         try {
@@ -130,11 +153,17 @@ public class OrderMapper {
         return orders;
     }
 
+    /**
+     * @param orderId String
+     * @return single order object
+     * @throws FogException see FE
+     */
     public static Order getSingleOrder(String orderId) throws FogException {
         Order order = new Order();
         try {
             Connection con = Connector.connection();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
+            //Why is orderId a String?
             ps.setString(1, orderId);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
@@ -148,42 +177,12 @@ public class OrderMapper {
         return order;
     }
 
-    public static Order getSingleConfirmedCustomerOrder(String orderId) throws FogException {
-        Order order = new Order();
-        try {
-            Connection con = Connector.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
-            ps.setString(1, orderId);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                getOrderFromDB(order, resultSet);
-            }
-        } catch (SQLException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
-        } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
-        }
-        return order;
-    }
-
-    public static Order getSingleCustomerOrder(String orderId) throws FogException {
-        Order order = new Order();
-        try {
-            Connection con = Connector.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Fog.`order` WHERE order_id = ?");
-            ps.setString(1, orderId);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                getOrderFromDB(order, resultSet);
-            }
-        } catch (SQLException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): SQL syntax fejl");
-        } catch (ClassNotFoundException e) {
-            throw new FogException(e.toString(), "getSingleOrder(): JDBC driver ikke fundet");
-        }
-        return order;
-    }
-
+    /**
+     * @param order empty Order object
+     * @param resultSet RS returned from ps.executeQuery()
+     * @throws SQLException .
+     * @throws FogException .
+     */
     private static void getOrderFromDB(Order order, ResultSet resultSet) throws SQLException, FogException {
         order.setOrderId(resultSet.getInt("order_id"));
         order.setUser(UserMapper.getUser(resultSet.getInt("user_id")));
@@ -200,9 +199,14 @@ public class OrderMapper {
         order.setComment(resultSet.getString("comment"));
     }
 
+    /**
+     * @param newPrice applied to order in database
+     * @param orderId the desired order
+     * @throws FogException see FE
+     */
     public static void setPrice(double newPrice, int orderId) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("UPDATE Fog.`order` SET price = ? WHERE order_id = ?");
@@ -216,9 +220,14 @@ public class OrderMapper {
         }
     }
 
+    /**
+     * @param newStatus applied to order in DB
+     * @param orderId the desired order
+     * @throws FogException see FE
+     */
     public static void setStatus(String newStatus, int orderId) throws FogException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
             connection = Connector.connection();
             preparedStatement = connection.prepareStatement("UPDATE Fog.`order` set status = ? WHERE order_id = ?");

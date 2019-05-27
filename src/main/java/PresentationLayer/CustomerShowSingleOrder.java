@@ -25,7 +25,7 @@ class CustomerShowSingleOrder extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String orderId = request.getParameter("orderId");
-        Order order = LogicFacade.getSingleCustomerOrder(orderId);
+        Order order = LogicFacade.getSingleOrder(orderId);
         ArrayList<OrderLine> orderLineList = ListGen.getOrderLinelist(order);
         ArrayList<Svg> svgTopList = SvgGen.getSvgTopList(order);
         ArrayList<Svg> svgSideList = SvgGen.getSvgSideList(order);

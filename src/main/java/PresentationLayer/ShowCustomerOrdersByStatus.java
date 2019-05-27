@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class ShowCustomerOrdersByStatus extends Command {
+/**
+ * Retrieves arrayList of all orders belonging to a specific user and with a specific status
+ */
+class ShowCustomerOrdersByStatus extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         String status = request.getParameter("status");

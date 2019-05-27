@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * JDBC connector singleton
+ */
 public class Connector {
 
     private static final String URL = System.getenv("FOG_JDBC_CONNECTION_STRING");
@@ -16,7 +19,7 @@ public class Connector {
         singleton = con;
     }
 
-    public static Connection connection() throws ClassNotFoundException, SQLException {
+    static Connection connection() throws ClassNotFoundException, SQLException {
         if (singleton == null) {
             Class.forName("com.mysql.cj.jdbc.Driver");
             singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);

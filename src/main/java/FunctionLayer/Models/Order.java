@@ -2,6 +2,10 @@ package FunctionLayer.Models;
 
 import java.util.ArrayList;
 
+/**
+ * This contains all the information about an order
+ * represents a row from the order DB table
+ */
 public class Order {
     private int orderId;
     private User user;
@@ -48,6 +52,18 @@ public class Order {
         this.shedWidth = shedWidth;
     }
 
+    /**
+     * @param user User object
+     * @param status order status
+     * @param roofId roof type
+     * @param angle roof angle
+     * @param length carport length
+     * @param width carport width
+     * @param height carport height
+     * @param shedLength shed length
+     * @param shedWidth shed width
+     * @param comment customer comment
+     */
     public Order(User user, String status, int roofId, int angle, int length, int width, int height, int shedLength, int shedWidth, String comment) {
         this.orderId = 0;
         this.user = user;
@@ -64,6 +80,10 @@ public class Order {
         this.comment = comment;
     }
 
+    /**
+     * @param orderLineList a list of materials
+     * @return the total price of all the materials in the list
+     */
     public int priceCalc(ArrayList<OrderLine> orderLineList) {
 
         int total = 0;

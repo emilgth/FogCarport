@@ -1,5 +1,8 @@
 package FunctionLayer.Models;
 
+/**
+ * Object used for both customer and admins
+ */
 public class User {
     private int userId;
     private String email; //Validering sker via html på frontend.

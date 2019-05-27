@@ -8,8 +8,14 @@ import FunctionLayer.Models.OrderLine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Used for generating an OrderLine list for an Order
+ */
 public class ListGen {
 
+    /**
+     * Used only for filling materialMap
+     */
     private static ArrayList<Material> dontUseThisList = MaterialMapper.getMaterialList();
     private static HashMap<Integer, Material> materialMap = getMaterialMap(dontUseThisList);
     private static ArrayList<Material> lowerFasciaList;
@@ -18,6 +24,10 @@ public class ListGen {
     private static ArrayList<Material> waterboardList;
     private static ArrayList<Material> roofMaterialList;
 
+    /**
+     * @param materialList ArrayList of all materials in DB
+     * @return HashMap of all materials - to make selecting materials easier
+     */
     private static HashMap<Integer, Material> getMaterialMap(ArrayList<Material> materialList) {
         /*
         Laver materiale arraylisten til et hashmap så jeg kan søge på materiale id.
@@ -157,6 +167,10 @@ public class ListGen {
     private static int overhangSides = 300; //max 300
     private static int postSpacing = 3100; //max 3100
 
+    /**
+     * @param order Order to generate OrderLine list for
+     * @return ArrayList of OrderLines
+     */
     public static ArrayList<OrderLine> getOrderLinelist(Order order) {
 
         ArrayList<OrderLine> orderLineList = new ArrayList<>();
@@ -247,9 +261,14 @@ public class ListGen {
         return orderLineList;
     }
 
-    public static int getFitAmount(int size, int materialLength) {
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @param materialLength length of material
+     * @return the amount of materials needed to fill size
+     */
+    static int getFitAmount(int size, int materialLength) {
         /*
-        Denne metode bruger findFitFactor() til at bestemme hvor man sternbrædder der skal bruges til ÉN side.
+        Denne metode bruger findFitFactor() til at bestemme hvor mange sternbrædder der skal bruges til ÉN side.
         Der er altid 2 sternbrædder pr side pr sæt (i), med undtagelse af bagside hvis der er skur.
 
         while løkken i findFitfactor() kompensere for at nogen materialer er for korte til at strække hele size
@@ -258,17 +277,29 @@ public class ListGen {
         return findFitFactor(size, materialLength);
     }
 
-    public static int getLowerFasciaId(int size) {
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @return the amount of materials needed to fill size
+     */
+    static int getLowerFasciaId(int size) {
         //Se findBestFit()
         return findBestFit(size, getLowerFasciaList());
     }
 
-    public static int getUpperFasciaId(int size) {
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @return the amount of materials needed to fill size
+     */
+    static int getUpperFasciaId(int size) {
         //Se findBestFit()
         return findBestFit(size, getUpperFasciaList());
     }
 
-    public static int getPostAmount(int length) {
+    /**
+     * @param length length of carport
+     * @return amount of posts needed
+     */
+    static int getPostAmount(int length) {
         /*
         Denne metode finder antallet af stolper der skal bruges, baseret på længden af carport
 
@@ -285,17 +316,29 @@ public class ListGen {
         return 2 + (i * 2);
     }
 
+    /**
+     * @param i amount of posts to test for (used by getPostAmount)
+     * @return distance covered by current sets of posts
+     */
     private static int getDistance(int i) {
         //Se getPostAmount()
         return overhangFront + overhangSides + (postSpacing * i);
     }
 
-    public static int getRafterId(int width) {
+    /**
+     * @param width width of carport
+     * @return the amount of materials needed to fill width
+     */
+    static int getRafterId(int width) {
         //Se findBestFit()
         return findBestFit(width, getRafterList());
     }
 
-    public static int getRafterSpacing(int width) {
+    /**
+     * @param width width of carport
+     * @return the optimal spacing between rafters
+     */
+    static int getRafterSpacing(int width) {
         //Denne metode finder afstanden mellem spær, som er bestemt af bredden som spær spænder
         int rafterSpacing = 0;
 
@@ -317,7 +360,12 @@ public class ListGen {
         return rafterSpacing;
     }
 
-    public static int getRafterAmount(int length, int width) {
+    /**
+     * @param length length of carport
+     * @param width width of carport
+     * @return amount of rafters needed
+     */
+    static int getRafterAmount(int length, int width) {
         /*
         Denne metode beregner hvor mange spær der skal bruges ud fra længden og bredden på carport.
         Metoden ligger 1 til, fordi integers altid runder ned ved division.
@@ -328,6 +376,11 @@ public class ListGen {
         return 1 + (length / getRafterSpacing(width));
     }
 
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @param list ArrayList of specific type of materials
+     * @return the id of the material with the best fit
+     */
     private static int findBestFit(int size, ArrayList<Material> list) {
         /*
         Denne metode finder id på det materiale, der er mindst muligt for langt, til at opfylde en given længde
@@ -359,11 +412,19 @@ public class ListGen {
         return materialId;
     }
 
-    public static int getWaterboardId(int size) {
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @return the id of the material with the best fit
+     */
+    static int getWaterboardId(int size) {
         //Se findBestFit()
         return findBestFit(size, getWaterboardList());
     }
 
+    /**
+     * @param list ArrayList of specific type of materials
+     * @return a max int, used by findFitFactor
+     */
     private static int findMaxFromList(ArrayList<Material> list) {
         /*
         Denne metode finder et max, som bruges af findFitFactor() til at finde en factor i som
@@ -381,9 +442,14 @@ public class ListGen {
         return max;
     }
 
+    /**
+     * @param size size(length or width) of the part to find best fitting material for
+     * @param max generated by findMaxFromList
+     * @return the amount of materials (of size max) needed to fill size
+     */
     private static int findFitFactor(int size, int max) {
         /*
-        Denne metode kompensere for at nogen materialer er for korte til at strække hele size
+        Denne metode kompenserer for at nogen materialer er for korte til at strække hele size
         og derfor blev halveret i en af Id metoderne.
 
         Metoden returnerer den factor size er delt med for at finde et materiale der kan strække længden.

@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class ShowAdminOrders extends Command {
+/**
+ * Retrieves an arrayList of all orders in the DB
+ */
+class ShowAdminOrders extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
