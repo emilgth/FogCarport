@@ -28,12 +28,6 @@
     %>
 </div>
 
-<!-- Button trigger modal -->
-<form name="logOut" action="FrontController" method="post">
-    <input type="hidden" name="command" value="logOut">
-    <button class="btn btn-link" type="submit">LOG UD</button>
-</form>
-
 <!-- Modal -->
 <div class="modal fade" id="logout">
     <div class="modal-dialog">

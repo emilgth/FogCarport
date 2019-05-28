@@ -11,7 +11,7 @@
 <footer class="page-footer font-small blue pt-4 pb-4 footer-background" id="footer">
     <div class="container-fluid footer-background">
         <div class="footer-copyright text-center py-3">© 2019 Copyright:
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> MagaritaSystems.com</a>
+            <a href="https://github.com/emilgth/FogCarport"> MagaritaSystems.com</a>
         </div>
     </div>
 </footer>
