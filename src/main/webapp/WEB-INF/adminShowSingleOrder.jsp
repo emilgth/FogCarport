@@ -41,7 +41,10 @@
                 <c:forEach items="${requestScope.orderLineList}" var="orderLine">
                     <tr>
                         <td>
-                                ${orderLine.getMaterial().getWidth()}x${orderLine.getMaterial().getHeight()}mm.
+                                ${orderLine.getMaterial().getWidth()}
+                            x
+                                ${orderLine.getMaterial().getHeight()}
+                            mm.
                                 ${orderLine.getMaterial().getName()}
                         </td>
                         <td>${orderLine.getMaterial().getLength()}</td>

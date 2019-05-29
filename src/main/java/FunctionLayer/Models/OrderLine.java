@@ -19,12 +19,15 @@ public class OrderLine {
         this.description = description;
     }
 
-    Material getMaterial() {
+    public Material getMaterial() {
         return material;
     }
 
-    int getAmount() {
+    public int getAmount() {
         return amount;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }

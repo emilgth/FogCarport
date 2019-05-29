@@ -47,12 +47,12 @@
                     <input type="hidden" name="command" value="login">
                     <label> E-mail:
                         <input class="form-control" type="text" name="email" placeholder="email"
-                               value="anders@email.com"
+                               value=""
                                required>
                     </label>
                     <br>
                     <label> Password:
-                        <input class="form-control" type="password" name="password" placeholder="password" value="1234"
+                        <input class="form-control" type="password" name="password" placeholder="password" value=""
                                required>
                     </label>
                     <br><br>
